@@ -54,6 +54,7 @@ router.post('/login', (req, res) => {
 })
 
 
+
 // PROFILE
 router.get('/profile', (req, res) => {
 
@@ -78,9 +79,9 @@ router.get('/profile', (req, res) => {
 })
 
 
+
 //EDIT PROFILE
 //protegido, sólo CURRENTUSER
-//hay que cambiar la logica
 router.put('/profile/edit', (req, res) => {
 
     const { email, firstName, lastName, bio, tokenConfirmation, role, friend } = req.body
@@ -104,7 +105,6 @@ router.put('/profile/edit', (req, res) => {
 
 // //DELETE
 //protegido, sólo CURRENTUSER
-//hay que cambiar la logica
 router.delete('/profile/delete', (req, res) => {
 
     if (sessionActive(req)) {

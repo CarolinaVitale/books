@@ -6,6 +6,7 @@ const Book = require('./../models/Book.model')
 const { sessionActive, currentUser } = require('./../utils')
 
 
+
 //CREATE BOOK 
 router.post('/create', (req, res) => {
 
@@ -43,9 +44,8 @@ router.get('/details/:book_id', (req, res) => {
 
 
 //EDIT BOOK 
-//hay que cambiar la logica
 router.put('/edit/:book_id', (req, res) => {
-    
+
     if (sessionActive(req)) {
 
         const { book_id } = req.params
@@ -61,7 +61,6 @@ router.put('/edit/:book_id', (req, res) => {
 
 
 //DELETE BOOK 
-//hay que cambiar la logica
 router.delete('/delete/:book_id', (req, res) => {
 
     if (sessionActive(req)) {

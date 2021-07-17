@@ -6,6 +6,7 @@ const Post = require('./../models/Post.model')
 const { sessionActive, currentUser } = require('./../utils')
 
 
+
 //CREATE POST 
 router.post('/create', (req, res) => {
 
@@ -22,6 +23,7 @@ router.post('/create', (req, res) => {
             .catch(err => res.status(500).json({ code: 500, message: 'Could not create post', err }))
     }
 })
+
 
 
 //READ POST 

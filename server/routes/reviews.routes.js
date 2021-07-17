@@ -6,6 +6,7 @@ const Review = require('./../models/Review.model')
 const { sessionActive, currentUser } = require('./../utils')
 
 
+
 //CREATE REVIEW
 router.post('/create', (req, res) => {
 
@@ -23,6 +24,7 @@ router.post('/create', (req, res) => {
             .catch(err => res.status(500).json({ code: 500, message: 'Could not create review', err }))
     }
 })
+
 
 
 //READ REVIEW 
@@ -56,7 +58,6 @@ router.put('/edit/:review_id', (req, res) => {
             .catch(err => res.status(500).json({ code: 500, message: 'Could not edit review', err }))
     }
 })
-
 
 
 

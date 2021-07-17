@@ -5,7 +5,6 @@ module.exports = app => {
     app.use("/book", require("./books.routes"))
     app.use("/post", require("./posts.routes"))
     app.use("/review", require("./reviews.routes"))
-    
 }
 
 
