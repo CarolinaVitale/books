@@ -1,2 +1,0 @@
-# books
-Ironhack final project
