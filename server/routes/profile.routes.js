@@ -72,12 +72,15 @@ router.get('/profile', (req, res) => {
             .findById(id)
             .then(user => res.json(user))
             .catch(err => res.status(500).json({ code: 500, message: 'Profile Error', err }))
+    } else {
+        res.redirect('/')
     }
 })
 
 
 //EDIT PROFILE
 //protegido, sólo CURRENTUSER
+//hay que cambiar la logica
 router.put('/profile/edit', (req, res) => {
 
     const { email, firstName, lastName, bio, tokenConfirmation, role, friend } = req.body
@@ -89,23 +92,34 @@ router.put('/profile/edit', (req, res) => {
         const id = loggedUser._id
 
         User
-            .findByIdAndUpdate( id, { email, firstName, lastName, bio, tokenConfirmation, role, friend, address })
+            .findByIdAndUpdate(id, { email, firstName, lastName, bio, tokenConfirmation, role, friend, address }, { new: true })
             .then(user => res.json(user))
             .catch(err => res.status(500).json({ code: 500, message: 'Edit profile Error', err }))
+    } else {
+        res.redirect('/')
     }
 })
 
 
 
 // //DELETE
-// //protegido, sólo CURRENTUSER
+//protegido, sólo CURRENTUSER
+//hay que cambiar la logica
+router.delete('/profile/delete', (req, res) => {
 
-//     api.delete('/user/delete/:id', (req, res) => {
+    if (sessionActive(req)) {
 
-//         User
-//             .findByIdAndDelete()
-//             .then(() => res.json())
-//     })
+        const loggedUser = currentUser(req)
+        const id = loggedUser._id
+
+        User
+            .findByIdAndDelete(id)
+            .then(() => res.json())
+            .catch(err => res.status(500).json({ code: 500, message: 'Delete profile Error', err }))
+    } else {
+        res.redirect('/')
+    }
+})
 
 
 
