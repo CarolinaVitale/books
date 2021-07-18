@@ -6,15 +6,27 @@ const User = require('./../models/User.model')
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
-const { sessionActive, currentUser } = require('./../utils')
+const { sessionActive, currentUser, randomToken, emails } = require('./../utils')
+const { rejectUser } = require('./../middleware')
+const transporter = require('./../config/nodemailer.config')
+
 
 
 
 // USER -- SIGNUP
 router.post('/register', (req, res) => {
 
-    const { email, password, firstName, lastName, bio, tokenConfirmation, role, friend } = req.body
+    const { email, password, firstName, lastName, bio, role, friend } = req.body
     const address = { road, number, city, state } = req.body
+
+    const tokenConfirmation = randomToken()
+    const objectEmail = { email, tokenConfirmation }
+    const emailToSend = emails('email', objectEmail)
+
+    transporter
+        .sendMail(emailToSend)
+        .then(info => console.log(info))
+        .catch(err => console.log(err))
 
     const salt = bcrypt.genSaltSync(bcryptSalt)
     const hashPass = bcrypt.hashSync(password, salt)
@@ -25,6 +37,29 @@ router.post('/register', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
 })
 
+
+
+// EMAIL'S CONFIRMATION
+router.get('/confirmation/email/:token', (req, res) => {
+
+    const { token } = req.params
+
+    User.find({ tokenConfirmation: token })
+        .then(user => {
+
+            if (user.length) {
+
+                User.findByIdAndUpdate(user[0]._id, { role: 'USER' }, { new: true })
+                    .then(() => res.redirect('/'))
+                    .catch(err => console.log(err))
+
+            } else {
+
+                res.render('errors/errorEmail')
+            }
+        })
+        .catch(err => console.log(err))
+})
 
 
 //LOGIN -- (API)
@@ -56,7 +91,7 @@ router.post('/login', (req, res) => {
 
 
 // PROFILE
-router.get('/profile', (req, res) => {
+router.get('/profile', rejectUser('PENDING'), (req, res) => {
 
     if (sessionActive(req)) {
 
@@ -82,7 +117,7 @@ router.get('/profile', (req, res) => {
 
 //EDIT PROFILE
 //protegido, sólo CURRENTUSER
-router.put('/profile/edit', (req, res) => {
+router.put('/profile/edit', rejectUser('PENDING'), (req, res) => {
 
     const { email, firstName, lastName, bio, tokenConfirmation, role, friend } = req.body
     const address = { road, number, city, state } = req.body
@@ -105,7 +140,7 @@ router.put('/profile/edit', (req, res) => {
 
 // //DELETE
 //protegido, sólo CURRENTUSER
-router.delete('/profile/delete', (req, res) => {
+router.delete('/profile/delete', rejectUser('PENDING'), (req, res) => {
 
     if (sessionActive(req)) {
 

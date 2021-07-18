@@ -17,20 +17,21 @@ module.exports = {
     },
 
     emails: (type, objectNeeded, accepted) => {
+
         if (type === 'email') {
             return {
-                from: 'My project Books',
-                to: objectNeeded.username,
+                from: 'My App Books',
+                to: objectNeeded.email,
                 subject: 'Welcome to Books, confirm your subscription ',
                 text: '',
                 html: `'<h1> Welcome to Books</h1><br>
-                <a href="http://localhost:3000/confirmation/email/${objectNeeded.token_confirmation}">Get confirmed</a>`,
+                <a href="http://localhost:5000/confirmation/email/${objectNeeded.tokenConfirmation}">Get confirmed</a>`,
             }
         }
 
         if (type === 'host' && !accepted) {
             return {
-                from: 'Rejected request B&BIDAS',
+                from: 'Rejected request Books',
                 to: objectNeeded,
                 subject: 'Hi, we are sorry, request rejected, Not trusted info or place not avail',
                 text: 'oh yeah',
@@ -40,9 +41,9 @@ module.exports = {
 
         if (type === 'host' && accepted) {
             return {
-                from: 'Accepted request ! from B&BIDAS',
+                from: 'Accepted request ! from Books',
                 to: objectNeeded.username,
-                subject: 'Hi, request accepted on your B&BIDAS profile',
+                subject: 'Hi, request accepted on your Books profile',
                 text: 'oh yeah',
                 html: `<h1>WE ARE SO HAPPY to have you</h1>Contact us at 512981317 for details, Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe fuga perferendis ratione! Cum deserunt labore culpa, ducimus placeat quasi libero quibusdam sed eos quas vero optio voluptas itaque distinctio ullam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nulla, ullam deleniti ut, aliquam reiciendis recusandae ducimus minus placeat molestiae sed deserunt ex sapiente tempore alias nemo. Iusto, doloribus omnis!`,
             }
@@ -56,7 +57,7 @@ module.exports = {
             if (objectNeeded.answer !== '') content = objectNeeded.answer
             // console.log(objectNeeded.elm)
             return {
-                from: 'My project B&BIDAS',
+                from: 'My project Books',
                 to: objectNeeded.elm.host_id.username,
                 subject: subject,
                 text: content,
