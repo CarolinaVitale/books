@@ -19,8 +19,14 @@ const userSchema = new Schema({
     type: String,
     //require: true
   },
-  img: String,
-  cover: String,
+  img: {
+    type: String,
+    //default:
+  },
+  cover: {
+    type: String,
+    //default:
+  },
   bio: String,
   tokenConfirmation: String,
   role: {
@@ -38,7 +44,7 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  
+
 }, {
   timestamp: true,
 })

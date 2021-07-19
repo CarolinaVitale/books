@@ -4,6 +4,10 @@ const postSchema = new Schema({
 
     title: String,
     text: String, //investigar PÁRRAFOS!
+    img: {
+        type: String,
+        //default: link cloudinary
+    },
     review: {
         type: Schema.Types.ObjectId,
         ref: 'Review',

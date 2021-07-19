@@ -6,7 +6,10 @@ const bookSchema = new Schema({
         type: String,
         //require: true,
     },
-    img: String,
+    img: {
+        type: String,
+        //default:
+    },
     description: String,
     accepted: Boolean,
     price: Number,
