@@ -6,3 +6,9 @@
     --color-mint: #A1CDDA;
     --color-lightGrey: #DEDAD5;
 }
+
+/* PROFILE PAGE */
+.cover-img {
+    width: 100%;
+    border-radius: 30px;
+}

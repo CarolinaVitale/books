@@ -1,13 +1,11 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import UserList from './pages/UsersPage/UsersList'
-
+import UserProfile from './pages/UserProfilePage/UserProfile'
 
 function App() {
   return (
     <>
-      <h1>yay!</h1>
-      <UserList />
+      <UserProfile />
     </>
   )
 }
