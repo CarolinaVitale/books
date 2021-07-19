@@ -1,16 +1,19 @@
 import { Component } from 'react'
-import { Row } from "react-bootstrap"
+import { Row, Modal } from "react-bootstrap"
 
 import UserService from '../../../services/users.service'
 import ProfilePageItemsListCard from './ProfilePageItemsCard' 
+import UserProfileCard from './../UserProfilePage/UserProfilePage'
 
 import './UserListCard.css'
+
 class ProfilePageItemsList extends Component {
 
     constructor() {
         super()
         this.state = {
             users: undefined,
+            modal: false
         }
         this.userService = new UserService()
     }
@@ -23,6 +26,11 @@ class ProfilePageItemsList extends Component {
             .then(response => this.setState({ users: response.data }))
             .catch(err => console.log(err))
     }
+
+
+
+    showModal = () => this.setState({ modal: true })
+
 
 
     componentDidMount = () => {
@@ -38,8 +46,18 @@ class ProfilePageItemsList extends Component {
                 (
                     <>
                     <Row>
-                        {this.state.users.map(elm => <ProfilePageItemsListCard key={elm._id} {...elm} />)}
+                    <p onClick={this.showModal}>presshere</p>
+                            {this.state.users.map(elm => <ProfilePageItemsListCard  key={elm._id} {...elm} />)}
                     </Row>
+
+                        <Modal show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                            <Modal.Header>
+                                <Modal.Title>Preview</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <UserProfileCard refreshItems={this.loadUser} closeModal={() => this.setState({ modal: false })} />
+                            </Modal.Body>
+                        </Modal>
                     </>
                 )
         )

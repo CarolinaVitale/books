@@ -1,4 +1,4 @@
-import { Col, Image, Button } from "react-bootstrap"
+import { Col, Image} from "react-bootstrap"
 
 const UserProfileCard = ({ email, firstName, lastName, cover, image, _id }) => {
 
