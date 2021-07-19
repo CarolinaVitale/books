@@ -1,11 +1,16 @@
 .User-List-Card{
     width: 8rem;
-    margin: 2px 5px ;
+    margin: 5px ;
+    border: none;
+}
+.User-List-Card:hover{
+    box-shadow: 0 0 3px 0 #8080807a;
 }
 .User-List-Card img{
-    height: 4rem;
+    height: 8rem;
     object-fit: cover;
 }
-Card.Title{
-    font-size: 0.4em;
+.text{
+    text-align: start;
+    width: 100%;
 }

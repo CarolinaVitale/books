@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { Row, Modal } from "react-bootstrap"
 
 import UserService from '../../../services/users.service'
-import ProfilePageItemsListCard from './ProfilePageItemsCard' 
+import ProfilePageItemsListCard from './ProfilePageItemsCard'
 import UserProfileCard from './../UserProfilePage/UserProfilePage'
 
 import './UserListCard.css'
@@ -22,19 +22,16 @@ class ProfilePageItemsList extends Component {
     loadUser = () => {
         this.userService
             .getUsers()
-            
+
             .then(response => this.setState({ users: response.data }))
             .catch(err => console.log(err))
     }
 
 
 
-    showModal = () => this.setState({ modal: true })
-
-
-
     componentDidMount = () => {
         this.loadUser()
+
     }
 
 
@@ -45,10 +42,10 @@ class ProfilePageItemsList extends Component {
                 :
                 (
                     <>
-                    <Row>
-                    <p onClick={this.showModal}>presshere</p>
-                            {this.state.users.map(elm => <ProfilePageItemsListCard  key={elm._id} {...elm} />)}
-                    </Row>
+                        <Row className="justify-content-center">
+                            <p onClick={() => this.setState({ modal: true })} >presshere to see modal that doesn't works in cards</p>
+                            {this.state.users.map((elm, modal) => <ProfilePageItemsListCard onClick={() => this.setState({ modal: true })} key={elm._id} {...elm} />)}
+                        </Row>
 
                         <Modal show={this.state.modal} onHide={() => this.setState({ modal: false })}>
                             <Modal.Header>
