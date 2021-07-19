@@ -1,8 +1,8 @@
 import { Component } from 'react'
-import UserService from './../../../services/users.service'
+import UserService from '../../../services/users.service'
 import UserListCard from './UserListCard'
 
-class UserList extends Component {
+class ProfilePageItemsList extends Component {
 
     constructor() {
         super()
@@ -43,4 +43,4 @@ class UserList extends Component {
 }
 
 
-export default UserList
+export default ProfilePageItemsList

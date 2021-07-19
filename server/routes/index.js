@@ -1,5 +1,4 @@
 module.exports = app => { 
-    app.use("/api", require("./base.routes"))
     app.use("/api", require("./auth.routes"))
     app.use("/api", require("./users.routes"))
     app.use("/api/book", require("./books.routes"))
