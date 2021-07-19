@@ -4,18 +4,18 @@ const postSchema = new Schema({
 
     title: String,
     text: String, //investigar PÁRRAFOS!
-    img: {
+    image: {
         type: String,
         //default: link cloudinary
     },
-    review: {
+    review: [{
         type: Schema.Types.ObjectId,
         ref: 'Review',
-    },
-    owner: {
+    }],
+    owner: [{
         type: Schema.Types.ObjectId,
         ref: 'User',
-    }
+    }]
 },
     {
         timestamp: true,

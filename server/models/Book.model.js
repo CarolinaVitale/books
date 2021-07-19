@@ -14,14 +14,14 @@ const bookSchema = new Schema({
     accepted: Boolean,
     price: Number,
     currency: String,
-    review: {
+    review: [{
         type: Schema.Types.ObjectId,
         ref: 'Review',
-    },
-    owner: {
+    }],
+    owner: [{
         type: Schema.Types.ObjectId,
         ref: 'User',
-    }
+    }]
 }, {
     timestamp: true,
 })

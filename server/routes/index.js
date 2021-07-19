@@ -1,10 +1,10 @@
 module.exports = app => { 
-
-    app.use("/", require("./base.routes"))
-    app.use("/", require("./profile.routes"))
-    app.use("/book", require("./books.routes"))
-    app.use("/post", require("./posts.routes"))
-    app.use("/review", require("./reviews.routes"))
+    app.use("/api", require("./base.routes"))
+    app.use("/api", require("./auth.routes"))
+    app.use("/api", require("./users.routes"))
+    app.use("/api/book", require("./books.routes"))
+    app.use("/api/post", require("./posts.routes"))
+    app.use("/api/review", require("./reviews.routes"))
 }
 
 

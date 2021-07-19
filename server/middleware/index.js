@@ -15,5 +15,5 @@ module.exports = {
                     res.redirect('/', { code: 401, message: 'Restricted Area' })
 
                 }
-            }
+            },
 }

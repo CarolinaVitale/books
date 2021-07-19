@@ -12,7 +12,8 @@ const reviewSchema = new Schema({
     },
     points: {
         type: Number,
-        enum: [1, 2, 3, 4, 5]
+        min: 1,
+        max: 5
     },
     owner: {
         type: Schema.Types.ObjectId,

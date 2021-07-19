@@ -40,10 +40,10 @@ const userSchema = new Schema({
     city: String,
     state: String,
   },
-  friend: {
+  friends: [{
     type: Schema.Types.ObjectId,
     ref: 'User'
-  },
+  }],
 
 }, {
   timestamp: true,
