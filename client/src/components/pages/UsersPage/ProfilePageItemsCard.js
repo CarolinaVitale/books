@@ -3,7 +3,7 @@ import { Col, Card } from "react-bootstrap"
 const UserListCard = ({ email, firstName, lastName, cover, image, _id }) => {
     
     return (
-        <Col md={4}>
+        <Col>
             <Card className="user-card">
                 <Card.Body>
                     <Card.Title>{firstName} {lastName}</Card.Title>
