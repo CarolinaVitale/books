@@ -1,0 +1,11 @@
+.User-List-Card{
+    width: 8rem;
+    margin: 2px 5px ;
+}
+.User-List-Card img{
+    height: 4rem;
+    object-fit: cover;
+}
+Card.Title{
+    font-size: 0.4em;
+}

@@ -1,7 +1,10 @@
 import { Component } from 'react'
-import UserService from '../../../services/users.service'
-import UserListCard from './UserListCard'
+import { Row } from "react-bootstrap"
 
+import UserService from '../../../services/users.service'
+import ProfilePageItemsListCard from './ProfilePageItemsCard' 
+
+import './UserListCard.css'
 class ProfilePageItemsList extends Component {
 
     constructor() {
@@ -34,7 +37,9 @@ class ProfilePageItemsList extends Component {
                 :
                 (
                     <>
-                        {this.state.users.map(elm => <UserListCard key={elm._id} {...elm} />)}
+                    <Row>
+                        {this.state.users.map(elm => <ProfilePageItemsListCard key={elm._id} {...elm} />)}
+                    </Row>
                     </>
                 )
         )
