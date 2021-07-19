@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 const User = require('./../models/User.model')
+const Book = require('./../models/Book.model')
+const Post = require('./../models/Post.model')
+
 
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
@@ -98,15 +101,14 @@ router.get('/profile', rejectUser('PENDING'), (req, res) => {
         const loggedUser = currentUser(req)
         const id = loggedUser._id
 
-        // const promiseUser = User.findById(id)
-        // const promiseBooks = Book.findById(id)
-        //     .populate('review')
-        // const promisePosts = Post.findById(id)
-        //     .populate('review')
+        const promiseUser = User.findById(id)
+        const promiseBooks = Book.find({owner: id})
+            ?.populate('review')
+        const promisePosts = Post.find({ owner: id })
+            ?.populate('review')
 
-        User
-            .findById(id)
-            .then(user => res.json(user))
+        Promise.all([ promiseUser, promiseBooks, promisePosts ])
+            .then(profile => res.json(profile))
             .catch(err => res.status(500).json({ code: 500, message: 'Profile Error', err }))
     } else {
         res.redirect('/')
