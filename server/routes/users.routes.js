@@ -10,6 +10,17 @@ const { rejectUser } = require('../middleware')
 
 
 
+//USER LIST
+router.get('/users', (req, res) => {
+
+    User
+        .find()
+        .then(list => res.json(list))
+        .catch(err => res.status(500).json({ code: 500, message: 'User-List Error!', err }))
+})
+
+
+
 // PROFILE
 router.get('/profile', (req, res) => {
 
@@ -29,16 +40,6 @@ router.get('/profile', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Profile Error', err }))
 })
 
-
-
-//USER LIST
-router.get('/users', (req, res) => {
-
-    User
-        .find()
-        .then(list => res.json(list))
-        .catch(err => res.status(500).json({ code: 500, message: 'User-List Error!', err }))
-})
 
 
 //EDIT PROFILE

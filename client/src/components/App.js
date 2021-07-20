@@ -1,18 +1,18 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './pages/NavBarPage/NavbarCard'
 
-import ProfilePageItemsList from './pages/UserProfilePageItemsList/ProfilePageItemsList'
-import UserProfile from './pages/UserProfilePage/UserProfile'
+import Profile from './pages/ProfilePage/Profile'
+import ProfileBar from './pages/profileBar/profileBar'
+import Items from './pages/Items/Items'
 
 function App() {
   return (
     <>
-      <UserProfile />
+      <Profile />
       <br></br>
-      <Navbar />
+      <ProfileBar />
       <br></br>
-      <ProfilePageItemsList />
+      <Items />
     </>
   )
 }

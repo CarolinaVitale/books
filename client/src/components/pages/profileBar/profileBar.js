@@ -1,15 +1,12 @@
 import { Nav, NavLink, Row, Col } from 'react-bootstrap'
 
 
-// import logo from './logo.svg';
-
-const Navbar = () => {
+const ProfileBar = () => {
     return (
-
         <>
-            <Row className="justify-content-center">
-                <Col md={{ span: 4, offset: 2 }}>
-                    <Nav className="navbar-profile">
+            <Row>
+                <Col className='profile-bar'>
+                    <Nav>
                         <NavLink to="/">Users</NavLink>
                         <NavLink to="#link">Books</NavLink>
                         <NavLink to="#link">Post</NavLink>
@@ -17,10 +14,7 @@ const Navbar = () => {
                 </Col>
             </Row>
         </>
-
-
-
     )
 }
 
-export default Navbar
+export default ProfileBar
