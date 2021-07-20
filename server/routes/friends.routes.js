@@ -5,8 +5,6 @@ const User = require('../models/User.model')
 const Book = require('./../models/Book.model')
 const Post = require('./../models/Post.model')
 
-const { currentUser } = require('../utils')
-
 
 
 // GET OTHERS PROFILE
@@ -40,7 +38,6 @@ router.put('/profile/:user_id', (req, res) => {
         .findByIdAndUpdate(user_id, {$push:{ friends: follow }})
         .then(profile => res.json(profile))
         .catch(err => res.status(500).json({ code: 500, message: 'Follow Error', err }))
-
 })
 
 
