@@ -10,7 +10,7 @@ class UserService {
         })
     }
 
-    getUsers = () => this.app.get('/get-users')
+    users = () => this.app.get('/users')
     profile = () => this.app.get('/profile')
     login = (email, password) => this.app.post('/login', { email, password })
     signup = (email, password) => this.app.post('/register', { email, password })

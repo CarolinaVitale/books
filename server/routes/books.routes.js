@@ -10,16 +10,27 @@ const { currentUser } = require('./../utils')
 //CREATE BOOK 
 router.post('/create', (req, res) => {
 
-        const loggedUser = currentUser(req)
-        console.log(loggedUser)
-        const id = loggedUser._id
+    const loggedUser = currentUser(req)
+    console.log(loggedUser)
+    const id = loggedUser._id
 
-        const { title, description, price, currency } = req.body
+    const { title, description, price, currency } = req.body
 
-        Book
-            .create({ title, description, price, currency, owner: id })
-            .then(book => res.json(book))
-            .catch(err => res.status(500).json({ code: 500, message: 'Could not create book', err }))
+    Book
+        .create({ title, description, price, currency, owner: id })
+        .then(book => res.json(book))
+        .catch(err => res.status(500).json({ code: 500, message: 'Could not create book', err }))
+})
+
+
+
+//GET BOOKS LIST
+router.get('/list', (req, res) => {
+
+    Book
+        .find()
+        .then(book => res.json(book))
+        .catch(err => res.status(500).json({ code: 500, message: 'Book list not found', err }))
 })
 
 
@@ -27,39 +38,39 @@ router.post('/create', (req, res) => {
 //READ BOOK 
 router.get('/details/:book_id', (req, res) => {
 
-        const { book_id } = req.params
+    const { book_id } = req.params
 
-        Book
-            .findById(book_id)
-            .then(book => res.json(book))
-            .catch(err => res.status(500).json({ code: 500, message: 'Book details not found', err }))
+    Book
+        .findById(book_id)
+        .then(book => res.json(book))
+        .catch(err => res.status(500).json({ code: 500, message: 'Book details not found', err }))
 })
 
 
 
 //EDIT BOOK 
-router.put('/edit/:book_id', (req, res) => {
+router.put('/:book_id', (req, res) => {
 
-        const { book_id } = req.params
-        const { title, description, price, currency } = req.body
+    const { book_id } = req.params
+    const { title, description, price, currency } = req.body
 
-        Book
-            .findByIdAndUpdate(book_id, { title, description, price, currency }, { new: true })
-            .then(book => res.json(book))
-            .catch(err => res.status(500).json({ code: 500, message: 'Could not edit book', err }))
+    Book
+        .findByIdAndUpdate(book_id, { title, description, price, currency }, { new: true })
+        .then(book => res.json(book))
+        .catch(err => res.status(500).json({ code: 500, message: 'Could not edit book', err }))
 })
 
 
 
 //DELETE BOOK 
-router.delete('/delete/:book_id', (req, res) => {
+router.delete('/:book_id', (req, res) => {
 
-        const { book_id } = req.params
+    const { book_id } = req.params
 
-        Book
-            .findByIdAndDelete(book_id)
-            .then(book => res.json(book))
-            .catch(err => res.status(500).json({ code: 500, message: 'Could not delete book', err }))
+    Book
+        .findByIdAndDelete(book_id)
+        .then(book => res.json(book))
+        .catch(err => res.status(500).json({ code: 500, message: 'Could not delete book', err }))
 })
 
 

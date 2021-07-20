@@ -11,12 +11,13 @@ const { rejectUser } = require('../middleware')
 
 
 // PROFILE
-router.get('/profile', rejectUser('PENDING'), (req, res) => {
+router.get('/profile', (req, res) => {
 
     const loggedUser = currentUser(req)
     const id = loggedUser._id
 
     const promiseUser = User.findById(id)
+        ?.populate('friends')
     const promiseBooks = Book.find({ owner: id })
         ?.populate('review')
     const promisePosts = Post.find({ owner: id })
@@ -31,8 +32,8 @@ router.get('/profile', rejectUser('PENDING'), (req, res) => {
 
 
 //USER LIST
-router.get('/get-users', (req, res) => {
-    
+router.get('/users', (req, res) => {
+
     User
         .find()
         .then(list => res.json(list))
@@ -42,7 +43,7 @@ router.get('/get-users', (req, res) => {
 
 //EDIT PROFILE
 //protegido, sólo CURRENTUSER
-router.put('/profile/edit', rejectUser('PENDING'), (req, res) => {
+router.put('/profile', rejectUser('PENDING'), (req, res) => {
 
     const { email, firstName, lastName, bio, tokenConfirmation, role, friend } = req.body
     const address = { road, number, city, state } = req.body
@@ -60,7 +61,7 @@ router.put('/profile/edit', rejectUser('PENDING'), (req, res) => {
 
 // //DELETE
 //protegido, sólo CURRENTUSER
-router.delete('/profile/delete', rejectUser('PENDING'), (req, res) => {
+router.delete('/profile', rejectUser('PENDING'), (req, res) => {
 
     const loggedUser = currentUser(req)
     const id = loggedUser._id
