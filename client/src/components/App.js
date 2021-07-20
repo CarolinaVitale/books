@@ -9,11 +9,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <h1>yay!</h1>
-      <UserList />
-      <hr></hr>
-      <ProfilePageItemsList />
+      <br></br>
       <UserProfile />
+      <br></br>
+      <ProfilePageItemsList />
     </>
   )
 }
