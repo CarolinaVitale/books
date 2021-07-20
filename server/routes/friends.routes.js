@@ -35,7 +35,7 @@ router.put('/profile/:user_id', (req, res) => {
     const { follow } = req.body
 
     User
-        .findByIdAndUpdate(user_id, {$push:{ friends: follow }})
+        .findByIdAndUpdate(user_id, { $push: { friends: follow } })
         .then(profile => res.json(profile))
         .catch(err => res.status(500).json({ code: 500, message: 'Follow Error', err }))
 })
@@ -44,9 +44,9 @@ router.put('/profile/:user_id', (req, res) => {
 
 // REMOVE FOLLOW
 router.put('/profile/:user_id', (req, res) => {
-
+    
     const { user_id } = req.params
-    const { unfollow } = req.body
+    const { follow } = req.body
 
     User
         .findByIdAndUpdate(user_id, { $pull: { friends: unfollow } })
