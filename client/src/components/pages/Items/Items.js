@@ -1,25 +1,33 @@
 import { Component } from 'react'
-import UserService from './../../../services/users.service'
-import UserListCard from './UserListCard'
+import { Row, Container, Spinner } from "react-bootstrap"
 
-class UserList extends Component {
+import UserService from '../../../services/users.service'
+import ItemsCard from './ItemsCard'
+
+
+
+class Items extends Component {
 
     constructor() {
         super()
         this.state = {
             users: undefined,
+            modal: false
         }
+
         this.userService = new UserService()
     }
 
 
+
     loadUser = () => {
+
         this.userService
             .users()
-
             .then(response => this.setState({ users: response.data }))
             .catch(err => console.log(err))
     }
+
 
 
     componentDidMount = () => {
@@ -28,13 +36,18 @@ class UserList extends Component {
 
 
     render() {
+
         return (
             !this.state.users
-                ? <h3>Cargando...</h3>
+                ? <Spinner className='spinner' animation="grow" variant="info" />
                 :
                 (
                     <>
-                        {this.state.users.map(elm => <UserListCard key={elm._id} {...elm} />)}
+                        <Container>
+                            <Row>
+                                {this.state.users.map((elm, modal) => <ItemsCard key={elm._id} {...elm} />)}
+                            </Row>
+                        </Container>
                     </>
                 )
         )
@@ -43,4 +56,4 @@ class UserList extends Component {
 }
 
 
-export default UserList
+export default Items

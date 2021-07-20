@@ -1,6 +1,6 @@
-import { Col, Image} from "react-bootstrap"
+import { Col, Image } from "react-bootstrap"
 
-const UserProfileCard = ({ email, firstName, lastName, cover, image, _id }) => {
+const ProfileCard = ({ email, firstName, lastName, cover, image, _id }) => {
 
     return (
         <>
@@ -15,4 +15,4 @@ const UserProfileCard = ({ email, firstName, lastName, cover, image, _id }) => {
     )
 }
 
-export default UserProfileCard
+export default ProfileCard

@@ -28,31 +28,23 @@ router.get('/profile/:user_id', (req, res) => {
 
 
 
-// ADD FOLLOW
+// ADD FOLLOW-UNFOLLOW
 router.put('/profile/:user_id', (req, res) => {
 
     const { user_id } = req.params
-    const { follow } = req.body
+    const { follow_id, follow } = req.body
+
+    if (follow) {
+        objectUpdate = { $pull: { friends: follow_id } }
+    }
+    else {
+        objectUpdate = { $push: { friends: follow_id } }
+    }
 
     User
-        .findByIdAndUpdate(user_id, {$push:{ friends: follow }})
+        .findByIdAndUpdate(user_id, objectUpdate)
         .then(profile => res.json(profile))
-        .catch(err => res.status(500).json({ code: 500, message: 'Follow Error', err }))
-})
-
-
-
-// REMOVE FOLLOW
-router.put('/profile/:user_id', (req, res) => {
-
-    const { user_id } = req.params
-    const { unfollow } = req.body
-
-    User
-        .findByIdAndUpdate(user_id, { $pull: { friends: unfollow } })
-        .then(profile => res.json(profile))
-        .catch(err => res.status(500).json({ code: 500, message: 'Unfollow Error', err }))
-
+        .catch(err => res.status(500).json({ code: 500, message: 'Follow/Unfollow Error', err }))
 })
 
 

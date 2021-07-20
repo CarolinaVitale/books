@@ -12,7 +12,10 @@ const bookSchema = new Schema({
     },
     description: String,
     accepted: Boolean,
-    price: Number,
+    price: {
+        type: Number,
+        //require: true,
+    },
     currency: String,
     review: [{
         type: Schema.Types.ObjectId,

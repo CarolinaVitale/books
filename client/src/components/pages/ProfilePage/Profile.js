@@ -1,32 +1,27 @@
 import { Component } from 'react'
-import { Row, Container } from "react-bootstrap"
-
+import { Spinner } from 'react-bootstrap'
 import UserService from '../../../services/users.service'
-import ProfilePageItemsListCard from './ProfilePageItemsCard'
+import ProfileCard from './ProfileCard'
 
 
-class ProfilePageItemsList extends Component {
+
+class Profile extends Component {
 
     constructor() {
         super()
         this.state = {
             users: undefined,
-            modal: false
         }
-
         this.userService = new UserService()
     }
 
 
-
     loadUser = () => {
-
         this.userService
             .users()
             .then(response => this.setState({ users: response.data }))
             .catch(err => console.log(err))
     }
-
 
 
     componentDidMount = () => {
@@ -35,18 +30,13 @@ class ProfilePageItemsList extends Component {
 
 
     render() {
-
         return (
             !this.state.users
-                ? <h3>Cargando...</h3>
+                ? <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                 :
                 (
                     <>
-                        <Container>
-                            <Row>
-                                {this.state.users.map((elm, modal) => <ProfilePageItemsListCard key={elm._id} {...elm} />)}
-                            </Row>
-                        </Container>
+                        {this.state.users.map(elm => <ProfileCard key={elm._id} {...elm} />)}
                     </>
                 )
         )
@@ -55,4 +45,4 @@ class ProfilePageItemsList extends Component {
 }
 
 
-export default ProfilePageItemsList
+export default Profile
