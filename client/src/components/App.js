@@ -8,12 +8,12 @@ import UserProfile from './pages/UserProfilePage/UserProfile'
 function App() {
   return (
     <>
-      <Navbar />
       <h1>yay!</h1>
       <UserList />
       <hr></hr>
       <ProfilePageItemsList />
       <UserProfile />
+      <Navbar />
     </>
   )
 }
