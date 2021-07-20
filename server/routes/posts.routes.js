@@ -24,6 +24,18 @@ router.post('/create', (req, res) => {
 
 
 
+//GET POST LIST
+router.get('/list', (req, res) => {
+
+    Post
+        .find()
+        .then(post => res.json(post))
+        .catch(err => res.status(500).json({ code: 500, message: 'Post list not found', err }))
+})
+
+
+
+
 //READ POST 
 router.get('/details/:post_id', (req, res) => {
 
@@ -39,7 +51,7 @@ router.get('/details/:post_id', (req, res) => {
 
 //EDIT POST 
 //hay que cambiar la logica
-router.put('/edit/:post_id', (req, res) => {
+router.put('/:post_id', (req, res) => {
 
         const { post_id } = req.params
         const { title, text } = req.body
@@ -54,7 +66,7 @@ router.put('/edit/:post_id', (req, res) => {
 
 //DELETE POST 
 //hay que cambiar la logica
-router.delete('/delete/:post_id', (req, res) => {
+router.delete('/:post_id', (req, res) => {
 
         const { post_id } = req.params
 

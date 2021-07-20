@@ -16,7 +16,7 @@ class UserProfile extends Component {
 
     loadUser = () => {
         this.userService
-            .getUsers()
+            .users()
             .then(response => this.setState({ users: response.data }))
             .catch(err => console.log(err))
     }
