@@ -1,11 +1,9 @@
 import { Component } from 'react'
-import { Row, Modal } from "react-bootstrap"
+import { Row, Container } from "react-bootstrap"
 
 import UserService from '../../../services/users.service'
 import ProfilePageItemsListCard from './ProfilePageItemsCard'
-import UserProfileCard from './../UserProfilePage/UserProfilePage'
 
-import './UserListCard.css'
 
 class ProfilePageItemsList extends Component {
 
@@ -15,14 +13,16 @@ class ProfilePageItemsList extends Component {
             users: undefined,
             modal: false
         }
+
         this.userService = new UserService()
     }
 
 
+
     loadUser = () => {
+
         this.userService
             .getUsers()
-
             .then(response => this.setState({ users: response.data }))
             .catch(err => console.log(err))
     }
@@ -31,11 +31,11 @@ class ProfilePageItemsList extends Component {
 
     componentDidMount = () => {
         this.loadUser()
-
     }
 
 
     render() {
+
         return (
             !this.state.users
                 ? <h3>Cargando...</h3>
@@ -55,6 +55,11 @@ class ProfilePageItemsList extends Component {
                                 <UserProfileCard refreshItems={this.loadUser} closeModal={() => this.setState({ modal: false })} />
                             </Modal.Body>
                         </Modal>
+                        <Container>
+                            <Row>
+                                {this.state.users.map((elm, modal) => <ProfilePageItemsListCard key={elm._id} {...elm} />)}
+                            </Row>
+                        </Container>
                     </>
                 )
         )

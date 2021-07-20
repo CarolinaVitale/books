@@ -55,3 +55,23 @@ button {
 button:hover {
   background-color: #C7B2D6; 
 }
+
+/* FRIENDS BOOK POST LIST ITEMS*/
+
+.User-List-Card{
+    width: 100%;
+}
+.User-List-Card img{
+    border-radius: 10px;
+    height: 250px;
+    object-fit: cover;
+}
+.User-List-Card img:hover{
+    background-color: grey;
+    opacity: 0.5;
+}
+
+.text{
+    text-align: start;
+    width: 100%;
+}

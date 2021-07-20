@@ -8,9 +8,9 @@ import UserProfile from './pages/UserProfilePage/UserProfile'
 function App() {
   return (
     <>
-      <Navbar />
-      <br></br>
       <UserProfile />
+      <br></br>
+      <Navbar />
       <br></br>
       <ProfilePageItemsList />
     </>
