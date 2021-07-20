@@ -45,4 +45,19 @@ router.put('/profile/:user_id', (req, res) => {
 
 
 
+// REMOVE FOLLOW
+router.put('/profile/:user_id', (req, res) => {
+
+    const { user_id } = req.params
+    const { unfollow } = req.body
+
+    User
+        .findByIdAndUpdate(user_id, { $pull: { friends: unfollow } })
+        .then(profile => res.json(profile))
+        .catch(err => res.status(500).json({ code: 500, message: 'Unfollow Error', err }))
+
+})
+
+
+
 module.exports = router
