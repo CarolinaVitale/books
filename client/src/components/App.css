@@ -38,8 +38,8 @@ body {
 
 /* BUTTON */
 .profile-button {
-    justify-content: center;
-    margin-left: 43%;
+    display: block;
+    margin: 0 auto;
     border-radius: 30px;
 }
 
