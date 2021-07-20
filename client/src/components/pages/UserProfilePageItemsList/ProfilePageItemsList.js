@@ -43,7 +43,7 @@ class ProfilePageItemsList extends Component {
                 (
                     <>
                         <Row className="justify-content-center">
-                            <p onClick={() => this.setState({ modal: true })} >presshere to see modal that doesn't works in cards</p>
+                            <p onClick={() => this.setState({ modal: true })} >presshere to see modal that doesn't work in cards</p>
                             {this.state.users.map((elm, modal) => <ProfilePageItemsListCard onClick={() => this.setState({ modal: true })} key={elm._id} {...elm} />)}
                         </Row>
 
