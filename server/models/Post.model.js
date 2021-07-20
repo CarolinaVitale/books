@@ -6,7 +6,7 @@ const postSchema = new Schema({
     text: String, //investigar PÁRRAFOS!
     image: {
         type: String,
-        //default: link cloudinary
+        default: 'https://res.cloudinary.com/carolinavitale/image/upload/v1626707015/rose_bnaxpj.jpg'
     },
     review: [{
         type: Schema.Types.ObjectId,

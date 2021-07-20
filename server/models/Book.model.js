@@ -8,7 +8,7 @@ const bookSchema = new Schema({
     },
     image: {
         type: String,
-        //default:
+        default: 'https://res.cloudinary.com/carolinavitale/image/upload/v1626707006/mint_y8b18a.jpg'
     },
     description: String,
     accepted: Boolean,

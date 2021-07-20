@@ -21,11 +21,11 @@ const userSchema = new Schema({
   },
   img: {
     type: String,
-    //default:
+    default: 'https://res.cloudinary.com/carolinavitale/image/upload/v1626707612/mint-heart_xpwvnc.jpg'
   },
   cover: {
     type: String,
-    //default:
+    default: 'https://res.cloudinary.com/carolinavitale/image/upload/v1626707011/purple_qafsfl.jpg'
   },
   bio: String,
   tokenConfirmation: String,
