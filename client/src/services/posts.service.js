@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-class BookService {
+class PostService {
 
     constructor() {
         this.app = axios.create({
@@ -12,10 +12,11 @@ class BookService {
 
     postCreate = () => this.app.post('/create')
     postList = () => this.app.get('/list')
-    postDetails = () => this.app.get('/details/:post_id')
+    postDetails = post_id => this.app.get(`/details/${post_id}`)
     postEdit = () => this.app.put('/:post_id')
     postDelete = () => this.app.delete('/:post_id')
 }
 
 
-export default BookService
+
+export default PostService

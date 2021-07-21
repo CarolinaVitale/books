@@ -37,10 +37,11 @@ router.get('/list', (req, res) => {
 
 
 //READ POST 
+
 router.get('/details/:post_id', (req, res) => {
 
         const { post_id } = req.params
-
+    
         Post
             .findById(post_id)
             .then(post => res.json(post))

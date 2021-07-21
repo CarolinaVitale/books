@@ -12,6 +12,7 @@ class UserService {
 
     users = () => this.app.get('/users')
     profile = data => this.app.get('/profile', data)
+    othersProfile = () => this.app.get('/profile/:user_id') 
     editProfile = () => this.app.put('/profile')
     deleteProfile = () => this.app.delete('/profile')
     signup = (email, password) => this.app.post('/register', { email, password })
