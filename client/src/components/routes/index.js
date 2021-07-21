@@ -6,14 +6,15 @@ import MyProfile from '../pages/MyProfile/MyProfile'
 
 import BookDetails from '../pages/BooksDetails/BooksDetails'
 import PostDetails from '../pages/PostDetails/PostDetails'
-import SplashPhotos from '../pages/Unsplash/UnsplashPhotos'
+import HomePage from '../pages/HomePage/HomePage'
+
 
 
 const Routes = ({ storeUser, loggedUser }) => {
 
     return (
         <Switch>
-            <Route path='/' exact render={() => <SplashPhotos />} />
+            <Route path='/' exact render={() => <HomePage />} />
             <Route path="/register" render={props => <Register {...props} />} />
             <Route path="/login" render={props => <Login {...props} storeUser={storeUser} />} />
             <Route path="/profile" render={() => loggedUser ? <MyProfile loggedUser={loggedUser} /> : <Redirect to="/login" />} />

@@ -127,12 +127,36 @@ button:hover {
     background-color: #5B6CAB !important;
 }
 
+/*HOME PAGE CARD DIV*/
+.home-page-random-div{
+    box-sizing: border-box;
+    max-width: 90vw;
+    height: 230vh;
+    margin: 50px auto auto auto;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 /*RANDOM CARD*/
+.random-card-div{
+    width: 20%;
+    padding-bottom: 24px;
+    padding-left: 2px;
+
+}
+
 .random-card img{
-    border-radius: 15px;
+    border-radius: 5%;
     width: 70%;
-    height: 300px;
+    min-height: 300px;
     object-fit: cover;
+    padding-bottom: 5px;
+}
+
+.random-card p{
+    max-width:70%;
+    margin-left: 2px;
 }
 
 /* FORMS */
