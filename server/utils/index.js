@@ -11,10 +11,9 @@ module.exports = {
 
     currentUser: (req) => {
         if (req.session.currentUser) return req.session.currentUser
-        // return req.session ? req.session?.currentUser : null
     },
 
-    emails: (type, objectNeeded, accepted) => {
+    emails: (type, objectNeeded) => {
 
         if (type === 'email') {
             return {
@@ -26,37 +25,18 @@ module.exports = {
                 <a href="http://localhost:5000/confirmation/email/${objectNeeded.tokenConfirmation}">Get confirmed</a>`,
             }
         }
-
-        if (type === 'host' && !accepted) {
-            return {
-                from: 'Rejected request Books',
-                to: objectNeeded,
-                subject: 'Hi, we are sorry, request rejected, Not trusted info or place not avail',
-                text: 'oh yeah',
-                html: `SO SORRY Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe fuga perferendis ratione! Cum deserunt labore culpa, ducimus placeat quasi libero quibusdam sed eos quas vero optio voluptas itaque distinctio ullam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nulla, ullam deleniti ut, aliquam reiciendis recusandae ducimus minus placeat molestiae sed deserunt ex sapiente tempore alias nemo. Iusto, doloribus omnis!`,
-            }
-        }
-
-        if (type === 'host' && accepted) {
-            return {
-                from: 'Accepted request ! from Books',
-                to: objectNeeded.username,
-                subject: 'Hi, request accepted on your Books profile',
-                text: 'oh yeah',
-                html: `<h1>WE ARE SO HAPPY to have you</h1>Contact us at 512981317 for details, Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe fuga perferendis ratione! Cum deserunt labore culpa, ducimus placeat quasi libero quibusdam sed eos quas vero optio voluptas itaque distinctio ullam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nulla, ullam deleniti ut, aliquam reiciendis recusandae ducimus minus placeat molestiae sed deserunt ex sapiente tempore alias nemo. Iusto, doloribus omnis!`,
-            }
-        }
+     
 
         if (type === 'customMessage') {
             console.log(objectNeeded.elm)
-            let subject = `Place accepted in B&BIDDAS, & you become promoted to host`
+            let subject = `Book accepted in BooksApp.`
             let content = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste voluptate nostrum consectetur amet, autem cumque repellat asperiores aperiam aliquid repudiandae ea omnis est quod. Explicabo magnam aliquam maxime fugit ipsam! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae a quos fugit vitae repudiandae voluptates reiciendis mollitia aperiam odio consectetur recusandae beatae, quia asperiores eius esse. Hic incidunt minima tempora?`
             if (objectNeeded.subject !== '') subject = objectNeeded.subject
             if (objectNeeded.answer !== '') content = objectNeeded.answer
             // console.log(objectNeeded.elm)
             return {
                 from: 'My project Books',
-                to: objectNeeded.elm.host_id.username,
+                to: objectNeeded.elm.user_id.email,
                 subject: subject,
                 text: content,
                 html: content,
