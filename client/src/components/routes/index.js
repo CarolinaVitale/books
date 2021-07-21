@@ -1,12 +1,12 @@
-import { Switch, Route, Redirect } from 'react-router-dom'
-import Profile from '../pages/ProfilePage/Profile'
+import { Switch, Route } from 'react-router-dom'
+import SplashPhotos from '../pages/Unsplash/UnsplashPhotos'
 
 const Routes = () => {
 
     return (
         <Switch>
-            {/* <Route path='/' exact render={() => <HomePage />} /> */}
-            <Route path='/' exact render={() => <Profile />} />
+            <Route path='/' exact render={() => <SplashPhotos />} />
+            {/* <Route path='/' exact render={() => <Profile />} /> */}
 
         </Switch>
     )
