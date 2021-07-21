@@ -127,6 +127,14 @@ button:hover {
     background-color: #5B6CAB !important;
 }
 
+/*RANDOM CARD*/
+.random-card img{
+    border-radius: 15px;
+    width: 70%;
+    height: 300px;
+    object-fit: cover;
+}
+
 /* FORMS */
 .form-label {
     color: #6B6167;

@@ -6,21 +6,22 @@ import MyProfile from '../pages/MyProfile/MyProfile'
 
 import BookDetails from '../pages/BooksDetails/BooksDetails'
 import PostDetails from '../pages/PostDetails/PostDetails'
+import SplashPhotos from '../pages/Unsplash/UnsplashPhotos'
 
 
 const Routes = ({ storeUser, loggedUser }) => {
-    
+
     return (
-            <Switch>
-                {/* <Route path='/' exact render={() => <HomePage  />} /> */}
-                <Route path="/register" render={props => <Register {...props} />} />
-                <Route path="/login" render={props => <Login {...props} storeUser={storeUser} />} />
-                <Route path="/profile" render={() => loggedUser ? <MyProfile loggedUser={loggedUser} /> : <Redirect to="/login" />} />
-                <Route path="/post/:post_id" render={(props) => <PostDetails {...props} />} />
-                <Route path="/book/:book_id" render={(props) => <BookDetails {...props} />} />
-                {/* <Route path="/profile/:id" render={()=> <ProfileDetails />} /> */}
-            </Switch>
-            )
+        <Switch>
+            <Route path='/' exact render={() => <SplashPhotos />} />
+            <Route path="/register" render={props => <Register {...props} />} />
+            <Route path="/login" render={props => <Login {...props} storeUser={storeUser} />} />
+            <Route path="/profile" render={() => loggedUser ? <MyProfile loggedUser={loggedUser} /> : <Redirect to="/login" />} />
+            <Route path="/post/:post_id" render={(props) => <PostDetails {...props} />} />
+            <Route path="/book/:book_id" render={(props) => <BookDetails {...props} />} />
+            {/* <Route path="/profile/:id" render={()=> <ProfileDetails />} /> */}
+        </Switch>
+    )
 }
 
 export default Routes
