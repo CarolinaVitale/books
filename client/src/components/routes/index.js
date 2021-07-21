@@ -1,8 +1,6 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
-// import Profile from '../pages/ProfilePage/Profile'
 import BookDetails from '../pages/BooksDetails/BooksDetails'
 import PostDetails from '../pages/PostDetails/PostDetails'
-// import PostForm from '../pages/PostDetails/PostForm'
 
 const Routes = () => {
 

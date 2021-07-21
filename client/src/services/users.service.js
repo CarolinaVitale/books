@@ -15,10 +15,6 @@ class UserService {
     othersProfile = () => this.app.get('/profile/:user_id') 
     editProfile = () => this.app.put('/profile')
     deleteProfile = () => this.app.delete('/profile')
-    signup = (email, password) => this.app.post('/register', { email, password })
-    login = (email, password) => this.app.post('/login', { email, password })
-    logout = () => this.app.get('/logout')
-    isLoggedIn = () => this.app.post('/isLoggedIn')
     followUnfollow = (follow_id, follow) => this.app.put('/profile/:user_id', { follow_id, follow })
 }
 
