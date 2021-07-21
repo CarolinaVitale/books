@@ -11,6 +11,25 @@ body {
     font-family: sans-serif;
 }
 
+h1 {
+    margin-top: 30px !important;
+    color: #C7B2D6;
+}
+
+/* NAVBAR */
+.navbar-light .navbar-brand {
+    color: #5B6CAB !important;
+    padding-left: 25px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #5B6CAB !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #C7B2D6 !important;
+}
+
 /* PROFILE PAGE */
 .cover-img {
     margin-top: 50px;
@@ -52,7 +71,7 @@ body {
 button {
     border: none;
     padding: 8px 15px;
-    transition-duration: 0.4s;
+    transition-duration: 0.6s;
     background-color: #5B6CAB;
     color: white;
     font-size: .6em;
@@ -114,4 +133,32 @@ button:hover {
     width: 70%;
     height: 300px;
     object-fit: cover;
+}
+
+/* FORMS */
+.form-label {
+    color: #6B6167;
+}
+
+.form-control {
+    border: 1px solid #A1CDDA !important;
+}
+
+.form-control::placeholder {
+    color: #A1CDDA !important;          
+}
+
+.btn-form {
+    width: 100%;
+    border: none;
+    padding: 8px 15px;
+    transition-duration: 0.6s;
+    background-color: #A1CDDA;
+    color: white;
+    font-size: .9em;
+    border-radius: 30px;
+}
+
+.btn-form:hover {
+  background-color: #5bbedb; 
 }

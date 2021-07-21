@@ -12,10 +12,11 @@ class BookService {
 
     bookCreate = () => this.app.post('/create')
     bookList = () => this.app.get('/list')
-    bookDetails = () => this.app.get('/details/:book_id')
+    bookDetails = book_id => this.app.get(`/details/${book_id}`)
     bookEdit = () => this.app.put('/:book_id')
     bookDelete = () => this.app.delete('/:book_id')
 }
+
 
 
 export default BookService
