@@ -25,14 +25,20 @@ class App extends Component {
       .catch(() => this.storeUser(undefined))
   }
 
-function App() {
-  return (
-    <>
-    {/* <Navigation /> */}
-    <Routes />
-      {/* <Footer/> */}
-    </>
-  )
+  componentDidMount = () => this.fetchUser()
+  
+  render() {
+
+    return (
+      <>
+        <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
+
+        <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
+
+      </>
+
+    )
+  }
 }
 
 
