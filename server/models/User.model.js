@@ -19,7 +19,7 @@ const userSchema = new Schema({
     type: String,
     //require: true
   },
-  img: {
+  image: {
     type: String,
     default: 'https://res.cloudinary.com/carolinavitale/image/upload/v1626707612/mint-heart_xpwvnc.jpg'
   },
@@ -36,9 +36,10 @@ const userSchema = new Schema({
   },
   address: {
     road: String,
-    number: Number,
+    apartment: String,
     city: String,
     state: String,
+    zip: Number,
   },
   friends: [{
     type: Schema.Types.ObjectId,

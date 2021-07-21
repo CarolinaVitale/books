@@ -1,13 +1,19 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
-import Profile from '../pages/ProfilePage/Profile'
+import Register from '../pages/Register/Register'
 
-const Routes = () => {
+import Login from '../pages/Login/Login'
+import MyProfile from '../pages/MyProfile/MyProfile'
+
+
+const Routes = ({ storeUser, loggedUser }) => {
 
     return (
-        <Switch>
-            {/* <Route path='/' exact render={() => <HomePage />} /> */}
-            <Route path='/' exact render={() => <Profile />} />
-
+        <Switch>       
+            {/* <Route path='/' exact render={() => <HomePage  />} /> */}
+            <Route path="/register" render={props => <Register {...props} />} />
+            <Route path="/login" render={props => <Login {...props} storeUser={storeUser} />} />
+            <Route path="/profile" render={() => loggedUser ? <MyProfile loggedUser={loggedUser} /> : <Redirect to="/login" />} />
+            {/* <Route path="/profile/:id" render={()=> <ProfileDetails />} /> */}
         </Switch>
     )
 }

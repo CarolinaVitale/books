@@ -4,8 +4,7 @@ import UserService from '../../../services/users.service'
 import ProfileCard from './ProfileCard'
 
 
-
-class Profile extends Component {
+class UsersProfile extends Component {
 
     constructor() {
         super()
@@ -27,7 +26,7 @@ class Profile extends Component {
     componentDidMount = () => {
         this.loadUser()
     }
-
+    //props.match es lo del /:id
 
     render() {
         return (
@@ -36,7 +35,8 @@ class Profile extends Component {
                 :
                 (
                     <>
-                        {this.state.users.map(elm => <ProfileCard key={elm._id} {...elm} />)}
+                        {this.state.users.map(elm => elm._id !== this.props.loggedUser._id ? <ProfileCard key={elm._id} {...elm} /> : null)}
+                        {/* ves a todos los amigos menos a ti */}
                     </>
                 )
         )
@@ -45,4 +45,4 @@ class Profile extends Component {
 }
 
 
-export default Profile
+export default UsersProfile
