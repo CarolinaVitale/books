@@ -7,7 +7,7 @@ const ProfileBar = () => {
             <Row>
                 <Col className='profile-bar'>
                     <Nav>
-                        <NavLink to="/">Users</NavLink>
+                        <NavLink className='bar-link' to="/">Users</NavLink>
                         <NavLink to="#link">Books</NavLink>
                         <NavLink to="#link">Post</NavLink>
                     </Nav>

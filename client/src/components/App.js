@@ -2,7 +2,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Profile from './pages/ProfilePage/Profile'
-import ProfileBar from './pages/profileBar/profileBar'
+import ProfileBar from './pages/ProfileBar/ProfileBar'
 import Items from './pages/Items/Items'
 
 function App() {
