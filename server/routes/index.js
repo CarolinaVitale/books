@@ -6,6 +6,7 @@ module.exports = app => {
     app.use("/api/review", require("./reviews.routes"))
     app.use("/api", require("./friends.routes"))
     app.use("/api/", require("./unsplash.routes"))
+    app.use("/api/upload", require("./uploads.routes"))
 }
 
 

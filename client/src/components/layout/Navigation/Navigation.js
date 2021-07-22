@@ -17,7 +17,7 @@ const Navigation = ({ storeUser, loggedUser }) => {
     return (
 
         <Navbar bg="light" variant="light" expand="md">
-            <Navbar.Brand href="#home">BooksApp</Navbar.Brand >
+            <Navbar.Brand href="/">BooksApp</Navbar.Brand >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="justify-content-end">
                 <Nav className="mr-auto">

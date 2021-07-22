@@ -103,11 +103,6 @@ button:hover {
     width: 100%;
 }
 
-/* PROFILE BAR */
-/* .profile-bar {
-    color: #5B6CAB;
-} */
-
 .profile-bar .nav {
     display: flex;
     flex-wrap: nowrap;
@@ -192,4 +187,17 @@ button:hover {
 
 .btn-form:hover {
   background-color: #5bbedb; 
+}
+
+/* FOOTER */
+.footer {
+    background: #5B6CAB;
+    color: white;
+    text-align: center;
+    font-size: .7em;
+    position: fixed;
+    bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
 }

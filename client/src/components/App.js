@@ -6,6 +6,7 @@ import { Component } from 'react'
 import Routes from './routes'
 import AuthService from '../services/auth.service'
 import Navigation from './layout/Navigation/Navigation'
+import Footer from './layout/Footer/Footer'
 
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
   }
 
   componentDidMount = () => this.fetchUser()
-  
+
   render() {
 
     return (
@@ -35,6 +36,7 @@ class App extends Component {
 
         <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
 
+        <Footer />
       </>
 
     )
