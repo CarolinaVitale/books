@@ -1,9 +1,10 @@
 import { Component } from 'react'
-import { Container, Spinner } from 'react-bootstrap'
+import { Modal, Spinner } from 'react-bootstrap'
 import UnSplashService from '../../../services/unSplash.service'
 import UnSplashApiService from '../../../services/unSplashapi.service'
-import RandomImgCard from './RandomImgCard'
 
+import RandomImgCard from './RandomImgCard'
+import Login from '../Login/Login'
 
 class HomePage extends Component {
 
@@ -11,6 +12,8 @@ class HomePage extends Component {
         super()
         this.state = {
             photos: undefined,
+            modal: false,
+            loading: false,
         }
 
         this.unsplashService = new UnSplashService()
@@ -33,32 +36,69 @@ class HomePage extends Component {
 
     loadUnsplash = () => {
 
+
+
         this.unsplashApiService
             .getUnsplash()
             .then(response => this.queryForImages(response.data))
+            .then(this.setState({ loading: true }))
             .catch(err => console.log(err))
     }
 
+    listenScrollEvent() {
+        this.state.modal === false && this.setState({ modal: true })
+    }
 
+   
 
     componentDidMount = () => {
+        window.addEventListener('scroll', this.listenScrollEvent.bind(this));
         this.loadUnsplash()
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.listenScrollEvent)
+    }
 
     render() {
+
+        const { loggedUser, storeUser, history } = this.props
+
         return (
             !this.state.photos
-                ? <Spinner className='spinner' animation="grow" variant="info" size="lg" />
+                ?
+                <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                 :
-                (
-                    <>
-                            <div className="home-page-random-div">
-                                {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
-                                {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
-                            </div>
-                    </>
-                )
+                <>
+                    {
+                        !loggedUser
+                            ?
+                            <>
+                                <div className="home-page"  >
+                                    <h1> NOT LOGGED</h1>
+                                </div>
+                                <div className="random-img">
+                                    {
+                                        !this.state.loading
+                                            ?
+                                            <Spinner className='spinner' animation="grow" variant="info" size="lg" />
+                                            :
+                                            <>
+                                                {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
+                                                {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
+
+                                                <Modal show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                                    <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser}/>
+                                                </Modal>
+                                            </>
+                                    }
+                                </div>
+                            </>
+                            : <>
+
+                            </>
+                    }
+                </>
         )
     }
 
