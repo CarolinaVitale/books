@@ -1,6 +1,5 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import Profile from '../pages/ProfilePage/Profile'
 import Register from '../pages/Register/Register'
 import Login from '../pages/Login/Login'
 import MyProfile from '../pages/MyProfile/MyProfile'
