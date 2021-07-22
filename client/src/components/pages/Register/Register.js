@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { Container, Form, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
+import UploadsService from '../../../services/uploads.service'
 
 
 class Register extends Component {
@@ -9,25 +10,30 @@ class Register extends Component {
     constructor() {
         super()
         this.state = {
-            email: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            image: '',
-            cover: '',
-            bio: '',
-            road: '',
-            apartment: '',
-            city: '',
-            state: ''
+            user: {
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                image: '',
+                cover: '',
+                bio: '',
+                road: '',
+                apartment: '',
+                city: '',
+                state: ''
+            },
+            loading: false
         }
+
         this.authService = new AuthService()
+        this.uploadsService = new UploadsService()
     }
 
 
     handleInputChange = e => {
         const { name, value } = e.target
-        this.setState({ [name]: value })
+        this.setState({ user: { ...this.state.user, [name]: value } })
     }
 
 
@@ -39,7 +45,30 @@ class Register extends Component {
 
         this.authService
             .signup(email, password, firstName, lastName, image, cover, bio, road, apartment, city, state)
-            .then(() => this.props.history.push('/login'))
+            .then(() => {
+                this.closeModal()
+                this.props.history.push('/login')
+            })
+            .catch(err => console.log(err))
+    }
+
+    handleFileUpload = e => {
+
+        this.setState({ loading: true })
+
+        const uploadData = new FormData()
+        uploadData.append('', e.target.files)
+
+        console.log(e.target.files, 'FILES')
+
+        this.uploadsService
+            .uploadImage(uploadData)
+            .then(response => {
+                this.setState({
+                    loading: false,
+                    user: { ...this.state.user, image: response.data.cloudinary_url, cover: response.data.cloudinary_url }  
+                })
+            })
             .catch(err => console.log(err))
     }
 
@@ -72,7 +101,7 @@ class Register extends Component {
                                     <Form.Control type="text" value={this.state.password} onChange={this.handleInputChange} name="password" placeholder="Password" />
                                 </Form.Group>
                             </Row>
-                            
+
 
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="firstName">
@@ -119,6 +148,17 @@ class Register extends Component {
                                     <Form.Control type="text" value={this.state.zip} onChange={this.handleInputChange} name="zip" placeholder="Zip" />
                                 </Form.Group>
                             </Row>
+
+                            <Form.Group className="mb-3" controlId="image">
+                                <Form.Label>Image</Form.Label>
+                                <Form.Control type="file" onChange={this.handleFileUpload} name="image" placeholder="Image" />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="cover">
+                                <Form.Label>Cover</Form.Label>
+                                <Form.Control type="file" onChange={this.handleFileUpload} name="cover" placeholder="Cover" />
+                            </Form.Group>
+
                             <button className='btn-form' type="submit">Submit</button>
                         </Form>
 
