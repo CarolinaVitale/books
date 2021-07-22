@@ -5,7 +5,7 @@ import AuthService from '../../../services/auth.service'
 import UploadsService from '../../../services/uploads.service'
 
 
-class Register extends Component {
+class RegisterForm extends Component {
 
     constructor() {
         super()
@@ -76,7 +76,7 @@ class Register extends Component {
 
             <Container>
                 <Row>
-                    <Col md={{ span: 4, offset: 4 }}>
+                    <Col md={{ span: 8, offset: 2 }}>
 
                         <h1>Sign Up</h1>
                         <hr></hr>
@@ -168,4 +168,4 @@ class Register extends Component {
 }
 
 
-export default Register
+export default RegisterForm

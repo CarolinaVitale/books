@@ -182,10 +182,19 @@ button:hover {
     margin-left: 2px;
 }
 
-/*LOGIN MODAL*/
+/* LOGIN */
 .login-modal{
     position: fixed;
     right: 10%;
+    opacity: 90%;
+}
+.modal-content  {
+    border-radius: 30px !important; 
+}
+
+.login-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* FORMS */

@@ -42,12 +42,12 @@ class Login extends Component {
     render() {
         return (
 
-            <Container>
+            <Container className='login-form'>
                 <Row>
-                    <Col md={{ span: 4, offset: 4 }}>
+                    <Col md={{ span: 8, offset: 2 }}>
                         <h1>Login</h1><hr></hr>
 
-                        <Form onSubmit={this.handleFormSubmit}>
+                        <Form className='login-form' onSubmit={this.handleFormSubmit}>
 
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="email">
@@ -64,10 +64,8 @@ class Login extends Component {
                             </Row>
 
                             <button className='btn-form'>Login</button>
-                        </Form><hr></hr>
-                        <Link to="/">
-                            <button className='btn-form'>Back</button>
-                        </Link>
+                        </Form>
+                        
                     </Col>
                 </Row>
             </Container >
