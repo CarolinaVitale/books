@@ -161,6 +161,12 @@ button:hover {
     margin-left: 2px;
 }
 
+/*LOGIN MODAL*/
+.login-modal{
+    position: fixed;
+    right: 10%;
+}
+
 /* FORMS */
 .form-label {
     color: #6B6167;

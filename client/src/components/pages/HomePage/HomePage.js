@@ -50,6 +50,7 @@ class HomePage extends Component {
     }
 
    
+
     componentDidMount = () => {
         window.addEventListener('scroll', this.listenScrollEvent.bind(this));
         this.loadUnsplash()
@@ -61,7 +62,7 @@ class HomePage extends Component {
 
     render() {
 
-        const { loggedUser } = this.props
+        const { loggedUser, storeUser, history } = this.props
 
         return (
             !this.state.photos
@@ -87,7 +88,7 @@ class HomePage extends Component {
                                                 {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
 
                                                 <Modal show={this.state.modal} onHide={() => this.setState({ modal: false })}>
-                                                    <Login handleFormSubmit={this.onSubmit}/>
+                                                    <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser}/>
                                                 </Modal>
                                             </>
                                     }
