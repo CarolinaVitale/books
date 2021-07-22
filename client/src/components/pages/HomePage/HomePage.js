@@ -87,7 +87,7 @@ class HomePage extends Component {
                                                 {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
                                                 {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
 
-                                                <Modal show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                                <Modal className='login-modal' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
                                                     <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser}/>
                                                 </Modal>
                                             </>
