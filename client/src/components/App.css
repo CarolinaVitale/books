@@ -128,7 +128,13 @@ button:hover {
 }
 
 /*HOME PAGE CARD DIV*/
-.home-page-random-div{
+.homepage{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.random-img{
     box-sizing: border-box;
     max-width: 90vw;
     height: 230vh;
@@ -136,6 +142,7 @@ button:hover {
     display:flex;
     flex-direction: column;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 /*RANDOM CARD*/

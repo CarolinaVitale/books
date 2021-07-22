@@ -14,7 +14,7 @@ const Routes = ({ storeUser, loggedUser }) => {
 
     return (
         <Switch>
-            <Route path='/' exact render={() => <HomePage />} />
+            <Route path='/' exact render={() => <HomePage loggedUser={loggedUser} />} />
             <Route path="/register" render={props => <Register {...props} />} />
             <Route path="/login" render={props => <Login {...props} storeUser={storeUser} />} />
             <Route path="/profile" render={() => loggedUser ? <MyProfile loggedUser={loggedUser} /> : <Redirect to="/login" />} />
