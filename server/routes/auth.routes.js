@@ -15,7 +15,7 @@ const { randomToken, emails } = require('../utils')
 // USER -- SIGNUP
 router.post('/register', (req, res) => {
 
-    const { email, password, firstName, lastName, bio, role, friend } = req.body
+    const { email, password, firstName, lastName, bio, role, friend, image, cover } = req.body
     const address = { road, number, city, state } = req.body
 
     const tokenConfirmation = randomToken()
@@ -27,11 +27,12 @@ router.post('/register', (req, res) => {
         .then(info => console.log(info))
         .catch(err => console.log(err))
 
+        console.log(req.body)
     const salt = bcrypt.genSaltSync(bcryptSalt)
     const hashPass = bcrypt.hashSync(password, salt)
 
     User
-        .create({ email, password: hashPass, firstName, lastName, bio, tokenConfirmation, role, friend, address })
+        .create({ email, password: hashPass, firstName, lastName, bio, tokenConfirmation, role, friend, address, image, cover })
         .then(user => res.json(user))
         .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
 })

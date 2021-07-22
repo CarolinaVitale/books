@@ -1,4 +1,4 @@
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, FormControl, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
 
@@ -16,7 +16,7 @@ const Navigation = ({ storeUser, loggedUser }) => {
 
     return (
 
-        <Navbar bg="light" variant="light" expand="md">
+        <Navbar className='navbar' bg="light" variant="light" expand="md">
             <Navbar.Brand href="/">BooksApp</Navbar.Brand >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="justify-content-end">
@@ -29,8 +29,19 @@ const Navigation = ({ storeUser, loggedUser }) => {
                         </>
                         :
                         <>
+                            <FormControl
+                                type="search"
+                                placeholder="Search"
+                                className="search"
+                                aria-label="Search"
+                            />
+                            <Button className='search-button' variant="outline-success">Search</Button>
+
                             <Link className="nav-link" to="/profile">Profile</Link>
                             <span className="nav-link" onClick={logout}>Logout</span>
+                            <Form className="d-flex">
+                                
+                            </Form>
                         </>
                     }
                     <span className="nav-link"> {loggedUser ? loggedUser.username : ''}</span>

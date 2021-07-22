@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Container, Form, Row, Col } from 'react-bootstrap'
+import { Container, Form, Row, Col, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
 import UploadsService from '../../../services/uploads.service'
@@ -40,35 +40,33 @@ class Register extends Component {
     handleFormSubmit = e => {
 
         e.preventDefault()
-
-        const { email, password, firstName, lastName, image, cover, bio, road, apartment, city, state } = this.state
-
+        
         this.authService
-            .signup(email, password, firstName, lastName, image, cover, bio, road, apartment, city, state)
+            .signup(this.state.user)
             .then(() => {
-                this.closeModal()
-                this.props.history.push('/login')
+                this.props.history.push('/profile')
             })
             .catch(err => console.log(err))
     }
+
 
     handleFileUpload = e => {
 
         this.setState({ loading: true })
 
         const uploadData = new FormData()
-        uploadData.append('', e.target.files)
+        uploadData.append('image-data', e.target.files[0])
 
-        console.log(e.target.files, 'FILES')
 
         this.uploadsService
             .uploadImage(uploadData)
             .then(response => {
                 this.setState({
                     loading: false,
-                    user: { ...this.state.user, image: response.data.cloudinary_url, cover: response.data.cloudinary_url }  
+                    user: { ...this.state.user, [e.target.name]: response.data.cloudinary_url }
                 })
             })
+            
             .catch(err => console.log(err))
     }
 
@@ -77,13 +75,10 @@ class Register extends Component {
         return (
 
             <Container>
-
                 <Row>
-
                     <Col md={{ span: 4, offset: 4 }}>
 
                         <h1>Sign Up</h1>
-
                         <hr></hr>
 
                         <Form onSubmit={this.handleFormSubmit}>
@@ -98,10 +93,9 @@ class Register extends Component {
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="password">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="text" value={this.state.password} onChange={this.handleInputChange} name="password" placeholder="Password" />
+                                    <Form.Control type="password" value={this.state.password} onChange={this.handleInputChange} name="password" placeholder="Password" />
                                 </Form.Group>
                             </Row>
-
 
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="firstName">
@@ -151,28 +145,24 @@ class Register extends Component {
 
                             <Form.Group className="mb-3" controlId="image">
                                 <Form.Label>Image</Form.Label>
-                                <Form.Control type="file" onChange={this.handleFileUpload} name="image" placeholder="Image" />
+                                <Form.Control name="image" type="file" onChange={this.handleFileUpload} />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="cover">
                                 <Form.Label>Cover</Form.Label>
-                                <Form.Control type="file" onChange={this.handleFileUpload} name="cover" placeholder="Cover" />
+                                <Form.Control name="cover" type="file" onChange={this.handleFileUpload} />
                             </Form.Group>
 
                             <button className='btn-form' type="submit">Submit</button>
                         </Form>
 
                         <hr></hr>
-
                         <Link to="/">
                             <button className='btn-form'>go back</button>
                         </Link>
-
                     </Col>
                 </Row>
-
             </Container >
-
         )
     }
 }
