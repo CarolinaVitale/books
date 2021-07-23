@@ -11,13 +11,12 @@ const { currentUser } = require('./../utils')
 router.post('/create', (req, res) => {
 
     const loggedUser = currentUser(req)
-    console.log(loggedUser)
     const id = loggedUser._id
 
-    const { title, description, price, currency } = req.body
+    const { title, author, publisher, image, description, price, currency } = req.body
 
     Book
-        .create({ title, description, price, currency, owner: id })
+        .create({ title, author, publisher, image, description, price, currency, owner: id })
         .then(book => res.json(book))
         .catch(err => res.status(500).json({ code: 500, message: 'Could not create book', err }))
 })

@@ -6,6 +6,14 @@ const bookSchema = new Schema({
         type: String,
         //require: true,
     },
+    author: {
+        type: String,
+        //require: true,
+    },
+    publisher: {
+        type: String,
+        //require: true,
+    },
     image: {
         type: String,
         default: 'https://res.cloudinary.com/carolinavitale/image/upload/v1626707006/mint_y8b18a.jpg'
