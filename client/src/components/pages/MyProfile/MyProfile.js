@@ -1,4 +1,5 @@
 import { Col, Image } from "react-bootstrap"
+import ProfileBar from '../ProfileBar/ProfileBar'
 
 const MyProfile = ({ loggedUser }) => {
 
@@ -11,6 +12,8 @@ const MyProfile = ({ loggedUser }) => {
                 <h3 className='profile-name'>{loggedUser.firstName} {loggedUser.lastName} <Image className='profile-check' src='' /></h3>
                 <p className='profile-email'>{loggedUser.email}</p>
                 <p className='profile-bio'>{loggedUser.bio}</p>
+                <br></br>
+                <ProfileBar />
             </Col>
         </>
     )

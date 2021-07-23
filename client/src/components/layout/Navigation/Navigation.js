@@ -81,19 +81,15 @@ const Navigation = ({ storeUser, loggedUser }) => {
                                 aria-label="Search"
                             />
                             <Button className='search-button' variant="outline-success">Search</Button>
-
-                            <Link className="nav-link" to="/profile">Profile
-
-
-
-                            </Link>
+                            
+                            <Link className="nav-link" to="/profile"> {loggedUser ? loggedUser.firstName : ' '}</Link>
                             <span className="nav-link" onClick={logout}>Logout</span>
                             <Form className="d-flex">
 
                             </Form>
                         </>
                     }
-                    <span className="nav-link"> {loggedUser ? loggedUser.username : ''}</span>
+                    
                 </Nav>
             </Navbar.Collapse>
         </Navbar >
