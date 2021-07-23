@@ -28,11 +28,11 @@ router.get('/profile', (req, res) => {
     const id = loggedUser._id
 
     const promiseUser = User.findById(id)
-        ?.populate('friends')
+        .populate('friends')
     const promiseBooks = Book.find({ owner: id })
-        ?.populate('review')
+        .populate('review')
     const promisePosts = Post.find({ owner: id })
-        ?.populate('review')
+        .populate('review')
 
     Promise
         .all([promiseUser, promiseBooks, promisePosts])
