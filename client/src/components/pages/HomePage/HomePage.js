@@ -1,9 +1,12 @@
 import { Component } from 'react'
-import { Modal, Spinner } from 'react-bootstrap'
+import { Modal, Spinner, Row } from 'react-bootstrap'
 import UnSplashService from '../../../services/unSplash.service'
 import UnSplashApiService from '../../../services/unSplashapi.service'
+import BookService from '../../../services/books.service'
+import PostService from '../../../services/posts.service'
 
 import RandomImgCard from './RandomImgCard'
+import TimelineCard from './TimelineCard'
 import Login from '../Login/Login'
 
 class HomePage extends Component {
@@ -12,12 +15,16 @@ class HomePage extends Component {
         super()
         this.state = {
             photos: undefined,
+            books: false,
+            posts: false,
             modal: false,
             loading: false,
         }
 
         this.unsplashService = new UnSplashService()
         this.unsplashApiService = new UnSplashApiService()
+        this.bookService = new BookService()
+        this.postService = new PostService()
 
     }
 
@@ -36,8 +43,6 @@ class HomePage extends Component {
 
     loadUnsplash = () => {
 
-
-
         this.unsplashApiService
             .getUnsplash()
             .then(response => this.queryForImages(response.data))
@@ -45,15 +50,30 @@ class HomePage extends Component {
             .catch(err => console.log(err))
     }
 
+    getTimeline = () => {
+        const getBooks = this.bookService.bookList()
+        const getPosts = this.postService.postList()
+
+        Promise
+            .all([getBooks, getPosts])
+            .then(response => {
+                console.log(response[0].data, response[1].data)
+                this.setState({ books: response[0].data })
+                this.setState({ posts: response[1].data })
+            })
+            .catch(err => console.log(err))
+    }
+
     listenScrollEvent() {
         this.state.modal === false && this.setState({ modal: true })
     }
 
-   
+
 
     componentDidMount = () => {
         window.addEventListener('scroll', this.listenScrollEvent.bind(this));
         this.loadUnsplash()
+        this.getTimeline()
     }
 
     componentWillUnmount() {
@@ -88,14 +108,17 @@ class HomePage extends Component {
                                                 {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
 
                                                 <Modal className='login-modal' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
-                                                    <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser}/>
+                                                    <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser} />
                                                 </Modal>
                                             </>
                                     }
                                 </div>
                             </>
-                            : <>
-
+                            : <><div className="decambiar"></div>
+                                <Row className="timeline">
+                                    {this.state.books.map(elm => <TimelineCard {...elm} />)}
+                                    {this.state.posts.map(elm => <TimelineCard {...elm} />)}
+                                </Row>
                             </>
                     }
                 </>

@@ -144,7 +144,9 @@ button:hover {
 }
 
 /*HOME PAGE CARD DIV*/
-
+.timeline{
+    padding: 200px !important;
+}
 .home-page-top{
     display: flex;
     justify-content: center;
