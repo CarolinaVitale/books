@@ -31,8 +31,9 @@ class Login extends Component {
         this.authService
             .login(email, password)
             .then(loggedUserfromServer => {
+                this.props.closeModal()
                 this.props.storeUser(loggedUserfromServer.data)
-                this.props.history.push('/profile')         
+                this.props.history.push('/profile')
             })
             .catch(err => console.log(err))
     }

@@ -27,7 +27,7 @@ router.post('/register', (req, res) => {
         .then(info => console.log(info))
         .catch(err => console.log(err))
 
-        console.log(req.body)
+    console.log(req.body)
     const salt = bcrypt.genSaltSync(bcryptSalt)
     const hashPass = bcrypt.hashSync(password, salt)
 

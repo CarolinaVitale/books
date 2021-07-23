@@ -51,6 +51,23 @@ h1 {
   color: white !important;
 }
 
+.navbar-button {
+    margin-right: 20px;
+    margin-right: 20px;
+    border-radius: 30px;
+    border: 2px solid #5B6CAB !important;
+    transition-duration: 0.6s;
+    border: none;
+    padding: 5px 20px;
+    color: #5B6CAB;
+}
+
+.navbar-button:hover {
+    background-color: #5B6CAB ;
+    color: white ;
+    border: 2px solid #5B6CAB !important;
+}
+
 /* PROFILE PAGE */
 .cover-img {
     margin-top: 50px;
@@ -87,9 +104,6 @@ h1 {
     display: block;
     margin: 0 auto;
     border-radius: 30px;
-}
-
-button {
     border: none;
     padding: 8px 15px;
     transition-duration: 0.6s;
@@ -98,8 +112,16 @@ button {
     font-size: .6em;
 }
 
-button:hover {
+.profile-button:hover {
   background-color: #C7B2D6; 
+}
+
+.book-button {
+
+}
+
+.post-button {
+    
 }
 
 /* ITEMS CARD */

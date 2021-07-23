@@ -13,6 +13,9 @@ const MyProfile = ({ loggedUser }) => {
                 <p className='profile-email'>{loggedUser.email}</p>
                 <p className='profile-bio'>{loggedUser.bio}</p>
                 <br></br>
+                <button className='book-button'>add book</button>{' '}
+                <button className='post-button'>add post</button>{' '}
+                <br></br>
                 <ProfileBar />
             </Col>
         </>
