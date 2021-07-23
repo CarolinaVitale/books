@@ -10,7 +10,7 @@ const TimelineCard = ({ image, review, owner, _id, title, description, price, cu
                 <Link className="nav-link" to={price ? '/book/' + _id : '/post/' + _id}>
                     <Card.Body>
                         <h3 className="text">{title}</h3>
-                        <p>{description ? description : text}</p>
+                        <p className="text-trunc">{description ? description : text}</p>
                         <p>{price} {currency}</p>
 
                     </Card.Body>

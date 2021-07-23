@@ -57,9 +57,7 @@ class HomePage extends Component {
         Promise
             .all([getBooks, getPosts])
             .then(response => {
-                console.log(response[0].data, response[1].data)
-                this.setState({ books: response[0].data })
-                this.setState({ posts: response[1].data })
+                this.setState({ books: response[0].data, posts: response[1].data })
             })
             .catch(err => console.log(err))
     }
@@ -76,6 +74,10 @@ class HomePage extends Component {
         this.getTimeline()
     }
 
+    componentDidUpdate = () => {
+        this.getTimeline()
+    }
+    
     componentWillUnmount() {
         window.removeEventListener('scroll', this.listenScrollEvent)
     }
