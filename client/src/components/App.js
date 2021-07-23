@@ -34,7 +34,7 @@ class App extends Component {
       <>
         <Navigation {...this.props} storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
 
-        <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
+        <Routes {...this.props} storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
 
         <Footer />
       </>

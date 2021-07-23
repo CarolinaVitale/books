@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import { Container, Form, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-
+import { withRouter } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
 
 class Login extends Component {
@@ -31,9 +30,9 @@ class Login extends Component {
         this.authService
             .login(email, password)
             .then(loggedUserfromServer => {
-                this.props.closeModal()
                 this.props.storeUser(loggedUserfromServer.data)
                 this.props.history.push('/profile')
+                this.props.closeModal()
             })
             .catch(err => console.log(err))
     }
@@ -73,6 +72,7 @@ class Login extends Component {
         )
     }
 }
+//HOC
 
 
-export default Login
+export default withRouter(Login)

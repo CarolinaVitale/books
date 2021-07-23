@@ -26,17 +26,21 @@ class Navigation extends Component {
     logout = () => {
         this.authService
             .logout()
+            .then(()=> this.props.storeUser(undefined))
             .catch(err => console.log(err))
     }
 
     render() {
+
+        const { loggedUser, storeUser, history } = this.props
+
         return (
             <Navbar className='navbar' bg="light" variant="light" expand="md">
                 <Navbar.Brand href="/">BooksApp</Navbar.Brand >
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="mr-auto">
-                        {!this.props.loggedUser
+                        {!loggedUser
                             ?
                             <>
                                 <>
@@ -46,8 +50,8 @@ class Navigation extends Component {
                                     <Modal show={this.state.modal} onHide={() => this.setState({ modal: false })}>
                                         <Modal.Body>
                                             {this.state.registerShown
-                                                ? <RegisterForm closeModal={() => this.setState({ modal: false })} />
-                                                : <Login closeModal={() => this.setState({ modal: false })} />}
+                                                ? <RegisterForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
+                                                : <Login history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
                                         </Modal.Body>
                                     </Modal>
                                 </>
@@ -62,7 +66,7 @@ class Navigation extends Component {
                                 />
                                 <Button className='search-button' variant="outline-success">Search</Button>
 
-                                <Link className="nav-link" to="/profile"> {this.props.loggedUser ? this.props.loggedUser.firstName : ' '}</Link>
+                                <Link className="nav-link" to="/profile"> {loggedUser ? loggedUser.firstName : ' '}</Link>
                                 <span className="nav-link" onClick={this.logout}>Logout</span>
                                 <Form className="d-flex"></Form>
                             </>
