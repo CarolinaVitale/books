@@ -74,7 +74,7 @@ class HomePage extends Component {
                         !loggedUser
                             ?
                             <>
-                                <div className="home-page"  >
+                                <div className="home-page-top"  >
                                     <h1> NOT LOGGED</h1>
                                 </div>
                                 <div className="random-img">
