@@ -28,6 +28,7 @@ router.get('/list', (req, res) => {
 
     Book
         .find()
+        .populate('owner reviews')
         .then(book => res.json(book))
         .catch(err => res.status(500).json({ code: 500, message: 'Book list not found', err }))
 })
@@ -41,6 +42,7 @@ router.get('/details/:book_id', (req, res) => {
 
     Book
         .findById(book_id)
+        .populate('owner reviews')
         .then(book => res.json(book))
         .catch(err => res.status(500).json({ code: 500, message: 'Book details not found', err }))
 })

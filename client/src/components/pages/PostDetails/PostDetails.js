@@ -22,6 +22,10 @@ class PostDetails extends Component {
 
         this.postsService
             .postDetails(post_id)
+            .then(res => {
+                console.log(res)
+                return res
+            })
             .then(response => this.setState({ post: response.data }))
             .catch(err => console.log(err))
     }
@@ -44,21 +48,21 @@ class PostDetails extends Component {
 
                             <hr></hr>
 
-                            <p>Propietario: {this.state.post.owner}</p>
+                            <p>Propietario: {this.state.post.owner.firstName} {this.state.post.owner.lastName}</p>
 
                             <hr></hr>
 
 
 
                         </Col>
-                        {/* <Col md={6}>
-                            <p>Review: {this.state.post.review} </p>
-
-                        </Col> */}
-
                         <Col md={4}>
                             <img src={this.state.post.image} alt={this.state.post.title} style={{ width: '100%' }} />
                         </Col>
+                        <Col md={6}>
+                            <div>Reviews: {this.state.post.review.map(elm=><p>{elm.text}</p>)} </div>
+
+                        </Col>
+                        <Col md={4}> </Col>
                     </Row>
                 }
 

@@ -20,7 +20,7 @@ class PostsForm extends Component {
             loading: false
         }
 
-        this.postService = new PostService
+        this.postService = new PostService()
         this.uploadsService = new UploadsService()
     }
 
