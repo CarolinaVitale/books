@@ -1,14 +1,14 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import Login from '../pages/Login/Login'
-import MyProfile from '../pages/MyProfile/MyProfile'
+import Login from '../pages/User/Login/Login'
+import MyProfile from '../pages/User/MyProfile/MyProfile'
 
-import BookDetails from '../pages/BooksDetails/BooksDetails'
-import PostDetails from '../pages/PostDetails/PostDetails'
+import BookDetails from '../pages/Book/BooksDetails/BooksDetails'
+import PostDetails from '../pages/Post/PostDetails/PostDetails'
 import HomePage from '../pages/HomePage/HomePage'
-import RegisterForm from '../pages/Register/RegisterForm'
-import BooksForm from '../pages/BooksForm/BooksForm'
-import PostsForm from '../pages/PostsForm/PostsForm'
+import RegisterForm from '../pages/User/Register/RegisterForm'
+import BooksForm from '../pages/Book/BooksForm/BooksForm'
+import PostsForm from '../pages/Post/PostsForm/PostsForm'
 
 
 

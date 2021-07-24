@@ -6,10 +6,8 @@ import AuthService from '../../../services/auth.service'
 
 import { Navbar, Nav, FormControl, Button, Form, Modal } from 'react-bootstrap'
 
-import RegisterForm from '../../pages/Register/RegisterForm'
-import Login from '../../pages/Login/Login'
-
-
+import RegisterForm from '../../pages/User/Register/RegisterForm'
+import Login from '../../pages/User/Login/Login'
 
 class Navigation extends Component {
 

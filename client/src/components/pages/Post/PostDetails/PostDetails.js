@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import PostService from '../../../services/posts.service'
+import PostService from '../../../../services/posts.service'
 import { Container, Row, Col } from 'react-bootstrap'
 
 

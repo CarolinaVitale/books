@@ -4,7 +4,7 @@ import UserService from '../../../services/users.service'
 import ProfileCard from './ProfileCard'
 
 
-class UsersProfile extends Component {
+class FriendsProfile extends Component {
 
     constructor() {
         super()
@@ -45,4 +45,4 @@ class UsersProfile extends Component {
 }
 
 
-export default UsersProfile
+export default FriendsProfile

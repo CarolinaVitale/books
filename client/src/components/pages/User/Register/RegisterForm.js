@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import { Container, Form, Row, Col, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import AuthService from '../../../services/auth.service'
-import UploadsService from '../../../services/uploads.service'
+import AuthService from '../../../../services/auth.service'
+import UploadsService from '../../../../services/uploads.service'
 
 
 class RegisterForm extends Component {

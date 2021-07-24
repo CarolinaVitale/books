@@ -1,5 +1,5 @@
 import { Col, Image } from "react-bootstrap"
-import ProfileBar from '../ProfileBar/ProfileBar'
+import ProfileBar from './ProfileBar/ProfileBar'
 
 const MyProfile = ({ loggedUser }) => {
 

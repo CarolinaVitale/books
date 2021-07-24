@@ -1,47 +1,42 @@
 import { Component } from 'react'
 import { Container, Form, Row, Col, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import BookService from '../../../services/books.service'
-import UploadsService from '../../../services/uploads.service'
+import PostService from '../../../../services/posts.service'
+import UploadsService from '../../../../services/uploads.service'
 
 
-class BooksForm extends Component {
+class PostsForm extends Component {
 
     constructor() {
         super()
         this.state = {
-            book: {
+            post: {
                 title: '',
-                author: '',
-                publisher: '',
+                text: '',
                 image: '',
-                description: '',
-                accepted: '',
-                price: '',
-                currency: '',
                 review: '',
                 owner: '',
             },
             loading: false
         }
 
-        this.bookService = new BookService()
+        this.postService = new PostService()
         this.uploadsService = new UploadsService()
     }
 
 
     handleInputChange = e => {
         const { name, value } = e.target
-        this.setState({ book: { ...this.state.book, [name]: value } })
+        this.setState({ post: { ...this.state.post, [name]: value } })
     }
 
 
     handleFormSubmit = e => {
 
         e.preventDefault()
-        
-        this.bookService
-            .bookCreate(this.state.book)
+
+        this.postService
+            .postCreate(this.state.post)
             .then(() => {
                 this.props.history.push('/')
                 this.props.closeModal()
@@ -63,10 +58,10 @@ class BooksForm extends Component {
             .then(response => {
                 this.setState({
                     loading: false,
-                    book: { ...this.state.book, [e.target.name]: response.data.cloudinary_url }
+                    post: { ...this.state.post, image: response.data.cloudinary_url }
                 })
             })
-            
+
             .catch(err => console.log(err))
     }
 
@@ -78,7 +73,7 @@ class BooksForm extends Component {
                 <Row>
                     <Col md={{ span: 8, offset: 2 }}>
 
-                        <h1>New Book</h1>
+                        <h1>New Post</h1>
                         <hr></hr>
 
                         <Form onSubmit={this.handleFormSubmit}>
@@ -91,35 +86,11 @@ class BooksForm extends Component {
                             </Row>
 
                             <Row className="mb-3">
-                                <Form.Group as={Col} controlId="description">
-                                    <Form.Label>Description</Form.Label>
-                                    <Form.Control type="text" value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="Description" />
+                                <Form.Group as={Col} controlId="text">
+                                    <Form.Label>Text</Form.Label>
+                                    <Form.Control type="text" value={this.state.text} onChange={this.handleInputChange} name="text" placeholder="Text" />
                                 </Form.Group>
                             </Row>
-
-                            <Row className="mb-3">
-                                <Form.Group as={Col} controlId="author">
-                                    <Form.Label>Author</Form.Label>
-                                    <Form.Control type="text" value={this.state.author} onChange={this.handleInputChange} name="author" placeholder="Author" />
-                                </Form.Group>
-
-                                <Form.Group as={Col} controlId="publisher">
-                                    <Form.Label>Publisher</Form.Label>
-                                    <Form.Control type="text" value={this.state.publisher} onChange={this.handleInputChange} name="publisher" placeholder="Publisher" />
-                                </Form.Group>
-                            </Row>
-
-                            <Row className="mb-3">
-                                <Form.Group as={Col} controlId="description">
-                                    <Form.Label>Description</Form.Label>
-                                    <Form.Control type="text" value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="Description" />
-                                </Form.Group>
-                            </Row>
-
-                            <Form.Group className="mb-3" controlId="price">
-                                <Form.Label>Price</Form.Label>
-                                <Form.Control type="text" value={this.state.price} onChange={this.handleInputChange} name="price" placeholder="Price" />
-                            </Form.Group>
 
                             <Form.Group className="mb-3" controlId="image">
                                 <Form.Label>Image</Form.Label>
@@ -141,4 +112,4 @@ class BooksForm extends Component {
 }
 
 
-export default BooksForm
+export default PostsForm

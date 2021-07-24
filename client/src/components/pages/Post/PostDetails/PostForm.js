@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
-import PostService from '../../../services/posts.service'
+import PostService from '../../../../services/posts.service'
 
 class PostForm extends Component {
 

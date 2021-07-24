@@ -7,7 +7,8 @@ import PostService from '../../../services/posts.service'
 
 import RandomImgCard from './RandomImgCard'
 import TimelineCard from './TimelineCard'
-import Login from '../Login/Login'
+import Login from '../../pages/User/Login/Login'
+
 
 class HomePage extends Component {
 
@@ -66,15 +67,9 @@ class HomePage extends Component {
         this.state.modal === false && this.setState({ modal: true })
     }
 
-
-
     componentDidMount = () => {
         window.addEventListener('scroll', this.listenScrollEvent.bind(this));
         this.loadUnsplash()
-        this.getTimeline()
-    }
-
-    componentDidUpdate = () => {
         this.getTimeline()
     }
     

@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Row, Container, Spinner } from "react-bootstrap"
 
-import UserService from '../../../services/users.service'
+import UserService from '../../../../services/users.service'
 import ItemsCard from './ItemsCard'
 
 

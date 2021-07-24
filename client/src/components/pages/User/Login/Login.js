@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Container, Form, Row, Col } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
-import AuthService from '../../../services/auth.service'
+import AuthService from '../../../../services/auth.service'
 
 class Login extends Component {
 
