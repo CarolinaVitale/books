@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose")
 
+
 const bookSchema = new Schema({
 
     title: {
@@ -24,7 +25,10 @@ const bookSchema = new Schema({
         type: Number,
         //require: true,
     },
-    currency: String,
+    currency: {
+        type: String,
+        default: '€',
+    },
     review: [{
         type: Schema.Types.ObjectId,
         ref: 'Review',
