@@ -146,6 +146,13 @@ h1 {
     width: 100%;
 }
 
+.text-trunc{
+    width: [width];
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .profile-bar .nav {
     display: flex;
     flex-wrap: nowrap;

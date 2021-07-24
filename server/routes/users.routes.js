@@ -5,7 +5,6 @@ const User = require('../models/User.model')
 const Book = require('../models/Book.model')
 const Post = require('../models/Post.model')
 
-const { currentUser } = require('../utils')
 const { rejectUser } = require('../middleware')
 
 
@@ -24,7 +23,7 @@ router.get('/users', (req, res) => {
 // PROFILE
 router.get('/profile', (req, res) => {
 
-    const loggedUser = currentUser(req)
+    const loggedUser = req.session.currentUser
     const id = loggedUser._id
 
     const promiseUser = User.findById(id)
@@ -49,7 +48,7 @@ router.put('/profile', rejectUser('PENDING'), (req, res) => {
     const { email, firstName, lastName, bio, tokenConfirmation, role, friend } = req.body
     const address = { road, number, city, state } = req.body
 
-    const loggedUser = currentUser(req)
+    const loggedUser = req.session.currentUser
     const id = loggedUser._id
 
     User
@@ -64,7 +63,7 @@ router.put('/profile', rejectUser('PENDING'), (req, res) => {
 //protegido, sólo CURRENTUSER
 router.delete('/profile', rejectUser('PENDING'), (req, res) => {
 
-    const loggedUser = currentUser(req)
+    const loggedUser = req.session.currentUser
     const id = loggedUser._id
 
     User
