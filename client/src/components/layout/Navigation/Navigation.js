@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import UsersService from '../../../services/users.service'
 import AuthService from '../../../services/auth.service'
 
-import { Navbar, Nav, FormControl, Button, Form, Modal } from 'react-bootstrap'
+import { Navbar, Nav, FormControl, Button, Form, Modal,  } from 'react-bootstrap'
 
 import RegisterForm from '../../pages/User/Register/RegisterForm'
 import Login from '../../pages/User/Login/Login'
@@ -27,6 +27,10 @@ class Navigation extends Component {
             .then(()=> this.props.storeUser(undefined))
             .catch(err => console.log(err))
     }
+    
+    
+    handleClose = () => { this.setState({ show: false }) }
+    handleShow = () => { this.setState({ show: true }) }
 
     render() {
 
@@ -45,7 +49,11 @@ class Navigation extends Component {
                                     {<button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: true })}>Register</button>}
                                     {<button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: false })}>Login</button>}
 
-                                    <Modal show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                    <Modal
+                                        backdrop="static"
+                                        keyboard={false}
+                                     size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                        <Modal.Header closeButton></Modal.Header>
                                         <Modal.Body>
                                             {this.state.registerShown
                                                 ? <RegisterForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />

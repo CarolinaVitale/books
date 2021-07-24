@@ -24,7 +24,7 @@ const Routes = ({ storeUser, loggedUser }) => {
             <Route path='/' exact render={(props) => <HomePage {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/register" render={props => <RegisterForm {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/login" render={props => <Login {...props} storeUser={storeUser} />} />
-            <Route path="/profile" exact render={() => loggedUser ? <MyProfile loggedUser={loggedUser} storeUser={storeUser} /> : <Redirect to="/login" />} />
+            <Route path="/profile" exact render={(props) => loggedUser ? <MyProfile {...props} loggedUser={loggedUser} storeUser={storeUser} /> : <Redirect to="/login" />} />
             <Route path="/profile/:user_id" render={props => <FriendsProfile {...props} />} />
             <Route path="/book/create" render={(props) => <BooksForm {...props} />} />
             <Route path="/post/create" render={(props) => <PostsForm {...props} />} />

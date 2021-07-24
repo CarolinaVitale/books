@@ -75,7 +75,7 @@ class RegisterForm extends Component {
     render() {
         return (
 
-            <Container>
+            <Container className='modal-form'>
                 <Row>
                     <Col md={{ span: 8, offset: 2 }}>
 

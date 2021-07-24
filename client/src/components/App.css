@@ -68,6 +68,18 @@ h1 {
     border: 2px solid #5B6CAB !important;
 }
 
+.profile-bar {
+margin: 50px;
+}
+
+.nav-link {
+    color: #58b6d3 !important;
+}
+
+.nav-link:hover {
+    color: #A1CDDA !important;
+}
+
 /* PROFILE PAGE */
 .cover-img {
     margin-top: 50px;
@@ -113,21 +125,57 @@ h1 {
 }
 
 .profile-button:hover {
-  background-color: #C7B2D6; 
+  background-color: #3b57c0; 
 }
 
-.book-button {
-
+.create-button {
+    font-weight: 800;
+    display: block;
+    margin: 0 auto;
+    border-radius: 30px;
+    border: none;
+    padding: 8px 15px;
+    transition-duration: 0.6s;
+    background-color: #C7B2D6;
+    color: white;
+    font-size: .7em;
 }
 
-.post-button {
-    
+.create-button:hover {
+    background-color: #b287d1;
+}
+
+.follow-button {
+    font-weight: 800;
+    display: block;
+    margin: 0 auto;
+    border-radius: 30px;
+    border: none;
+    padding: 8px 15px;
+    transition-duration: 0.6s;
+    background-color: #ec8aac;
+    color: white;
+    font-size: .7em;
+}
+
+.follow-button:hover {
+    background-color: #F1CEDA;
+}
+
+button, input, optgroup, select, textarea {
+    border: none !important;
+    background-color: transparent;
+    color: #6B6167;
 }
 
 /*FRIENDS CARD*/
+.profile, h3, p{
+    color: #6B6167;
+}
 .friend-card {
-    margin: 0 20px;
-    border: 1px solid black;
+    margin: 40px;
+    border: none;
+    color: #6B6167;
 }
 
 .friend-card img{

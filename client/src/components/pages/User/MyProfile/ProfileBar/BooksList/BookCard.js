@@ -1,6 +1,6 @@
 import { Col, Card, Image } from "react-bootstrap"
 
-const BookCard = ({ image, title, description, price , currency  }) => {
+const BookCard = ({ image, title, description, price, currency }) => {
 
     return (
         <Col md={3}>

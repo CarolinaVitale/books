@@ -1,6 +1,7 @@
+import { Row } from "react-bootstrap"
 import { Col, Card, Image } from "react-bootstrap"
 
-const PostCard = ({ image, title, text}) => {
+const PostCard = ({ image, title, text }) => {
 
     return (
         <Col md={3}>

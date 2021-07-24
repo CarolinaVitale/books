@@ -4,11 +4,11 @@ import FriendsList from './FiendsList/FriendsList'
 import BooksList from './BooksList/BooksList'
 import PostsList from './PostsList/PostsList'
 
-const ProfileBar = ({ friends, books, posts } ) => {
+const ProfileBar = ({ friends, books, posts }) => {
 
     const [key, setKey] = useState('friends')
 
-    
+
     return (
 
         <Row>
@@ -19,13 +19,19 @@ const ProfileBar = ({ friends, books, posts } ) => {
                     onSelect={(k) => setKey(k)}
                 >
                     <Tab eventKey="friends" title="Friends">
-                        <FriendsList friends={friends} />
+                        <Row>
+                            <FriendsList friends={friends} />
+                        </Row>
                     </Tab>
                     <Tab eventKey="books" title="Books">
-                        <BooksList books={books} />
+                        <Row>
+                            <BooksList books={books} />
+                        </Row>
                     </Tab>
                     <Tab eventKey="post" title="Post" >
-                        <PostsList posts={posts}/>
+                        <Row>
+                            <PostsList posts={posts} />
+                        </Row>
                     </Tab>
                 </Tabs>
             </Col>

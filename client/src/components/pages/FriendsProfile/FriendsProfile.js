@@ -1,8 +1,10 @@
 import { Component } from 'react'
-import { Spinner, Col, Image } from 'react-bootstrap'
+import { Spinner, Col, Image, Row, Modal } from 'react-bootstrap'
 
 import UserService from '../../../services/users.service'
 import ProfileBar from '../User/MyProfile/ProfileBar/ProfileBar'
+import BooksForm from '../Book/BooksForm/BooksForm'
+import PostsForm from '../Post/PostsForm/PostsForm'
 
 class FriendsProfile extends Component {
 
@@ -24,11 +26,11 @@ class FriendsProfile extends Component {
 
         this.userService
             .othersProfile(user_id)
-            .then( res => {
+            .then(res => {
                 console.log(res.data)
                 return res
             })
-            .then(response => this.setState({ otherUser: response.data[0], friends: response.data[0].friends, books: response.data[1], posts: response.data[2]}))
+            .then(response => this.setState({ otherUser: response.data[0], friends: response.data[0].friends, books: response.data[1], posts: response.data[2] }))
             .catch(err => console.log(err))
     }
 
@@ -38,30 +40,61 @@ class FriendsProfile extends Component {
     }
     //props.match es lo del /:id
 
+
     render() {
+
+        const { loggedUser, storeUser, history } = this.props
+
         return (
+
             !this.state.otherUser
+
                 ? <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                 :
                 (
                     <>
-                        <Col md={{ span: 4, offset: 4 }}>
+                        <Col md={{ span: 6, offset: 3 }}>
                             <Image className='cover-img' src={this.state.otherUser.cover} />
                             <Image className='profile-img' src={this.state.otherUser.image} roundedCircle />
                             <h3 className='profile-name'>{this.state.otherUser.firstName} {this.state.otherUser.lastName}</h3>
                             <p className='profile-email'>{this.state.otherUser.email}</p>
                             <p className='profile-bio'>{this.state.otherUser.bio}</p>
                             <br></br>
-                            <button className='book-button'>add book</button>
-                            <button className='post-button'>add post</button>
-                            <br></br>
-                            <ProfileBar {...this.props} books={this.state.books} friends={this.state.friends} posts={this.state.posts}/>
                         </Col>
+                        <Col md={{ span: 4, offset: 4 }}>
+                            <Row className="mb-3">
+
+                                <Col>
+                                    {<button className='create-button' onClick={() => this.setState({ modal: true, isPost: false })}>add book</button>}
+                                </Col>
+
+                                <Col>
+                                    {<button className='create-button' onClick={() => this.setState({ modal: true, isPost: true })}>add post</button>}
+                                </Col>
+
+                                <Modal
+                                    backdrop="static"
+                                    keyboard={false}
+                                    size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                    <Modal.Header closeButton></Modal.Header>
+                                    <Modal.Body>
+                                        {this.state.isPost
+                                            ? <PostsForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
+                                            : <BooksForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
+                                    </Modal.Body>
+                                </Modal>
+
+                                <Col>
+                                    <button className='follow-button'>follow</button>{' '}
+                                </Col>
+                            </Row>
+                        </Col>
+                        <br></br>
+                        <ProfileBar {...this.props} books={this.state.books} friends={this.state.friends} posts={this.state.posts} />
                     </>
                 )
         )
     }
-
 }
 
 

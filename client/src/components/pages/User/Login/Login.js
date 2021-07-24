@@ -42,7 +42,7 @@ class Login extends Component {
     render() {
         return (
 
-            <Container className='login-form'>
+            <Container className='modal-form'>
                 <Row>
                     <Col md={{ span: 8, offset: 2 }}>
                         <h1>Login</h1><hr></hr>
