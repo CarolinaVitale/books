@@ -124,6 +124,24 @@ h1 {
     
 }
 
+/*FRIENDS CARD*/
+.friend-card {
+    margin: 0 20px;
+    border: 1px solid black;
+}
+
+.friend-card img{
+    width: 100%;
+}
+
+.friend-card img:hover{
+    background-color: grey;
+    opacity: 0.5;
+}
+.friend-card h6{
+    width: 70%;
+}
+
 /* ITEMS CARD */
 .items-card {
     margin: 0 20px;

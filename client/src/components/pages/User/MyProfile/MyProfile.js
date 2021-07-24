@@ -2,7 +2,7 @@ import { Col, Image } from "react-bootstrap"
 import ProfileBar from './ProfileBar/ProfileBar'
 
 const MyProfile = ({ loggedUser }) => {
-
+console.log(loggedUser)
 
     return (
         <>
@@ -16,7 +16,7 @@ const MyProfile = ({ loggedUser }) => {
                 <button className='book-button'>add book</button>{' '}
                 <button className='post-button'>add post</button>{' '}
                 <br></br>
-                <ProfileBar />
+                {/* <ProfileBar books={loggedUser.books} friends={loggedUser.friends} posts={loggedUser.posts} /> */}
             </Col>
         </>
     )

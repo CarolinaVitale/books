@@ -1,9 +1,13 @@
 import { Tabs, Tab, Row, Col } from 'react-bootstrap'
 import { useState } from 'react'
+import FriendsList from './FiendsList/FriendsList'
+import BooksList from './BooksList/BooksList'
+import PostsList from './PostsList/PostsList'
 
-const ProfileBar = () => {
+const ProfileBar = ({ friends, books, posts } ) => {
 
-    const [key, setKey] = useState('friends');
+    const [key, setKey] = useState('friends')
+
     
     return (
 
@@ -15,13 +19,13 @@ const ProfileBar = () => {
                     onSelect={(k) => setKey(k)}
                 >
                     <Tab eventKey="friends" title="Friends">
-                        {/* <FriendList /> */}
+                        <FriendsList friends={friends} />
                     </Tab>
                     <Tab eventKey="books" title="Books">
-                        {/* <BookList /> */}
+                        <BooksList books={books} />
                     </Tab>
                     <Tab eventKey="post" title="Post" >
-                        {/* <PostList /> */}
+                        <PostsList posts={posts}/>
                     </Tab>
                 </Tabs>
             </Col>

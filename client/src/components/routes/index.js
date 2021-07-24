@@ -2,6 +2,8 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Login from '../pages/User/Login/Login'
 import MyProfile from '../pages/User/MyProfile/MyProfile'
+import FriendsProfile from '../pages/FriendsProfile/FriendsProfile'
+
 
 import HomePage from '../pages/HomePage/HomePage'
 import RegisterForm from '../pages/User/Register/RegisterForm'
@@ -19,10 +21,11 @@ const Routes = ({ storeUser, loggedUser }) => {
 
     return (
         <Switch>
-            <Route path='/' exact render={(props) => <HomePage {...props} loggedUser={loggedUser} storeUser={storeUser}/>} />
+            <Route path='/' exact render={(props) => <HomePage {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/register" render={props => <RegisterForm {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/login" render={props => <Login {...props} storeUser={storeUser} />} />
-            <Route path="/profile" render={() => loggedUser ? <MyProfile loggedUser={loggedUser} storeUser={storeUser} /> : <Redirect to="/login" />} />
+            <Route path="/profile" exact render={() => loggedUser ? <MyProfile loggedUser={loggedUser} storeUser={storeUser} /> : <Redirect to="/login" />} />
+            <Route path="/profile/:user_id" render={props => <FriendsProfile {...props} />} />
             <Route path="/book/create" render={(props) => <BooksForm {...props} />} />
             <Route path="/post/create" render={(props) => <PostsForm {...props} />} />
             <Route path="/review/create" render={(props) => <ReviewsForm {...props} />} />
