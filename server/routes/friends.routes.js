@@ -34,13 +34,8 @@ router.put('/profile/:user_id', (req, res) => {
     const { user_id } = req.params
     const { follow_id, follow } = req.body
 
-    if (follow) {
-        objectUpdate = { $pull: { friends: follow_id } }
-    }
-    else {
-        objectUpdate = { $push: { friends: follow_id } }
-    }
-
+    const objectUpdate = follow ? { $pull: { friends: follow_id } } : { $push: { friends: follow_id } }
+    
     User
         .findByIdAndUpdate(user_id, objectUpdate)
         .then(profile => res.json(profile))
