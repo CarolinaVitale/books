@@ -3,14 +3,13 @@ const router = express.Router()
 
 const Book = require('./../models/Book.model')
 
-const { currentUser } = require('./../utils')
 
 
 
 //CREATE BOOK 
 router.post('/create', (req, res) => {
 
-    const loggedUser = currentUser(req)
+    const loggedUser = req.session.currentUser
     const id = loggedUser._id
 
     const { title, author, publisher, image, description, price, currency } = req.body

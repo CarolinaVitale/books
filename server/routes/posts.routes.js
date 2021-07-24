@@ -3,14 +3,13 @@ const router = express.Router()
 
 const Post = require('./../models/Post.model')
 
-const { currentUser } = require('./../utils')
 
 
 
 //CREATE POST 
 router.post('/create', (req, res) => {
 
-        const loggedUser = currentUser(req)
+        const loggedUser = req.session.currentUser
         const id = loggedUser._id
 
         const { title, text } = req.body

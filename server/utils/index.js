@@ -9,10 +9,6 @@ module.exports = {
         return randomToken
     },
 
-    currentUser: (req) => {
-        if (req.session.currentUser) return req.session.currentUser
-    },
-
     emails: (type, objectNeeded) => {
 
         if (type === 'email') {

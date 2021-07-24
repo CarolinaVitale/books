@@ -55,7 +55,7 @@ router.get('/confirmation/email/:token', (req, res) => {
 
             } else {
 
-                res.render('errors/errorEmail')
+                res.status(401).json({ code: 401, message: 'Email confirmation Error' })
             }
         })
         .catch(err => console.log(err))

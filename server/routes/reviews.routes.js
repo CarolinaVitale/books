@@ -5,7 +5,6 @@ const Review = require('./../models/Review.model')
 const Book = require('./../models/Book.model')
 const Post = require('./../models/Post.model')
 
-const { currentUser } = require('./../utils')
 const { response } = require('express')
 
 
@@ -13,7 +12,7 @@ const { response } = require('express')
 //CREATE REVIEW
 router.post('/create', (req, res) => {
 
-    const loggedUser = currentUser(req)
+    const loggedUser = req.session.currentUser
     const id = loggedUser._id
 
     const { title, text, points, price, file_id } = req.body

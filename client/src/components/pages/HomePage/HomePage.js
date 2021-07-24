@@ -107,7 +107,7 @@ class HomePage extends Component {
                                             :
                                             <>
                                                 {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
-                                                {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
+                                                {this.state.photos.reverse().map(elm => <RandomImgCard key={elm.id} {...elm} />)}
 
                                                 <Modal className='login-modal' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
                                                     <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser} />
@@ -118,8 +118,8 @@ class HomePage extends Component {
                             </>
                             : <><div className="decambiar"></div>
                                 <Row className="timeline">
-                                    {this.state.books.map(elm => <TimelineCard {...elm} />)}
-                                    {this.state.posts.map(elm => <TimelineCard {...elm} />)}
+                                    {this.state.books.map(elm => <TimelineCard key={elm.id} {...elm} />)}
+                                    {this.state.posts.map(elm => <TimelineCard key={elm.id} {...elm} />)}
                                 </Row>
                             </>
                     }
