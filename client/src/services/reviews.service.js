@@ -10,10 +10,10 @@ class ReviewService {
         })
     }
 
-    reviewCreate = () => this.app.post('/create')
-    reviewDetails = () => this.app.get('/details/:review_id')
-    reviewEdit = () => this.app.put('/:review_id')
-    reviewDelete = () => this.app.delete('/:review_id')
+    reviewCreate = data => this.app.post('/create', data)
+    reviewDetails = review_id => this.app.get(`/details/${review_id}`)
+    reviewEdit = (data, review_id) => this.app.put(`/${review_id}`, data)
+    reviewDelete = review_id => this.app.delete(`/${review_id}`)
 }
 
 

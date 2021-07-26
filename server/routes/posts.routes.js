@@ -56,10 +56,11 @@ router.get('/details/:post_id', (req, res) => {
 router.put('/:post_id', (req, res) => {
 
         const { post_id } = req.params
-        const { title, text } = req.body
+        const { title, text, image } = req.body
+        console.log(req.body)
 
         Post
-            .findByIdAndUpdate(post_id, { title, text }, { new: true })
+            .findByIdAndUpdate(post_id, { title, text, image }, { new: true })
             .then(post => res.json(post))
             .catch(err => res.status(500).json({ code: 500, message: 'Could not edit post', err }))
 })

@@ -52,10 +52,10 @@ router.get('/details/:book_id', (req, res) => {
 router.put('/:book_id', (req, res) => {
 
     const { book_id } = req.params
-    const { title, description, price, currency } = req.body
+    const { title, description, price, currency, image } = req.body
 
     Book
-        .findByIdAndUpdate(book_id, { title, description, price, currency }, { new: true })
+        .findByIdAndUpdate(book_id, { title, description, price, currency, image }, { new: true })
         .then(book => res.json(book))
         .catch(err => res.status(500).json({ code: 500, message: 'Could not edit book', err }))
 })

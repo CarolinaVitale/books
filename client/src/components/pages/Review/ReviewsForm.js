@@ -10,7 +10,7 @@ class ReviewsForm extends Component {
     constructor() {
         super()
         this.state = {
-            post: {
+            review: {
                 title: '',
                 text: '',
                 points: '',
@@ -19,14 +19,14 @@ class ReviewsForm extends Component {
             loading: false
         }
 
-        this.reviewsService = new ReviewService()
-        this.uploadsService = new UploadsService()
+        this.reviewService = new ReviewService()
+        this.uploadService = new UploadsService()
     }
 
 
     handleInputChange = e => {
         const { name, value } = e.target
-        this.setState({ post: { ...this.state.post, [name]: value } })
+        this.setState({ review: { ...this.state.review, [name]: value } })
     }
 
 
@@ -34,8 +34,8 @@ class ReviewsForm extends Component {
 
         e.preventDefault()
 
-        this.postService
-            .postCreate(this.state.post)
+        this.reviewService
+            .reviewCreate(this.state.review)
             .then(() => {
                 this.props.history.push('/')
                 this.props.closeModal()

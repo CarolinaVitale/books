@@ -94,22 +94,22 @@ class PostsForm extends Component {
 
                             <Form.Group className="mb-3" controlId="image">
                                 <Form.Label>Image</Form.Label>
-                                <Form.Control name="image" type="file" onChange={this.handleFileUpload} />
-                            </Form.Group>
-
-                            <button className='btn-form' type="submit">Submit</button>
+                                <Form.Control name="image" type="file" className="custom-file-input" id="customFile" onChange={this.handleFileUpload} />
+                            </Form.Group>                                
+                    
+                                <button className='btn-form' type="submit">Submit</button>
                         </Form>
 
-                        <hr></hr>
-                        <Link to="/">
-                            <button className='btn-form'>go back</button>
-                        </Link>
+                            <hr></hr>
+                            <Link to="/">
+                                <button className='btn-form'>go back</button>
+                            </Link>
                     </Col>
                 </Row>
             </Container >
-        )
+                )
     }
 }
 
 
-export default PostsForm
+                export default PostsForm

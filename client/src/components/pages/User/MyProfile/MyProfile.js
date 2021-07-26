@@ -4,13 +4,16 @@ import ProfileBar from './ProfileBar/ProfileBar'
 import BooksForm from "../../Book/BooksForm/BooksForm"
 import PostsForm from "../../Post/PostsForm/PostsForm"
 import UserService from "../../../../services/users.service"
+import ProfileEdit from "../EditUser/EditForm"
+
 
 class MyProfile extends Component {
     constructor() {
         super()
         this.state = {
             user: undefined,
-            modal: false
+            modal: false,
+            modal2: false,
         }
         this.userService = new UserService()
     }
@@ -68,8 +71,17 @@ class MyProfile extends Component {
                             </Modal.Body>
                         </Modal>
                         <Col>
-                            <button className='follow-button'>edit profile</button>{' '}
+                            <button className='follow-button' onClick={() => this.setState({ modal2: true })}>edit profile</button>{' '}
                         </Col>
+                        <Modal
+                            backdrop="static"
+                            keyboard={false}
+                            size='lg' show={this.state.modal2} onHide={() => this.setState({ modal2: false })}>
+                            <Modal.Header closeButton></Modal.Header>
+                            <Modal.Body>
+                                <ProfileEdit {...this.props} history={history} closeModal={() => this.setState({ modal2: false })} loggedUser={loggedUser} storeUser={storeUser} />
+                            </Modal.Body>
+                        </Modal>
                     </Row>
                 </Col>
                 <br></br>

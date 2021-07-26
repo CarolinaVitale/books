@@ -13,7 +13,7 @@ class BookService {
     bookCreate = data => this.app.post('/create', data)
     bookList = () => this.app.get('/list')
     bookDetails = book_id => this.app.get(`/details/${book_id}`)
-    bookEdit = data => this.app.put('/:book_id', data)
+    bookEdit = (data, book_id) => this.app.put(`/${book_id}`, data)
     bookDelete = () => this.app.delete('/:book_id')
 }
 

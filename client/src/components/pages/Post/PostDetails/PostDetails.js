@@ -1,7 +1,9 @@
 import { Component } from 'react'
 import PostService from '../../../../services/posts.service'
-import { Container, Spinner, Image, Col } from 'react-bootstrap'
+import {  Spinner, Image, Col, Modal, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import PostEdit from '../EditPost/EditForm'
+import ReviewsForm from '../../Review/ReviewsForm'
 
 
 class PostDetails extends Component {
@@ -9,7 +11,9 @@ class PostDetails extends Component {
     constructor() {
         super()
         this.state = {
-            post: undefined
+            post: undefined,
+            modal: false,
+            
         }
         this.postsService = new PostService()
     }
@@ -33,29 +37,56 @@ class PostDetails extends Component {
 
     render() {
 
+        const { loggedUser, storeUser, history } = this.props
+
         return (
 
-            <Container>
+            <>
 
                 {!this.state.post
                     ?
                     <Spinner />
                     :
                     <>
-
                         <Col md={{ span: 4, offset: 4 }}>
                             <Image className='cover-img' src={this.state.post.image} alt={this.state.post.title} />
                             <h3 className='profile-name'>{this.state.post.title}<Image className='profile-check' src='' /></h3>
-                            
                             <p className='profile-bio'>{this.state.post.text}</p>
-                            <p className='profile-email'><Link className='link-botton' to={'/profile/' + this.state.post.owner[0]._id}>{this.state.post.owner.firstName} {this.state.post.owner.lastName}</Link></p>
-                            <br></br>
-                            <p className='profile-email'>Reviews: {this.state.post.review.map(elm => <p>{elm.text}</p>)}</p>
                         </Col>
+
+
+                        <Col md={{ span: 4, offset: 4 }}>
+                            <Row className="mb-3">
+                                <Col>
+                                    <button><Link className='follow-button' onClick={() => this.setState({ modal: true })}>edit post</Link></button>
+                                </Col>
+                                <Col>
+                                    <button><Link className='link-botton' to={'/profile/' + this.state.post.owner[0]._id}>{this.state.post.owner[0].firstName} {this.state.post.owner[0].lastName}</Link></button>
+                                </Col>
+                                <Col>
+                                    <button><Link className='link-botton' onClick={() => this.setState({ modal: true, review: true })}>add review</Link></button>
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <br></br>
+
+                        <p className='profile-email'>Reviews: {this.state.post.review.map(elm => <p>{elm.text}</p>)}</p>
+
+                        <Modal
+                            backdrop="static"
+                            keyboard={false}
+                            size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                            <Modal.Header closeButton></Modal.Header>
+                            <Modal.Body>
+                                {!this.state.review ?
+                                    <PostEdit {...this.props} history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
+                                    : <ReviewsForm {...this.props} history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
+                            </Modal.Body>
+                        </Modal>
                     </>
                 }
-
-            </Container>
+            </>
         )
     }
 }

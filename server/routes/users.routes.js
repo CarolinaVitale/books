@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
+const bcrypt = require("bcrypt")
+const bcryptSalt = 10
+
 const User = require('../models/User.model')
 const Book = require('../models/Book.model')
 const Post = require('../models/Post.model')
@@ -45,14 +48,19 @@ router.get('/profile', (req, res) => {
 //protegido, sólo CURRENTUSER
 router.put('/profile', rejectUser('PENDING'), (req, res) => {
 
-    const { email, firstName, lastName, bio, tokenConfirmation, role, friend } = req.body
-    const address = { road, number, city, state } = req.body
+    const { email, password, firstName, lastName, bio, tokenConfirmation, role, friend, image, cover } = req.body
+    const address = { road, apartment, city, state } = req.body
+
+    console.log(req.body)
 
     const loggedUser = req.session.currentUser
     const id = loggedUser._id
 
+    const salt = bcrypt.genSaltSync(bcryptSalt)
+    const hashPass = bcrypt.hashSync(password, salt)
+
     User
-        .findByIdAndUpdate(id, { email, firstName, lastName, bio, tokenConfirmation, role, friend, address }, { new: true })
+        .findByIdAndUpdate(id, { email, password: hashPass, firstName, lastName, bio, tokenConfirmation, role, friend, address, image, cover }, { new: true })
         .then(user => res.json(user))
         .catch(err => res.status(500).json({ code: 500, message: 'Edit profile Error', err }))
 })

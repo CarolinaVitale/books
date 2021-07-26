@@ -1,55 +1,55 @@
 import { Component } from 'react'
 import { Container, Form, Row, Col, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import PostService from '../../../../services/posts.service'
 import UploadsService from '../../../../services/uploads.service'
 import { Spinner } from 'react-bootstrap'
+import ReviewService from '../../../../services/reviews.service'
 
-class PostEdit extends Component {
+
+class ReviewEdit extends Component {
 
     constructor() {
         super()
         this.state = {
-            post: {
+            review: {
                 title: '',
                 text: '',
-                image: '',
-                review: '',
+                points: '',
                 owner: '',
             },
             loading: false
         }
 
-        this.postService = new PostService()
+        this.reviewService = new ReviewService()
         this.uploadsService = new UploadsService()
     }
 
     componentDidMount() {
 
-        const { post_id } = this.props.match.params
-        
-        this.loadFormInfo(post_id)
+        const { review_id } = this.props.match.params
+
+        this.loadFormInfo(review_id)
     }
-    
-    loadFormInfo = (post_id) => {
-        this.postService
-        .postDetails(post_id)
-        .then(response => this.setState({ post: response.data }))
+
+    loadFormInfo = (review_id) => {
+        this.reviewService
+            .reviewDetails(review_id)
+            .then(response => this.setState({ review: response.data }))
     }
-    
+
     handleInputChange = e => {
         const { name, value } = e.target
-        this.setState({ post: { ...this.state.post, [name]: value } })
+        this.setState({ review: { ...this.state.review, [name]: value } })
     }
-    
+
     handleFormSubmit = e => {
-        
-        const { post_id } = this.props.match.params
-        
+
+        const { review_id } = this.props.match.params
+
         e.preventDefault()
 
-        this.postService
-            .postEdit(this.state.post, post_id)
+        this.reviewService
+            .reviewEdit(this.state.review, review_id)
             .then(() => {
                 this.props.history.push('/')
                 this.props.closeModal()
@@ -70,7 +70,7 @@ class PostEdit extends Component {
             .then(response => {
                 this.setState({
                     loading: false,
-                    post: { ...this.state.post, image: response.data.cloudinary_url }
+                    review: { ...this.state.review, image: response.data.cloudinary_url }
                 })
             })
 
@@ -80,18 +80,18 @@ class PostEdit extends Component {
 
 
     render() {
-
+        console.log(this.props, 'PROPS')
         return (
 
             <Container>
-                {!this.state.post
+                {!this.state.review
                     ?
                     <Spinner />
                     :
                     <Row>
                         <Col md={{ span: 8, offset: 2 }}>
 
-                            <h1>Edit {this.state.post.title}</h1>
+                            <h1>Edit {this.state.review.title}</h1>
                             <hr></hr>
 
                             <Form onSubmit={this.handleFormSubmit}>
@@ -99,24 +99,18 @@ class PostEdit extends Component {
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="title">
                                         <Form.Label>Title</Form.Label>
-                                        <Form.Control type="text" value={this.state.post.title} onChange={this.handleInputChange} name="title" placeholder="Title" />
+                                        <Form.Control type="text" value={this.state.review.title} onChange={this.handleInputChange} name="title" placeholder="Title" />
                                     </Form.Group>
                                 </Row>
 
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="text">
-                                        <Form.Label>Text</Form.Label>
-                                        <Form.Control type="text" value={this.state.post.text} onChange={this.handleInputChange} name="text" placeholder="Text" />
+                                        <Form.Label>Review</Form.Label>
+                                        <Form.Control type="text" value={this.state.review.text} onChange={this.handleInputChange} name="text" placeholder="Review" />
                                     </Form.Group>
                                 </Row>
 
-                                <img style={{ width: "100px" }} src={this.state.post.image} alt="book cover" />
-                                <Form.Group className="mb-3" controlId="image">
-                                    <Form.Label>Image</Form.Label>
-                                    <Form.Control name="image" type="file" onChange={this.handleFileUpload} />
-                                </Form.Group>
-
-                                <button className='btn-form' type="submit">Edit</button>
+                                <button className='btn-form' type="submit">edit</button>
                             </Form>
 
                             <hr></hr>
@@ -132,4 +126,4 @@ class PostEdit extends Component {
 }
 
 
-export default PostEdit
+export default ReviewEdit
