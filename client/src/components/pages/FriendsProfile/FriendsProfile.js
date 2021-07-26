@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Spinner, Col, Image, Row, Modal } from 'react-bootstrap'
-
+import { isFriend } from '../../../utils'
 import UserService from '../../../services/users.service'
 import ProfileBar from '../User/MyProfile/ProfileBar/ProfileBar'
 import BooksForm from '../Book/BooksForm/BooksForm'
@@ -15,21 +15,20 @@ class FriendsProfile extends Component {
             books: undefined,
             friends: undefined,
             posts: undefined,
-            follow: false,
         }
         this.userService = new UserService()
     }
 
     followUnfollow = (user_id, follow, follow_id) => {
-
         this.userService
             .followUnfollow(user_id, follow, follow_id)
-            .then((res) => {
-                this.setState({ follow: true })
-                console.log('vamos a morir', res.data.friends)
-            })
+            .then((res) => this.props.storeUser(res.data))
             .catch(err => console.log(err))
     }
+
+    follow = (id, follow_id) =>  this.followUnfollow(id, true, follow_id)
+    
+    unfollow = (id, follow_id) => this.followUnfollow(id, false, follow_id)
 
     loadUser = () => {
 
@@ -49,6 +48,8 @@ class FriendsProfile extends Component {
         this.loadUser()
     }
     //props.match es lo del /:id
+
+
 
 
 
@@ -101,12 +102,9 @@ class FriendsProfile extends Component {
                                     ? <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                                     :
                                     <Col>
-                                        {loggedUser.friends.find(elm => {
-                                            console.log('vamos a seguir Caro', elm, this.state.otherUser._id)
-                                            return elm === this.state.otherUser._id
-                                        }) ?
-                                            <button className='follow-button' onClick={() => this.followUnfollow(this.state.otherUser._id, true, (loggedUser._id))} loggedUser={loggedUser} >unfollow</button> :
-                                            <button className='follow-button' onClick={() => this.followUnfollow(this.state.otherUser._id, false, (loggedUser._id))} loggedUser={loggedUser} >follow</button>}
+                                        {isFriend(loggedUser.friends, this.state.otherUser._id) ?
+                                            <button className='follow-button' onClick={() => this.follow(this.state.otherUser._id, (loggedUser._id))} loggedUser={loggedUser} >unfollow</button> :
+                                            <button className='follow-button' onClick={() => this.unfollow(this.state.otherUser._id, (loggedUser._id))} loggedUser={loggedUser} >follow</button>}
                                     </Col>}
                             </Row>
                         </Col>
