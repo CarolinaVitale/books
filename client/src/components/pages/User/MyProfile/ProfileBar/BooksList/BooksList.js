@@ -4,7 +4,7 @@ const BooksList = ({ books }) => {
 
     return (
         books ?
-            books.map(elm => <BookCard {...elm} />) : null
+            books.map(elm => <BookCard key={elm._id} {...elm} />) : null
     )
 
 }

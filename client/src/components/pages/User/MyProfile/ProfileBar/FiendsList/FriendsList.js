@@ -5,7 +5,7 @@ const FriendsList = ({ friends }) => {
     return (
 
         friends ?
-            friends.map(elm => <FriendCard {...elm} />) : null
+            friends.map(elm => <FriendCard key={elm._id} {...elm} />) : null
     )
 
 }
