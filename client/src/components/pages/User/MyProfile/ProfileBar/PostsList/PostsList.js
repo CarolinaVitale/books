@@ -1,11 +1,11 @@
 import PostCard from "./PostCard"
 
-const PostsList = ({ posts }) =>{
+const PostsList = ({ posts }) => {
 
-return(
-
-    posts.map(elm => <PostCard {...elm} /> )
-)
+    return (
+        posts ?
+            posts.map(elm => <PostCard {...elm} />) : null
+    )
 
 }
 

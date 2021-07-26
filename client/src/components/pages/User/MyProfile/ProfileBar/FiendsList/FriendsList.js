@@ -1,11 +1,12 @@
 import FriendCard from "./FriendCard"
 
-const FriendsList = ({ friends }) =>{
+const FriendsList = ({ friends }) => {
 
-return(
+    return (
 
-    friends.map(elm => <FriendCard {...elm} /> )
-)
+        friends ?
+            friends.map(elm => <FriendCard {...elm} />) : null
+    )
 
 }
 

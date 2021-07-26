@@ -112,10 +112,10 @@ class HomePage extends Component {
                                 </div>
                             </>
                             : <><div className="decambiar"></div>
-                                <Row className="timeline">
+                                {this.state.books.length && <Row className="timeline">
                                     {this.state.books.map(elm => <TimelineCard key={elm._id} {...elm} />)}
                                     {this.state.posts.map(elm => <TimelineCard key={elm._id} {...elm} />)}
-                                </Row>
+                                </Row>}
                             </>
                     }
                 </>

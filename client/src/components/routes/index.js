@@ -17,7 +17,7 @@ import PostEdit from '../pages/Post/EditPost/EditForm'
 
 
 
-const Routes = ({ storeUser, loggedUser }) => {
+const Routes = ({ storeUser, loggedUser, fetchUser }) => {
 
     return (
         <Switch>
@@ -25,11 +25,11 @@ const Routes = ({ storeUser, loggedUser }) => {
             <Route path="/register" render={props => <RegisterForm {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/login" render={props => <Login {...props} storeUser={storeUser} />} />
             <Route path="/profile" exact render={(props) => loggedUser ? <MyProfile {...props} loggedUser={loggedUser} storeUser={storeUser} /> : <Redirect to="/login" />} />
-            <Route path="/profile/:user_id" render={props => <FriendsProfile {...props} />} />
             <Route path="/book/create" render={(props) => <BooksForm {...props} />} />
             <Route path="/post/create" render={(props) => <PostsForm {...props} />} />
             <Route path="/review/create" render={(props) => <ReviewsForm {...props} />} />
-            <Route path="/post/:post_id" render={(props) => <PostEdit {...props} loggedUser={loggedUser} storeUser={storeUser}/>} />
+            <Route path="/profile/:user_id" exact render={props => <FriendsProfile {...props} fetchUser={fetchUser} loggedUser={loggedUser} storeUser={storeUser} />} />
+            <Route path="/post/:post_id" exact render={(props) => <PostEdit {...props} loggedUser={loggedUser} storeUser={storeUser}/>} />
             <Route path="/post/details/:post_id" render={(props) => <PostDetails {...props} />} />
             <Route path="/book/details/:book_id" render={(props) => <BookDetails {...props} />} />
             {/* <Route path="/profile/:id" render={()=> <ProfileDetails />} /> */}

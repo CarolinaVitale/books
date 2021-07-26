@@ -13,7 +13,7 @@ class PostService {
     postCreate = data => this.app.post('/create', data)
     postList = () => this.app.get('/list')
     postDetails = post_id => this.app.get(`/details/${post_id}`)
-    postEdit = data => this.app.put('/:post_id', data)
+    postEdit = (data, post_id) => this.app.put(`/${post_id}`, data)
     postDelete = () => this.app.delete('/:post_id')
 }
 

@@ -15,10 +15,21 @@ class FriendsProfile extends Component {
             books: undefined,
             friends: undefined,
             posts: undefined,
+            follow: false,
         }
         this.userService = new UserService()
     }
 
+    followUnfollow = (user_id, follow, follow_id) => {
+
+        this.userService
+            .followUnfollow(user_id, follow, follow_id)
+            .then((res) => {
+                this.setState({ follow: true })
+                console.log('vamos a morir', res.data.friends)
+            })
+            .catch(err => console.log(err))
+    }
 
     loadUser = () => {
 
@@ -27,18 +38,18 @@ class FriendsProfile extends Component {
         this.userService
             .othersProfile(user_id)
             .then(res => {
-                console.log(res.data)
+                console.log('res.data', res.data)
                 return res
             })
             .then(response => this.setState({ otherUser: response.data[0], friends: response.data[0].friends, books: response.data[1], posts: response.data[2] }))
             .catch(err => console.log(err))
     }
 
-
     componentDidMount = () => {
         this.loadUser()
     }
     //props.match es lo del /:id
+
 
 
     render() {
@@ -61,6 +72,7 @@ class FriendsProfile extends Component {
                             <p className='profile-bio'>{this.state.otherUser.bio}</p>
                             <br></br>
                         </Col>
+
                         <Col md={{ span: 4, offset: 4 }}>
                             <Row className="mb-3">
 
@@ -84,9 +96,18 @@ class FriendsProfile extends Component {
                                     </Modal.Body>
                                 </Modal>
 
-                                <Col>
-                                    <button className='follow-button'>follow</button>{' '}
-                                </Col>
+
+                                {!loggedUser
+                                    ? <Spinner className='spinner' animation="grow" variant="info" size="lg" />
+                                    :
+                                    <Col>
+                                        {loggedUser.friends.find(elm => {
+                                            console.log('vamos a seguir Caro', elm, this.state.otherUser._id)
+                                            return elm === this.state.otherUser._id
+                                        }) ?
+                                            <button className='follow-button' onClick={() => this.followUnfollow(this.state.otherUser._id, true, (loggedUser._id))} loggedUser={loggedUser} >unfollow</button> :
+                                            <button className='follow-button' onClick={() => this.followUnfollow(this.state.otherUser._id, false, (loggedUser._id))} loggedUser={loggedUser} >follow</button>}
+                                    </Col>}
                             </Row>
                         </Col>
                         <br></br>
@@ -96,6 +117,7 @@ class FriendsProfile extends Component {
         )
     }
 }
+
 
 
 export default FriendsProfile

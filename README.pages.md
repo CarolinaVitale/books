@@ -17,3 +17,5 @@ mint-cover= https://res.cloudinary.com/carolinavitale/image/upload/v1626707006/m
 rose-cover= https://res.cloudinary.com/carolinavitale/image/upload/v1626707015/rose_bnaxpj.jpg
 purple-cover= https://res.cloudinary.com/carolinavitale/image/upload/v1626707011/purple_qafsfl.jpg
 blue-cover= https://res.cloudinary.com/carolinavitale/image/upload/v1626706997/blue_ss3hfr.jpg
+
+form => traer id de otherUser y id de currentUser

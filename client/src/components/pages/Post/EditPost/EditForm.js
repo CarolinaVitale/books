@@ -28,14 +28,17 @@ class PostEdit extends Component {
 
         const { post_id } = this.props.match.params
 
+       //  this.loadFormInfo(post_id)
+    }
+
+    loadFormInfo = (post_id) => {
         this.postService
-            .postEdit(this.state.post)
+            .postDetails(post_id)
             .then(res => {
-                console.log(res)
-                return res
+                console.log(res.data)
+                return res.data
             })
-            .then(response => this.setState({ post: response.data }))
-            .catch(err => console.log(err))
+            .then(response => this.setState({ }))
     }
 
     handleInputChange = e => {
@@ -76,9 +79,10 @@ class PostEdit extends Component {
             .catch(err => console.log(err))
     }
 
-    
+
 
     render() {
+        console.log(this.props,  'PROPS')
         return (
 
             <Container>

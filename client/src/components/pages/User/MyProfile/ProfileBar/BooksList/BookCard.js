@@ -1,11 +1,13 @@
 import { Col, Card, Image } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
-const BookCard = ({ image, title, description, price, currency }) => {
+
+const BookCard = ({ image, title, description, price, currency, _id }) => {
 
     return (
-        <Col md={3}>
+        <Col lg={2}>
             <div className="friend-card">
-                <Image variant="top" src={image} alt={title + 'profile image'} roundedCircle />
+                <Link to={'/book/details/' + _id} ><Image className='card-image' variant="top" src={image} alt={title + 'profile image'} /></Link>
                 <Card.Body>
                     <h6 className="text">{title}</h6>
                     <p>{description}</p>

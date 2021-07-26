@@ -1,11 +1,11 @@
 import BookCard from "./BookCard"
 
-const BooksList = ({ books }) =>{
+const BooksList = ({ books }) => {
 
-return(
-
-    books.map(elm => <BookCard {...elm} /> )
-)
+    return (
+        books ?
+            books.map(elm => <BookCard {...elm} />) : null
+    )
 
 }
 
