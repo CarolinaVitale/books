@@ -49,7 +49,7 @@ router.get('/profile', (req, res) => {
 router.put('/profile', rejectUser('PENDING'), (req, res) => {
 
     const { email, password, firstName, lastName, bio, tokenConfirmation, role, friend, image, cover } = req.body
-    const address = { road, apartment, city, state } = req.body
+    const {address} = req.body
 
     console.log(req.body)
 

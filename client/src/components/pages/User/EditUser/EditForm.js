@@ -19,6 +19,7 @@ class ProfileEdit extends Component {
                 image: '',
                 cover: '',
                 bio: '',
+            },
                 address: {
                     road: '',
                     apartment: '',
@@ -26,7 +27,7 @@ class ProfileEdit extends Component {
                     state: '',
                     zip: ''
                 },
-            },
+            
             loading: false
         }
 
@@ -50,7 +51,9 @@ class ProfileEdit extends Component {
     handleInputChange = e => {
         const { name, value } = e.target
         console.log(e.target.value)
-        this.setState({ user: { ...this.state.user, [name]: value, address: { ...this.state.user.address, [name]: value } } })
+        this.setState({ user: { ...this.state.user, [name]: value, 
+            address: { ...this.state.user.address, [name]: value } 
+        } })
     }
 
     handleFormSubmit = e => {

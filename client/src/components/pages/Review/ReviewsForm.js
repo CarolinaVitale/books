@@ -3,6 +3,7 @@ import { Container, Form, Row, Col, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ReviewService from '../../../services/reviews.service'
 import UploadsService from '../../../services/uploads.service'
+import CustomizedRatings from "../../../utils/Rating/Rating"
 
 
 class ReviewsForm extends Component {
@@ -28,6 +29,8 @@ class ReviewsForm extends Component {
         const { name, value } = e.target
         this.setState({ review: { ...this.state.review, [name]: value } })
     }
+
+    handleRating = value => { this.setState({ review: { ...this.state.review, points: value } })}
 
 
     handleFormSubmit = e => {
@@ -70,6 +73,13 @@ class ReviewsForm extends Component {
                                 </Form.Group>
                             </Row>
 
+                            <Row className="mb-3">
+                                <Form.Group as={Col} controlId="text">
+                                    <Form.Label>Rating</Form.Label>
+                                    <CustomizedRatings type="number" value={this.state.points} onChange={this.handleInputChange} handleRating={this.handleRating} name="points" />
+                                </Form.Group>
+                            </Row>
+                            
                             <button className='btn-form' type="submit">Submit</button>
                         </Form>
 

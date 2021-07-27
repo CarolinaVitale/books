@@ -35,8 +35,7 @@ class PostForm extends Component {
 
     render() {
         return (
-            <Container>
-
+            <>
                 <Form onSubmit={this.handleFormSubmit}>
 
                     <Form.Group controlId="title">
@@ -52,8 +51,7 @@ class PostForm extends Component {
                     <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Crear Post</Button>
 
                 </Form>
-
-            </Container>
+            </>
         )
     }
 }

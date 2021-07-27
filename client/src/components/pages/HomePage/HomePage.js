@@ -72,7 +72,7 @@ class HomePage extends Component {
         this.loadUnsplash()
         this.getTimeline()
     }
-    
+
     componentWillUnmount() {
         window.removeEventListener('scroll', this.listenScrollEvent)
     }
@@ -92,7 +92,8 @@ class HomePage extends Component {
                             ?
                             <>
                                 <div className="home-page-top"  >
-                                    <h1> NOT LOGGED</h1>
+                                    <h1 className='home-title'>for Words...</h1>
+                                    <p className='quotes'>“So many books, so little time.”</p>
                                 </div>
                                 <div className="random-img">
                                     {
@@ -111,7 +112,10 @@ class HomePage extends Component {
                                     }
                                 </div>
                             </>
-                            : <><div className="decambiar"></div>
+                            : <>
+                                <h1 className='home-title'>for Words...</h1>
+                                <p className='quotes'>“Books are a uniquely portable magic.”</p>
+                                <div className="decambiar"></div>
                                 {this.state.books.length && <Row className="timeline">
                                     {this.state.books.map(elm => <TimelineCard key={elm._id} {...elm} />)}
                                     {this.state.posts.map(elm => <TimelineCard key={elm._id} {...elm} />)}

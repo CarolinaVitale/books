@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 import UsersService from '../../../services/users.service'
 import AuthService from '../../../services/auth.service'
 
-import { Navbar, Nav, FormControl, Button, Form, Modal,  } from 'react-bootstrap'
+import { Navbar, Nav, FormControl, Button, Form, Modal, } from 'react-bootstrap'
 
 import RegisterForm from '../../pages/User/Register/RegisterForm'
 import Login from '../../pages/User/Login/Login'
+
+import logo from './logo.svg'
+
 
 class Navigation extends Component {
 
@@ -24,11 +27,11 @@ class Navigation extends Component {
     logout = () => {
         this.authService
             .logout()
-            .then(()=> this.props.storeUser(undefined))
+            .then(() => this.props.storeUser(undefined))
             .catch(err => console.log(err))
     }
-    
-    
+
+
     handleClose = () => { this.setState({ show: false }) }
     handleShow = () => { this.setState({ show: true }) }
 
@@ -38,10 +41,11 @@ class Navigation extends Component {
 
         return (
             <Navbar className='navbar' bg="light" variant="light" expand="md">
-                <Navbar.Brand href="/">BooksApp</Navbar.Brand >
+                <Navbar.Brand href="/"><img class='logo' src={logo}></img><button className='brand'>forWords</button></Navbar.Brand >
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="mr-auto">
+                
                         {!loggedUser
                             ?
                             <>
@@ -52,7 +56,7 @@ class Navigation extends Component {
                                     <Modal
                                         backdrop="static"
                                         keyboard={false}
-                                     size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                        size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
                                         <Modal.Header closeButton></Modal.Header>
                                         <Modal.Body>
                                             {this.state.registerShown
@@ -70,11 +74,10 @@ class Navigation extends Component {
                                     className="search"
                                     aria-label="Search"
                                 />
-                                <Button className='search-button' variant="outline-success">Search</Button>
+                                <button className='search-button' variant="outline-success">Search</button>
 
-                                <Link className="nav-link" to="/profile"> {loggedUser ? loggedUser.firstName : ' '}</Link>
-                                <span className="nav-link" onClick={this.logout}>Logout</span>
-                                <Form className="d-flex"></Form>
+                                <button className='navbar-button'><Link className="navbar-link" to="/profile"> {loggedUser ? loggedUser.firstName : ''}</Link></button>
+                                <button className='navbar-button'><span className="navbar-link" onClick={this.logout}>Logout</span></button>
                             </>
                         }
                     </Nav>

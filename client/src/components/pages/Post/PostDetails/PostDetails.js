@@ -55,16 +55,17 @@ class PostDetails extends Component {
                         </Col>
 
 
-                        <Col md={{ span: 4, offset: 4 }}>
+                        <Col md={{ span: 6, offset: 3 }}>
                             <Row className="mb-3">
+
                                 <Col>
-                                    <button><Link className='follow-button' onClick={() => this.setState({ modal: true })}>edit post</Link></button>
+                                    {<button className='mint-button'><Link className="normalize-link" to={'/profile/' + this.state.post.owner[0]._id}>{this.state.post.owner[0].firstName} {this.state.post.owner[0].lastName}</Link></button>}
                                 </Col>
                                 <Col>
-                                    <button><Link className='link-botton' to={'/profile/' + this.state.post.owner[0]._id}>{this.state.post.owner[0].firstName} {this.state.post.owner[0].lastName}</Link></button>
+                                    {<button className='blue-button' onClick={() => this.setState({ modal: true, review: true })}>add review</button>}
                                 </Col>
                                 <Col>
-                                    <button><Link className='link-botton' onClick={() => this.setState({ modal: true, review: true })}>add review</Link></button>
+                                    {<button className='pink-button' onClick={() => this.setState({ modal: true })}>edit post</button>}
                                 </Col>
                             </Row>
                         </Col>
