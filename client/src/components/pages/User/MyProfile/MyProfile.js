@@ -62,10 +62,6 @@ class MyProfile extends Component {
 
                     <br></br>
                 </Col>
-<<<<<<< HEAD
-
-                <Col md={{ span: 6, offset: 3 }}>
-=======
                 {loggedUser.role === "ADMIN"
                     ?
                     <Col md={{ span: 4, offset: 4 }}>
@@ -76,7 +72,6 @@ class MyProfile extends Component {
                         <Row className="mb-3"></Row>
                     </Col>}
                 <Col md={{ span: 4, offset: 4 }}>
->>>>>>> 9ba38b99ae06fc1fb6e2cc9b2df7ce6ad9a29a2f
                     <Row className="mb-3">
 
                         <Col>
@@ -106,16 +101,12 @@ class MyProfile extends Component {
                                 <ProfileEdit {...this.props} history={history} closeModal={() => this.setState({ modal2: false })} loggedUser={loggedUser} storeUser={storeUser} />
                             </Modal.Body>
                         </Modal>
-<<<<<<< HEAD
-                        
-=======
                         <Modal backdrop="static" keyboard={false} size='lg' show={this.state.adminModal} onHide={() => this.setState({ adminModal: false })}>
                             <Modal.Header closeButton></Modal.Header>
                             <Modal.Body>
                                 <AdminBar books={this.state.booksToConfirm} />
                             </Modal.Body>
                         </Modal>
->>>>>>> 9ba38b99ae06fc1fb6e2cc9b2df7ce6ad9a29a2f
                     </Row>
                 </Col>
                 <br></br>
