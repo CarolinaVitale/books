@@ -18,6 +18,7 @@ class HomePage extends Component {
             photos: undefined,
             books: false,
             posts: false,
+            timeline:[],
             modal: false,
             loading: false,
         }
@@ -59,7 +60,7 @@ class HomePage extends Component {
             .all([getBooks, getPosts])
             .then(response => {
                 this.setState({ books: response[0].data, posts: response[1].data })
-            })
+            })//timeline: ([...response[0].data] + [...response[1].data])
             .catch(err => console.log(err))
     }
 
@@ -80,6 +81,7 @@ class HomePage extends Component {
     render() {
 
         const { loggedUser, storeUser, history } = this.props
+        
 
         return (
             !this.state.photos

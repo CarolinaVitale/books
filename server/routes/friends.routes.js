@@ -31,8 +31,7 @@ router.get('/profile/:user_id', (req, res) => {
 // ADD FOLLOW-UNFOLLOW
 router.put('/profile/:user_id', (req, res) => {
     
-    console.log(req.body, 'REQ BODY')
-    console.log(req.params, 'USER ID')
+   
     
     const { user_id } = req.params
     const { follow_id, follow } = req.body

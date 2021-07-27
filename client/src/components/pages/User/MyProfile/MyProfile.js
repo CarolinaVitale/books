@@ -1,10 +1,14 @@
 import { Component } from "react"
 import { Col, Image, Modal, Row } from "react-bootstrap"
+
+import UserService from "../../../../services/users.service"
+import BookService from "../../../../services/books.service"
+
 import ProfileBar from './ProfileBar/ProfileBar'
 import BooksForm from "../../Book/BooksForm/BooksForm"
 import PostsForm from "../../Post/PostsForm/PostsForm"
-import UserService from "../../../../services/users.service"
 import ProfileEdit from "../EditUser/EditForm"
+import AdminBar from "../../Admin/Admin Panel"
 
 
 
@@ -12,27 +16,35 @@ class MyProfile extends Component {
     constructor() {
         super()
         this.state = {
-            user: undefined,
+            books: undefined,
+            post: undefined,
+            booksToConfirm: undefined,
             modal: false,
             modal2: false,
+            adminModal: false,
         }
         this.userService = new UserService()
+        this.bookService = new BookService()
+    }
+
+    loadBookForAdmin = () => {
+        this.bookService
+            .bookToConfirm()
+            .then(response => this.setState({ booksToConfirm: response.data }))
+            .catch(err => console.log(err))
     }
 
     loadUser = () => {
 
         this.userService
             .profile()
-            .then(res => {
-                console.log(res.data)
-                return res
-            })
-            .then(response => this.setState({ otherUser: response.data[0], friends: response.data[0].friends, books: response.data[1], posts: response.data[2] }))
+            .then(response => this.setState({ friends: response.data[0].friends, books: response.data[1], posts: response.data[2] }))
             .catch(err => console.log(err))
     }
 
     componentDidMount = () => {
         this.loadUser()
+        this.loadBookForAdmin()
     }
 
     render() {
@@ -47,10 +59,24 @@ class MyProfile extends Component {
                     <h3 className='profile-name'>{loggedUser.firstName} {loggedUser.lastName} <Image className='profile-check' src='' /></h3>
                     <p className='profile-email'>{loggedUser.email}</p>
                     <p className='profile-bio'>{loggedUser.bio}</p>
+
                     <br></br>
                 </Col>
+<<<<<<< HEAD
 
                 <Col md={{ span: 6, offset: 3 }}>
+=======
+                {loggedUser.role === "ADMIN"
+                    ?
+                    <Col md={{ span: 4, offset: 4 }}>
+                        <Row className="mb-3"> {<button className='create-button' onClick={() => this.setState({ adminModal: true })}>Admin Panel</button>}</Row>
+                    </Col>
+                    :
+                    <Col md={{ span: 4, offset: 4 }}>
+                        <Row className="mb-3"></Row>
+                    </Col>}
+                <Col md={{ span: 4, offset: 4 }}>
+>>>>>>> 9ba38b99ae06fc1fb6e2cc9b2df7ce6ad9a29a2f
                     <Row className="mb-3">
 
                         <Col>
@@ -74,16 +100,22 @@ class MyProfile extends Component {
                         <Col>
                             <button className='pink-button' onClick={() => this.setState({ modal2: true })}>edit profile</button>{' '}
                         </Col>
-                        <Modal
-                            backdrop="static"
-                            keyboard={false}
-                            size='lg' show={this.state.modal2} onHide={() => this.setState({ modal2: false })}>
+                        <Modal backdrop="static" keyboard={false} size='lg' show={this.state.modal2} onHide={() => this.setState({ modal2: false })}>
                             <Modal.Header closeButton></Modal.Header>
                             <Modal.Body>
                                 <ProfileEdit {...this.props} history={history} closeModal={() => this.setState({ modal2: false })} loggedUser={loggedUser} storeUser={storeUser} />
                             </Modal.Body>
                         </Modal>
+<<<<<<< HEAD
                         
+=======
+                        <Modal backdrop="static" keyboard={false} size='lg' show={this.state.adminModal} onHide={() => this.setState({ adminModal: false })}>
+                            <Modal.Header closeButton></Modal.Header>
+                            <Modal.Body>
+                                <AdminBar books={this.state.booksToConfirm} />
+                            </Modal.Body>
+                        </Modal>
+>>>>>>> 9ba38b99ae06fc1fb6e2cc9b2df7ce6ad9a29a2f
                     </Row>
                 </Col>
                 <br></br>

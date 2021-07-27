@@ -16,6 +16,7 @@ const Routes = ({ storeUser, loggedUser, fetchUser }) => {
 
     return (
         <Switch>
+<<<<<<< HEAD
             <Route path='/' exact render={(props) => <HomePage {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/profile" exact render={(props) => loggedUser ? <MyProfile {...props} loggedUser={loggedUser} storeUser={storeUser} /> : <Redirect to="/login" />} />
             <Route path="/profile/:user_id" exact render={props => <FriendsProfile {...props} fetchUser={fetchUser} loggedUser={loggedUser} storeUser={storeUser} />} />
@@ -25,6 +26,22 @@ const Routes = ({ storeUser, loggedUser, fetchUser }) => {
             <Route path="/post/details/:post_id" render={(props) => <PostDetails {...props} />} />
             <Route path="/post/:post_id" exact render={(props) => <PostEdit {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/review/:review_id" exact render={(props) => <ReviewEdit {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
+=======
+            <Route path='/' exact render={ (props) => <HomePage {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
+            <Route path="/register" render={ (props) => <RegisterForm {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
+            <Route path="/login" render={ (props) => <Login {...props} storeUser={storeUser} />} />
+            <Route path="/profile" exact render={ (props) => loggedUser ? <MyProfile {...props} loggedUser={loggedUser} storeUser={storeUser} /> : <Redirect to="/login" />} />
+            <Route path="/profile/:user_id" exact render={ (props) => <FriendsProfile {...props} fetchUser={fetchUser} loggedUser={loggedUser} storeUser={storeUser} />} />
+            <Route path="/profile/edit/:user_id" exact render={ (props) => <ProfileEdit {...props} loggedUser={loggedUser} />} />
+            <Route path="/book/create" render={ (props) => <BooksForm {...props} />} />
+            <Route path="/book/details/:book_id" render={(props) => <BookDetails {...props} loggedUser={loggedUser}/>} />
+            <Route path="/book/:book_id" exact render={ (props) => <BookEdit {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
+            <Route path="/post/create" render={ (props) => <PostsForm {...props} />} />
+            <Route path="/post/details/:post_id" render={ (props) => <PostDetails {...props} />} />
+            <Route path="/post/:post_id" exact render={ (props) => <PostEdit {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
+            <Route path="/review/create" render={ (props) => <ReviewsForm {...props} />} />
+            <Route path="/review/:review_id" exact render={ (props) => <ReviewEdit {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
+>>>>>>> 9ba38b99ae06fc1fb6e2cc9b2df7ce6ad9a29a2f
         </Switch>
     )
 }
