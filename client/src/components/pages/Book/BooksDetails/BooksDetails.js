@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import BookService from '../../../../services/books.service'
-import { Container, Image, Col, Spinner } from 'react-bootstrap'
+import { Container, Image, Col, Spinner, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
@@ -10,14 +10,39 @@ class BookDetails extends Component {
     constructor() {
         super()
         this.state = {
-            book: undefined
+            book: undefined,
+
         }
         this.booksService = new BookService()
     }
 
+    bookToConfirm = (bool) => {
 
-    componentDidMount() {
+        const { book_id } = this.props.match.params
+        console.log(typeof bool)
+        this.booksService
+            .bookConfirmed(bool, book_id)
+            .then(res => {
+                console.log(res.data.accepted)
+                return res
+            })
+            .catch(err => console.log(err))
+    }
 
+
+    negateBook = () => {
+        this.setState({ book: { ...this.state.book, accepted: false } })
+        this.bookToConfirm(this.state.accepted)
+    }
+
+    confirmBook = () => {
+        this.setState({ book: { ...this.state.book, accepted: false } })
+        this.bookToConfirm(this.state.accepted)
+
+    }
+
+
+    loadBook = () => {
 
         const { book_id } = this.props.match.params
 
@@ -31,6 +56,13 @@ class BookDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    componentDidMount() {
+
+        this.loadBook()
+
+
+    }
+
 
     render() {
 
@@ -40,7 +72,7 @@ class BookDetails extends Component {
 
                 {!this.state.book
                     ?
-                    <Spinner />
+                    <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                     :
                     <>
                         <Col md={{ span: 4, offset: 4 }}>
@@ -50,8 +82,21 @@ class BookDetails extends Component {
                             <p className='profile-bio'></p>
                             <p className='profile-email'><Link className='link-botton' to={'/profile/' + this.state.book.owner[0]._id}>{this.state.book.owner[0].firstName} {this.state.book.owner[0].lastName}</Link></p>
                             <br></br>
+                            {/* contact owner */}
                         </Col>
-
+                        {this.props.loggedUser && this.props.loggedUser.role === "ADMIN"
+                            ?
+                            <Col md={{ span: 4, offset: 4 }}>
+                                {this.state.book.accepted
+                                    ?
+                                    <Row className="mb-3"> {<button className='link-botton' onClick={() => this.negateBook()}>Negate book</button>}</Row>
+                                    :
+                                    <Row className="mb-3"> {<button className='create-button' onClick={() => this.confirmBook()}>Confirm book</button>}</Row>}
+                            </Col>
+                            :
+                            <Col md={{ span: 4, offset: 4 }}>
+                                <Row className="mb-3"></Row>
+                            </Col>}
                     </>
                 }
 

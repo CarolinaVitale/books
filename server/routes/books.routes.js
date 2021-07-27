@@ -26,8 +26,9 @@ router.post('/create', (req, res) => {
 router.get('/list', (req, res) => {
 
     Book
-        .find()
+        .find({ accepted: true })
         .populate('owner reviews')
+        .sort({createdAt: 1})
         .then(book => res.json(book))
         .catch(err => res.status(500).json({ code: 500, message: 'Book list not found', err }))
 })
@@ -60,7 +61,28 @@ router.put('/:book_id', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Could not edit book', err }))
 })
 
+//GET BOOKS NOT CONFIRMED LIST
+router.get('/confirm/list', (req, res) => {
 
+    Book
+        .find({ accepted: false })
+        .select(' _id title image')
+        .then(book => res.json(book))
+        .catch(err => res.status(500).json({ code: 500, message: 'Book to confirm not found', err }))
+})
+
+/*CONFIRM BOOK TO SELL*/
+
+router.put('/confirm/:book_id', (req, res) => {
+
+    const { book_id } = req.params
+    const { accepted } = req.body
+    console.log(req.body, " -----req.body")
+    Book
+        .findByIdAndUpdate(book_id, { accepted }, { new: true })
+        .then(book => res.json(book))
+        .catch(err => res.status(500).json({ code: 500, message: 'Could not edit book', err }))
+})
 
 //DELETE BOOK 
 router.delete('/:book_id', (req, res) => {

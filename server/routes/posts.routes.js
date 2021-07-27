@@ -29,6 +29,7 @@ router.get('/list', (req, res) => {
     Post
         .find()
         .populate('owner reviews')
+        .sort({ createdAt: 1 })
         .then(post => res.json(post))
         .catch(err => res.status(500).json({ code: 500, message: 'Post list not found', err }))
 })
