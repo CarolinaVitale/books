@@ -36,7 +36,7 @@ class BookDetails extends Component {
     }
 
     confirmBook = () => {
-        this.setState({ book: { ...this.state.book, accepted: false } })
+        this.setState({ book: { ...this.state.book, accepted: true } })
         this.bookToConfirm(this.state.accepted)
 
     }
