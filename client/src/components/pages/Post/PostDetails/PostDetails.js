@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import PostService from '../../../../services/posts.service'
-import {  Spinner, Image, Col, Modal, Row } from 'react-bootstrap'
+import { Spinner, Image, Col, Modal, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PostEdit from '../EditPost/EditForm'
 import ReviewsForm from '../../Review/ReviewsForm'
@@ -13,25 +13,30 @@ class PostDetails extends Component {
         this.state = {
             post: undefined,
             modal: false,
-            
+
         }
         this.postsService = new PostService()
     }
 
 
-    componentDidMount() {
-
+    loadPost = () => {
 
         const { post_id } = this.props.match.params
 
         this.postsService
             .postDetails(post_id)
             .then(res => {
-                console.log(res)
+                console.log(res.data, 'hoy')
                 return res
             })
             .then(response => this.setState({ post: response.data }))
             .catch(err => console.log(err))
+    }
+
+    componentDidMount() {
+
+        this.loadPost()
+
     }
 
 
@@ -45,7 +50,7 @@ class PostDetails extends Component {
 
                 {!this.state.post
                     ?
-                    <Spinner />
+                    <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                     :
                     <>
                         <Col md={{ span: 4, offset: 4 }}>
@@ -71,9 +76,10 @@ class PostDetails extends Component {
                         </Col>
 
                         <br></br>
-
-                        <p className='profile-email'>Reviews: {this.state.post.review.map(elm => <p>{elm.text}</p>)}</p>
-
+                        <Col md={{ span: 4, offset: 4 }}>
+                        <p className='profile-email'>Reviews: </p>
+                            {this.state.post.review.map(elm => <p>{elm.text}</p>)}
+                        </Col>
                         <Modal
                             backdrop="static"
                             keyboard={false}
