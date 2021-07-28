@@ -20,7 +20,7 @@ const Routes = ({ storeUser, loggedUser, fetchUser }) => {
             <Route path="/profile" exact render={(props) => loggedUser ? <MyProfile {...props} loggedUser={loggedUser} storeUser={storeUser} /> : <Redirect to="/login" />} />
             <Route path="/profile/:user_id" exact render={props => <FriendsProfile {...props} fetchUser={fetchUser} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/profile/edit/:user_id" exact render={props => <ProfileEdit {...props} loggedUser={loggedUser} />} />
-            <Route path="/book/details/:book_id" render={(props) => <BookDetails {...props} />} />
+            <Route path="/book/details/:book_id" render={(props) => <BookDetails loggedUser={loggedUser} {...props} />} />
             <Route path="/book/:book_id" exact render={(props) => <BookEdit {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
             <Route path="/post/details/:post_id" render={(props) => <PostDetails {...props} />} />
             <Route path="/post/:post_id" exact render={(props) => <PostEdit {...props} loggedUser={loggedUser} storeUser={storeUser} />} />

@@ -48,7 +48,8 @@ class Navigation extends Component {
         Promise
             .all([getBooks, getPosts])
             .then(response => {
-                this.setState({ books: response[0].data, posts: response[1].data })
+                console.log(response)
+                this.setState({ books: response[0].data, posts: response[1].data, timeline: [ ...response[0].data, ...response[1].data]})
             })//timeline: ([...response[0].data] + [...response[1].data])
             .catch(err => console.log(err))
     }
@@ -94,8 +95,8 @@ class Navigation extends Component {
                             </>
                             :
                             <>
-                                <SearchPage books={this.state.books} posts={this.state.posts} />
-                                <button className='navbar-button'><Link className="navbar-link" to="/profile"> {loggedUser ? loggedUser.firstName : ''}</Link></button>
+                                <SearchPage books={this.state.books} posts={this.state.posts} timeline={this.state.timeline}/>
+                                <Link className="navbar-link" to="/profile"> <button className='navbar-button'>{loggedUser ? loggedUser.firstName : ''}</button></Link>
                                 <button className='navbar-button'><span className="navbar-link" onClick={this.logout}>Logout</span></button>
                             </>
                         }

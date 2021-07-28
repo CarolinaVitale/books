@@ -19,21 +19,24 @@ class BookDetails extends Component {
     bookToConfirm = (bool) => {
 
         const { book_id } = this.props.match.params
-        console.log(typeof bool)
+        
         this.booksService
             .bookConfirmed(bool, book_id)
+            .then(res => {
+                return res
+            })
             .catch(err => console.log(err))
     }
 
 
     negateBook = () => {
         this.setState({ book: { ...this.state.book, accepted: false } })
-        this.bookToConfirm(this.state.accepted)
+        this.bookToConfirm(this.state.book.accepted)
     }
 
     confirmBook = () => {
         this.setState({ book: { ...this.state.book, accepted: true } })
-        this.bookToConfirm(this.state.accepted)
+        this.bookToConfirm(this.state.book.accepted)
 
     }
 
