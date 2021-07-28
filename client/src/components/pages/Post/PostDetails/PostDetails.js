@@ -4,6 +4,8 @@ import { Spinner, Image, Col, Modal, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PostEdit from '../EditPost/EditForm'
 import ReviewsForm from '../../Review/ReviewsForm'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+
 
 
 class PostDetails extends Component {
@@ -43,6 +45,7 @@ class PostDetails extends Component {
     render() {
 
         const { loggedUser, storeUser, history } = this.props
+        const heart = '💗'
 
         return (
 
@@ -77,8 +80,13 @@ class PostDetails extends Component {
 
                         <br></br>
                         <Col md={{ span: 4, offset: 4 }}>
-                        <p className='profile-email'>Reviews: </p>
-                            {this.state.post.review.map(elm => <p>{elm.text}</p>)}
+                            <p className='profile-email'>Reviews: </p>
+                            {this.state.post.review.map(elm =>
+                                <div>
+                                    <h4>{elm.title}</h4>
+                                    <p>{elm.text}</p>
+                                    <p>{heart.repeat(elm.points)}</p>
+                                </div>)}
                         </Col>
                         <Modal
                             backdrop="static"
