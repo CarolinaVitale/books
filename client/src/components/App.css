@@ -37,7 +37,7 @@ h1 {
 
 .navbar-light .navbar-brand {
     color: #5B6CAB !important;
-    padding-left: 25px;
+
 }
 
 .navbar-light .navbar-nav .navbar-link {
@@ -50,20 +50,20 @@ h1 {
     color: white !important;
 }
 
-.search {
+.search-bar {
     margin-right: 20px;
     width: 500px !important;
 }
 
-.profile-bar {
-    margin: 50px;
+.profile-navbar {
+   padding: 0 !important; 
 }
 
-.profile-bar .nav {
+.profile-navbar .nav {
     display: flex;
     flex-wrap: nowrap;
-    padding-left: 0;
-    margin-bottom: 0;
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
     list-style: none;
     flex-direction: row;
     justify-content: center;

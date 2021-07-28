@@ -7,7 +7,7 @@ class SearchPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [ 'ahahs', 'ajajjsjab', 'ahahhskdihcnms', 'zzkajijasdjij', 'ccnjdcnjdnccdjnjd', 'dhcbhb'],
+            data: [],
             appName: 'React Search Bar',
             list: undefined,
         }
@@ -32,10 +32,16 @@ class SearchPage extends Component {
             }
             this.setState({ list: queryData })
         }
+
+        componentDidUpdate(prevProps, prevState) {
+            if(this.props.timeline?.length !== prevProps.timeline?.length){
+                this.setState({data: this.props.timeline})
+            }
+        }
         
         render() {
             
-            console.log(this.props)
+            
         return (
             <div>
                 <SearchBar search={this.searchData.bind(this)} />
