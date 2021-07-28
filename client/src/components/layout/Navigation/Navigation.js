@@ -45,9 +45,8 @@ class Navigation extends Component {
         Promise
             .all([getBooks, getPosts])
             .then(response => {
-                console.log(response)
                 this.setState({ books: response[0].data, posts: response[1].data, timeline: [...response[0].data, ...response[1].data] })
-            })//timeline: ([...response[0].data] + [...response[1].data])
+            })
             .catch(err => console.log(err))
     }
 

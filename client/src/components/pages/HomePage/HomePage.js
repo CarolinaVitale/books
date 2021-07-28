@@ -18,7 +18,7 @@ class HomePage extends Component {
             photos: undefined,
             books: false,
             posts: false,
-            timeline:[],
+            timeline: [],
             modal: false,
             loading: false,
         }
@@ -81,7 +81,7 @@ class HomePage extends Component {
     render() {
 
         const { loggedUser, storeUser, history } = this.props
-        
+
 
         return (
             !this.state.photos
@@ -93,25 +93,21 @@ class HomePage extends Component {
                         !loggedUser
                             ?
                             <>
-                                <div className="home-page-top"  >
-                                    <h1 className='home-title'>for Words...</h1>
-                                    <p className='quotes'>“So many books, so little time.”</p>
-                                </div>
+                                <h1 className='home-title'>for Words...</h1>
+                                <p className='quotes'>“So many books, so little time.”</p>
                                 <div className="random-img">
-                                    {
-                                        !this.state.loading
-                                            ?
-                                            <Spinner className='spinner' animation="grow" variant="info" size="lg" />
-                                            :
-                                            <>
-                                                {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
-                                                {this.state.photos.reverse().map(elm => <RandomImgCard key={elm.id} {...elm} />)}
+                                    {!this.state.loading
+                                        ?
+                                        <Spinner className='spinner' animation="grow" variant="info" size="lg" />
+                                        :
+                                        <>
+                                            {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
+                                            {this.state.photos.reverse().map(elm => <RandomImgCard key={elm.id} {...elm} />)}
 
-                                                <Modal className='login-modal' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
-                                                    <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser} />
-                                                </Modal>
-                                            </>
-                                    }
+                                            <Modal className='login-modal' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                                <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser} />
+                                            </Modal>
+                                        </>}
                                 </div>
                             </>
                             : <>

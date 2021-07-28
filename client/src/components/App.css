@@ -27,7 +27,8 @@ h1 {
 }
 
 .logo {
-    width: 12%;
+    margin-left: 20px;
+    width: 11%;
 }
 
 /* NAVBAR */
@@ -463,7 +464,7 @@ button, input, optgroup, select, textarea {
     font-size: .7em;
     position: fixed;
     bottom: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     width: 100%;
 }
