@@ -3,13 +3,19 @@ import { Link } from 'react-router-dom'
 
 import UsersService from '../../../services/users.service'
 import AuthService from '../../../services/auth.service'
+import BookService from '../../../services/books.service'
+import PostService from '../../../services/posts.service'
 
-import { Navbar, Nav, FormControl, Button, Form, Modal, } from 'react-bootstrap'
+import { Navbar, Nav, Modal, } from 'react-bootstrap'
 
 import RegisterForm from '../../pages/User/Register/RegisterForm'
 import Login from '../../pages/User/Login/Login'
+import SearchPage from './SearchPage'
 
 import logo from './logo.svg'
+
+
+
 
 
 class Navigation extends Component {
@@ -18,10 +24,14 @@ class Navigation extends Component {
         super()
         this.state = {
             users: undefined,
+            books: undefined,
+            posts: undefined,
             modal: false
         }
         this.usersService = new UsersService()
         this.authService = new AuthService()
+        this.bookService = new BookService()
+        this.postService = new PostService()
     }
 
     logout = () => {
@@ -31,9 +41,25 @@ class Navigation extends Component {
             .catch(err => console.log(err))
     }
 
+    getTimeline = () => {
+        const getBooks = this.bookService.bookList()
+        const getPosts = this.postService.postList()
+
+        Promise
+            .all([getBooks, getPosts])
+            .then(response => {
+                this.setState({ books: response[0].data, posts: response[1].data })
+            })//timeline: ([...response[0].data] + [...response[1].data])
+            .catch(err => console.log(err))
+    }
+
 
     handleClose = () => { this.setState({ show: false }) }
     handleShow = () => { this.setState({ show: true }) }
+
+    componentDidMount() {
+        this.getTimeline()
+    }
 
     render() {
 
@@ -41,7 +67,7 @@ class Navigation extends Component {
 
         return (
             <Navbar className='navbar' bg="light" variant="light" expand="md">
-                <Navbar.Brand href="/"><img class='logo' src={logo}></img><button className='brand'>forWords</button></Navbar.Brand >
+                <Navbar.Brand href="/"><img className='logo' src={logo} alt=''></img><button className='brand'>forWords</button></Navbar.Brand >
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="mr-auto">
@@ -68,14 +94,7 @@ class Navigation extends Component {
                             </>
                             :
                             <>
-                                <FormControl
-                                    type="search"
-                                    placeholder="Search"
-                                    className="search"
-                                    aria-label="Search"
-                                />
-                                <button className='search-button' variant="outline-success">Search</button>
-
+                                <SearchPage books={this.state.books} posts={this.state.posts} />
                                 <button className='navbar-button'><Link className="navbar-link" to="/profile"> {loggedUser ? loggedUser.firstName : ''}</Link></button>
                                 <button className='navbar-button'><span className="navbar-link" onClick={this.logout}>Logout</span></button>
                             </>
@@ -86,5 +105,6 @@ class Navigation extends Component {
         )
     }
 }
+
 
 export default Navigation
