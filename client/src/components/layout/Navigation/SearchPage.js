@@ -14,10 +14,10 @@ class SearchPage extends Component {
     }
 
     searchData(e) {
-       
-        const filteredBooks = this.state.data.filter( book =>{
-           return  book.title.toLowerCase().includes(e.target.value.toLowerCase())
-        })
+
+        const filteredBooks = e.target.value ? this.state.data.filter(book => {
+            return  book.title.toLowerCase().includes(e.target.value.toLowerCase())
+        }) : []
 
         this.setState({ list: filteredBooks })
     }
@@ -30,10 +30,12 @@ class SearchPage extends Component {
 
     render() {
 
+        const { loggedUser } = this.props
+        
         return (
             <div>
                 <SearchBar search={this.searchData.bind(this)} />
-                {(this.state.list) ? <SearchResult data={this.state.list} /> : null}
+                {(this.state.list) ? <SearchResult loggedUser={loggedUser} bookList={this.state.list} /> : null}
             </div>
         )
     }

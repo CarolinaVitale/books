@@ -1,40 +1,50 @@
 import { Component } from "react"
-import { Modal } from "react-bootstrap"
-import BookDetails from '../../pages/Book/BooksDetails/BooksDetails'
-import PostDetails from '../../pages/Post/PostDetails/PostDetails'
-
+import { Modal, Spinner } from "react-bootstrap"
+import BookDetailsCard from '../../pages/Book/BooksDetails/BookDetailsCard'
+import PostDetailsCard from '../../pages/Post/PostDetails/PostDetailsCard'
+import { bookToConfirm, negateBook, confirmBook } from '../../../utils/tools'
 
 class Item extends Component {
-    
-    constructor() {
-        super()
+
+    constructor(props) {
+        super(props)
         this.state = {
+            data: undefined,
             modal: false
         }
     }
 
+
+
     render() {
-        const { history, loggedUser, storeUser } = this.props
-        return (
-            <li className='dropdown'>
 
-                {<button onClick={() => this.setState({ modal: true, isBook: true })}>{this.props.val}</button>}
-                {<button onClick={() => this.setState({ modal: true, isBook: false })}>{this.props.val}</button>}
+        const { loggedUser, storeUser, book } = this.props
 
-                <Modal
-                    backdrop="static"
-                    keyboard={false}
-                    size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
-                    <Modal.Header closeButton></Modal.Header>
-                    <Modal.Body>
-                        {this.state.isBook
-                            ? <BookDetails history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
-                            : <PostDetails history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
-                    </Modal.Body>
-                </Modal>
-            </li>
-        )
+        return !book
+            ?
+            <Spinner />
+            :
+
+            <>
+                <li className='dropdown'>
+                    <button onClick={() => this.setState({ modal: true })}>{this.props.book.title}</button>
+                    <Modal
+                        backdrop="static"
+                        keyboard={false}
+                        size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+
+                        <Modal.Header closeButton></Modal.Header>
+                        <Modal.Body>
+                            {book.price
+                                ? <BookDetailsCard {...book} closeModal={() => this.setState({ modal: false })} negateBook={negateBook} confirmBook={confirmBook}loggedUser={loggedUser} storeUser={storeUser} />
+                                : <PostDetailsCard  {...book} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
+                        </Modal.Body>
+
+                    </Modal>
+                </li>
+            </>
     }
 }
+
 
 export default Item

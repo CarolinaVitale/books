@@ -5,7 +5,7 @@ class BookService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/api/book',
+            baseURL: `${process.env.REACT_APP_API_URL}/book`,
             withCredentials: true
         })
     }

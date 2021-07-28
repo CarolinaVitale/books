@@ -15,9 +15,6 @@ import SearchPage from './SearchPage'
 import logo from './logo.svg'
 
 
-
-
-
 class Navigation extends Component {
 
     constructor() {
@@ -49,7 +46,7 @@ class Navigation extends Component {
             .all([getBooks, getPosts])
             .then(response => {
                 console.log(response)
-                this.setState({ books: response[0].data, posts: response[1].data, timeline: [ ...response[0].data, ...response[1].data]})
+                this.setState({ books: response[0].data, posts: response[1].data, timeline: [...response[0].data, ...response[1].data] })
             })//timeline: ([...response[0].data] + [...response[1].data])
             .catch(err => console.log(err))
     }
@@ -76,26 +73,26 @@ class Navigation extends Component {
                         {!loggedUser
                             ?
                             <>
-                                <>
-                                    {<button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: true })}>Register</button>}
-                                    {<button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: false })}>Login</button>}
 
-                                    <Modal
-                                        backdrop="static"
-                                        keyboard={false}
-                                        size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
-                                        <Modal.Header closeButton></Modal.Header>
-                                        <Modal.Body>
-                                            {this.state.registerShown
-                                                ? <RegisterForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
-                                                : <Login history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
-                                        </Modal.Body>
-                                    </Modal>
-                                </>
+                                {<button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: true })}>Register</button>}
+                                {<button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: false })}>Login</button>}
+
+                                <Modal
+                                    backdrop="static"
+                                    keyboard={false}
+                                    size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                    <Modal.Header closeButton></Modal.Header>
+                                    <Modal.Body>
+                                        {this.state.registerShown
+                                            ? <RegisterForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
+                                            : <Login history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
+                                    </Modal.Body>
+                                </Modal>
+
                             </>
                             :
                             <>
-                                <SearchPage books={this.state.books} posts={this.state.posts} timeline={this.state.timeline}/>
+                                <SearchPage books={this.state.books} posts={this.state.posts} timeline={this.state.timeline} loggedUser={loggedUser} />
                                 <Link className="navbar-link" to="/profile"> <button className='navbar-button'>{loggedUser ? loggedUser.firstName : ''}</button></Link>
                                 <button className='navbar-button'><span className="navbar-link" onClick={this.logout}>Logout</span></button>
                             </>

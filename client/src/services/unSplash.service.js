@@ -6,7 +6,6 @@ class UnSplashService {
     constructor() {
         this.app = axios.create({
             baseURL: 'https://api.unsplash.com/search/photos',
-
         })
     }
 

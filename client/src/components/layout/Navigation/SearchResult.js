@@ -4,12 +4,13 @@ import Item from "./Item"
 class SearchResult extends Component {
 
     render() {
+
+        const { loggedUser } = this.props
+
         return (
             <div className='border-results'>
                 <ul className='search-results'>
-                    {this.props.data.map(function (value) {
-                        return <Item key={value} val={value.title} />
-                    })}
+                    {this.props.bookList.map((eachBook, idx) => <Item key={idx} book={eachBook} loggedUser={loggedUser} />)}
                 </ul>
             </div>
         )
