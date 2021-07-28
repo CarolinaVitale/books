@@ -17,12 +17,12 @@ router.post('/create', (req, res) => {
 
     const { title, text, points, price, file_id } = req.body
 
-
     Review
         .create({ title, text, points, owner: id })
         .then(response => {
+
             const ModelChosen = !price ? Post : Book
-            console.log(response)
+          
             return ModelChosen
                 .findByIdAndUpdate(file_id, { $push: { review: response._id } }, { new: true })
         })

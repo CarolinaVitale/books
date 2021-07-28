@@ -16,6 +16,7 @@ class ReviewsForm extends Component {
                 text: '',
                 points: '',
                 owner: '',
+                file_id: '', 
             },
             loading: false
         }
@@ -34,6 +35,7 @@ class ReviewsForm extends Component {
 
 
     handleFormSubmit = e => {
+       
 
         e.preventDefault()
 
@@ -45,8 +47,9 @@ class ReviewsForm extends Component {
             })
             .catch(err => console.log(err))
     }
-
-
+componentDidMount(){
+    this.setState({review: { file_id: this.props.match.params.post_id }})
+}
     render() {
         return (
 

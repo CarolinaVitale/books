@@ -25,10 +25,6 @@ class PostDetails extends Component {
 
         this.postsService
             .postDetails(post_id)
-            .then(res => {
-                console.log(res.data, 'hoy')
-                return res
-            })
             .then(response => this.setState({ post: response.data }))
             .catch(err => console.log(err))
     }
@@ -41,6 +37,7 @@ class PostDetails extends Component {
     render() {
 
         const { loggedUser, storeUser, history } = this.props
+    
 
         return (
             <PostDetailsCard {...this.state.post} loggedUser={loggedUser} storeUser={storeUser} history={history}/>
