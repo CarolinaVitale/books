@@ -61,7 +61,7 @@ class BookDetails extends Component {
         const { loggedUser } = this.props
 
         return (
-            <BookDetailsCard negateBook={this.negateBook} confirmBook={this.confirmBook} {...this.state.book} loggedUser={loggedUser} />
+            <BookDetailsCard {...this.props} negateBook={this.negateBook} confirmBook={this.confirmBook} {...this.state.book} loggedUser={loggedUser} />
         )
     }
 }

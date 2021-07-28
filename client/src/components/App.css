@@ -194,10 +194,13 @@ button {
     background-color: #C7B2D6;
     color: white;
     font-size: .7em;
+    border-radius: 30px;
+    text-decoration: none;
 }
 
 .rose-button:hover {
     background-color: #b287d1;
+    color: white;
 }
 
 .pink-button {
@@ -443,6 +446,13 @@ button, input, optgroup, select, textarea {
 
 .btn-form:hover {
   background-color: #5bbedb; 
+}
+
+.heart {
+    width: 6%;
+    margin-right: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 /* FOOTER */

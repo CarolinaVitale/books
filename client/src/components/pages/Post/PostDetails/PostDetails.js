@@ -1,10 +1,7 @@
 import { Component } from 'react'
 import PostService from '../../../../services/posts.service'
-import { Spinner, Image, Col, Modal, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import PostEdit from '../EditPost/EditForm'
-import ReviewsForm from '../../Review/ReviewsForm'
 import PostDetailsCard from './PostDetailsCard'
+
 
 
 class PostDetails extends Component {
@@ -40,7 +37,7 @@ class PostDetails extends Component {
     
 
         return (
-            <PostDetailsCard {...this.state.post} loggedUser={loggedUser} storeUser={storeUser} history={history}/>
+            <PostDetailsCard {...this.state.post} {...this.props} loggedUser={loggedUser} storeUser={storeUser} history={history}/>
         )
     }
 }

@@ -16,7 +16,8 @@ class ReviewsForm extends Component {
                 text: '',
                 points: '',
                 owner: '',
-                file_id: '', 
+                file_id: '',
+                price: false,
             },
             loading: false
         }
@@ -31,11 +32,11 @@ class ReviewsForm extends Component {
         this.setState({ review: { ...this.state.review, [name]: value } })
     }
 
-    handleRating = value => { this.setState({ review: { ...this.state.review, points: value } })}
+    handleRating = value => { this.setState({ review: { ...this.state.review, points: value } }) }
 
 
     handleFormSubmit = e => {
-       
+
 
         e.preventDefault()
 
@@ -47,9 +48,14 @@ class ReviewsForm extends Component {
             })
             .catch(err => console.log(err))
     }
-componentDidMount(){
-    this.setState({review: { file_id: this.props.match.params.post_id }})
-}
+
+    componentDidMount() {
+        
+        this.props.price 
+        ? this.setState({ review: { price: true , file_id: this.props.match.params.book_id }}) 
+        : this.setState({ review: { price: false, file_id: this.props.match.params.post_id } })
+    }
+
     render() {
         return (
 
@@ -82,7 +88,7 @@ componentDidMount(){
                                     <CustomizedRatings type="number" value={this.state.points} onChange={this.handleInputChange} handleRating={this.handleRating} name="points" />
                                 </Form.Group>
                             </Row>
-                            
+
                             <button className='btn-form' type="submit">Submit</button>
                         </Form>
 

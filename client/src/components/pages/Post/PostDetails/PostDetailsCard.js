@@ -3,7 +3,7 @@ import { Spinner, Modal, Col, Row, Image } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import ReviewsForm from "../../Review/ReviewsForm"
 import PostEdit from "../EditPost/EditForm"
-
+import heart from './heart.svg'
 
 class PostDetailsCard extends Component {
 
@@ -13,10 +13,16 @@ class PostDetailsCard extends Component {
             modal: false
         }
     }
-
+    printHearts = (valor) => {
+        const rate = []
+        for (let i = 0; i < valor; i++) {
+            rate.push(<img className='heart' src={heart}></img>)
+        }
+        return rate
+    }
     render() {
 
-        const { history, loggedUser, storeUser } = this.state
+        const { history, loggedUser, storeUser } = this.props
 
         return (
             <>
@@ -49,7 +55,13 @@ class PostDetailsCard extends Component {
                         <br></br>
                         <Col md={{ span: 4, offset: 4 }}>
                             <p className='profile-email'>Reviews: </p>
-                            {this.props.review.map(elm => <p>{elm.text}</p>)}
+                            {this.props.review.map(elm =>
+                                <div>
+                                    {this.printHearts(elm.points)}
+                                    <h4>{elm.title}</h4>
+                                    <p>{elm.text}</p>
+                                </div>
+                            )}
                         </Col>
 
                         <Modal
