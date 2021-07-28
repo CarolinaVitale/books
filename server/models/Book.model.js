@@ -38,7 +38,7 @@ const bookSchema = new Schema({
         ref: 'User',
     }]
 }, {
-    timestamp: true,
+    timestamps: true,
 })
 
 const Book = model("Book", bookSchema)

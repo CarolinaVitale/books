@@ -28,7 +28,7 @@ router.get('/list', (req, res) => {
 
     Post
         .find()
-        .populate('owner', 'review')
+        .populate('owner review')
         .sort({ createdAt: 1 })
         .then(post => res.json(post))
         .catch(err => res.status(500).json({ code: 500, message: 'Post list not found', err }))
@@ -45,7 +45,7 @@ router.get('/details/:post_id', (req, res) => {
     
         Post
             .findById(post_id)
-            .populate('owner', 'review')
+            .populate('owner review')
             .then(post => res.json(post))
             .catch(err => res.status(500).json({ code: 500, message: 'Post details not found', err }))
 })

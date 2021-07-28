@@ -21,7 +21,7 @@ const reviewSchema = new Schema({
     }
 },
     {
-        timestamp: true,
+        timestamps: true,
     })
 
 const Review = model("Review", reviewSchema)
