@@ -4,7 +4,7 @@ import { Component } from "react"
 class Item extends Component {
     render() {
         return (
-            <li>
+            <li className='search-results'>
                 {this.props.val}
             </li>
         )

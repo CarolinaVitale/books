@@ -7,41 +7,34 @@ class SearchPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            data: this.props.timeline,
             appName: 'React Search Bar',
             list: undefined,
         }
     }
 
-    
-    //     const { books, posts} = props
-    //     const list = books.concat(posts)
-    // createList =()=>{
-        //     this.setState({data:[...list]})
-        // }
-        searchData(e) {
-            var queryData = [];
-            if (e.target.value != '') {
-                this.state.data.forEach(function (booksPosts) {
-                    if (booksPosts.toLowerCase().indexOf(e.target.value) != -1) {
-                        if (queryData.length < 10) {
-                            queryData.push(booksPosts)
-                        }
-                    }
-                });
-            }
-            this.setState({ list: queryData })
-        }
 
-        componentDidUpdate(prevProps, prevState) {
-            if(this.props.timeline?.length !== prevProps.timeline?.length){
-                this.setState({data: this.props.timeline})
-            }
-        }
-        
-        render() {
-            
-            
+    searchData(e) {
+       
+        const filteredBooks = this.state.data.filter( book =>{
+           return  book.title.toLowerCase().includes(e.target.value.toLowerCase())
+        })
+
+        this.setState({ list: filteredBooks })
+    }
+
+    componentDidMount () {
+   
+    }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (this.props.timeline?.length !== prevProps.timeline?.length) {
+    //         this.setState({ data: this.props.timeline })
+    //     }
+    // }
+
+    render() {
+
         return (
             <div>
                 <SearchBar search={this.searchData.bind(this)} />
