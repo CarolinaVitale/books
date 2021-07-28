@@ -59,7 +59,7 @@ class HomePage extends Component {
         Promise
             .all([getBooks, getPosts])
             .then(response => {
-                this.setState({ books: response[0].data, posts: response[1].data })
+                this.setState({ books: response[0].data, posts: response[1].data, timeline: [...response[0].data, ...response[1].data]  })
             })//timeline: ([...response[0].data] + [...response[1].data])
             .catch(err => console.log(err))
     }
@@ -119,8 +119,8 @@ class HomePage extends Component {
                                 <p className='quotes'>“Books are a uniquely portable magic.”</p>
                                 <div className="decambiar"></div>
                                 {this.state.books.length && <Row className="timeline">
-                                    {this.state.books.map(elm => <TimelineCard key={elm._id} {...elm} />)}
-                                    {this.state.posts.map(elm => <TimelineCard key={elm._id} {...elm} />)}
+                                    {this.state.timeline.map(elm => <TimelineCard key={elm._id} {...elm} />)}
+                                   
                                 </Row>}
                             </>
                     }
