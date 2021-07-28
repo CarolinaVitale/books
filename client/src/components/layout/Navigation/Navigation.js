@@ -34,7 +34,10 @@ class Navigation extends Component {
     logout = () => {
         this.authService
             .logout()
-            .then(() => this.props.storeUser(undefined))
+            .then(() => {
+                this.props.storeUser(undefined)
+                this.props.history.push('/')
+            })
             .catch(err => console.log(err))
     }
 
@@ -72,14 +75,10 @@ class Navigation extends Component {
                         {!loggedUser
                             ?
                             <>
-
                                 {<button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: true })}>Register</button>}
                                 {<button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: false })}>Login</button>}
 
-                                <Modal
-                                    backdrop="static"
-                                    keyboard={false}
-                                    size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                <Modal className='login-modal' backdrop="static" keyboard={false} size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
                                     <Modal.Header closeButton></Modal.Header>
                                     <Modal.Body>
                                         {this.state.registerShown
@@ -87,7 +86,6 @@ class Navigation extends Component {
                                             : <Login history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
                                     </Modal.Body>
                                 </Modal>
-
                             </>
                             :
                             <>

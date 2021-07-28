@@ -56,9 +56,14 @@ h1 {
     width: 500px !important;
 }
 
-.profile-navbar {
-   padding: 0 !important; 
+.profile-navbar .nav-tabs .nav-link{
+   color: var(--color-blue)
 }
+
+.profile-navbar .active{
+    color: var(--color-darkGrey)
+}
+
 
 .profile-navbar .nav {
     display: flex;
@@ -68,7 +73,8 @@ h1 {
     list-style: none;
     flex-direction: row;
     justify-content: center;
-    height: 15%;
+    height: 40px;
+    
 }
 
 .nav-link {
@@ -147,6 +153,10 @@ h1 {
 .dropdown:hover, .dropdown:focus {
     background-color: #5B6CAB;
      opacity: 50%; 
+}
+
+.container-profilebar {
+    margin-top: 20px;
 }
 
 /* PROFILE PAGE */

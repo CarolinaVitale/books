@@ -8,6 +8,7 @@ import PostService from '../../../services/posts.service'
 import RandomImgCard from './RandomImgCard'
 import TimelineCard from './TimelineCard'
 import Login from '../../pages/User/Login/Login'
+import RegisterForm from '../User/Register/RegisterForm'
 
 
 class HomePage extends Component {
@@ -21,6 +22,7 @@ class HomePage extends Component {
             timeline: [],
             modal: false,
             loading: false,
+            registerShown: false,
         }
 
         this.unsplashService = new UnSplashService()
@@ -59,8 +61,8 @@ class HomePage extends Component {
         Promise
             .all([getBooks, getPosts])
             .then(response => {
-                this.setState({ books: response[0].data, posts: response[1].data, timeline: [...response[0].data, ...response[1].data]  })
-            })//timeline: ([...response[0].data] + [...response[1].data])
+                this.setState({ books: response[0].data, posts: response[1].data, timeline: [...response[0].data, ...response[1].data] })
+            })
             .catch(err => console.log(err))
     }
 
@@ -104,8 +106,17 @@ class HomePage extends Component {
                                             {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
                                             {this.state.photos.reverse().map(elm => <RandomImgCard key={elm.id} {...elm} />)}
 
-                                            <Modal className='login-modal' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
-                                                <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser} />
+                                            <Modal backdrop="static" keyboard={false} size='lg' className='login-modal' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                                                <Modal.Header closeButton></Modal.Header>
+                                                {!this.state.registerShown
+                                                    ?
+                                                    <>
+                                                        <Login history={history} handleFormSubmit={this.onSubmit} storeUser={storeUser} />
+                                                        <button className='navbar-button' onClick={() => this.setState({ modal: true, registerShown: true })}>Register</button>
+                                                    </>
+                                                    :
+                                                    <RegisterForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
+                                                }
                                             </Modal>
                                         </>}
                                 </div>
@@ -114,10 +125,10 @@ class HomePage extends Component {
                                 <h1 className='home-title'>for Words...</h1>
                                 <p className='quotes'>“Books are a uniquely portable magic.”</p>
                                 <div className="decambiar"></div>
-                                {this.state.books.length && <Row className="timeline">
-                                    {this.state.timeline.map(elm => <TimelineCard key={elm._id} {...elm} />)}
-                                   
-                                </Row>}
+                                {this.state.books.length &&
+                                    <Row className="timeline">
+                                        {this.state.timeline.map(elm => <TimelineCard key={elm._id} {...elm} />)}
+                                    </Row>}
                             </>
                     }
                 </>

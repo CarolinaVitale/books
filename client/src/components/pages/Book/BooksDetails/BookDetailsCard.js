@@ -34,35 +34,34 @@ class BookDetailsCard extends Component {
                     <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                     :
                     <>
-                        <Col md={{ span: 4, offset: 4 }}>
+                        <Col md={{ span: 6, offset: 3 }}>
                             <Image className='cover-img' src={this.props.image} alt={this.props.title} />
                             <h3 className='profile-name'>{this.props.title}<Image className='profile-check' src='' /></h3>
                             <p className='profile-email'>{this.props.description} | {this.props.price} €</p>
-                            
-                        <Col md={{ span: 6, offset: 3 }}>
-                            <Row className="mb-3">
 
-                                <Col>
-                                    {<button className='mint-button'><Link className="normalize-link" to={'/profile/' + this.props.owner[0]._id}>{this.props.owner[0].firstName} {this.props.owner[0].lastName}</Link></button>}
-                                </Col>
-                                <Col>
-                                    {<button className='blue-button' onClick={() => this.setState({ modal: true, review: true })}>add review</button>}
-                                </Col>
-                                <Col>
-                                    {<button className='pink-button' onClick={() => this.setState({ modal: true })}>Edit Book</button>}
-                                </Col>
-                            </Row>
-                        </Col>
+                            <Col md={{ span: 8, offset: 2 }}>
+                                <Row className="mb-3">
+                                    <Col>
+                                        {<Link className="normalize-link" to={'/profile/' + this.props.owner[0]._id}><button className='blue-button'>{this.props.owner[0].firstName} {this.props.owner[0].lastName}</button></Link>}
+                                    </Col>
+                                    <Col>
+                                        {<button className='blue-button' onClick={() => this.setState({ modal: true, review: true })}>add review</button>}
+                                    </Col>
+                                    <Col>
+                                        {<button className='pink-button' onClick={() => this.setState({ modal: true })}>Edit Book</button>}
+                                    </Col>
+                                </Row>
+                            </Col>
                             {/* contact owner */}
                         </Col>
                         {loggedUser && loggedUser.role === "ADMIN" && this.props.negateBook
                             ?
-                            <Col md={{ span: 4, offset: 4 }}>
+                            <Col md={{ span: 2, offset: 5 }}>
                                 {this.props.accepted
                                     ?
-                                    <Row className="mb-3"> {<button className='pink-button' onClick={() => this.props.negateBook()}>Negate book</button>}</Row>
+                                    <Row className="mb-3"> {<button className='rose-button' onClick={() => this.props.negateBook()}>Negate book</button>}</Row>
                                     :
-                                    <Row className="mb-3"> {<button className='blue-button' onClick={() => this.props.confirmBook()}>Confirm book</button>}</Row>}
+                                    <Row className="mb-3"> {<button className='mint-button' onClick={() => this.props.confirmBook()}>Confirm book</button>}</Row>}
                             </Col>
                             :
                             <Col md={{ span: 4, offset: 4 }}>

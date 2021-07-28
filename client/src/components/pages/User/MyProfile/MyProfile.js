@@ -64,8 +64,9 @@ class MyProfile extends Component {
                 </Col>
                 {loggedUser.role === "ADMIN"
                     ?
-                    <Col md={{ span: 4, offset: 4 }}>
-                        <Row className="mb-3"> {<button className='create-button' onClick={() => this.setState({ adminModal: true })}>Admin Panel</button>}</Row>
+                    <Col md={{ span: 2, offset: 5 }}>
+                        <Row className="mb-3"> {<button className='mint-button' onClick={() => this.setState({ adminModal: true })}>Admin Panel</button>}</Row>
+                        <br></br>
                     </Col>
                     :
                     <Col md={{ span: 4, offset: 4 }}>

@@ -11,7 +11,7 @@ const AdminBar = ({ books }) => {
     return (
 
         <Row>
-            <Col className='profile-bar'>
+            <Col className='profile-navbar'>
                 <Tabs
                     id="controlled-tab-example"
                     activeKey={key}

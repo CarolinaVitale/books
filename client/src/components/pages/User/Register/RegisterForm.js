@@ -87,7 +87,7 @@ class RegisterForm extends Component {
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="email">
                                     <Form.Label>email</Form.Label>
-                                    <Form.Control type="text" value={this.state.email} onChange={this.handleInputChange} name="email" placeholder="Username" />
+                                    <Form.Control type="text" value={this.state.email} onChange={this.handleInputChange} name="email" placeholder="Username" required/>
                                 </Form.Group>
                             </Row>
 
@@ -157,10 +157,7 @@ class RegisterForm extends Component {
                             <button className='btn-form' type="submit">Submit</button>
                         </Form>
 
-                        <hr></hr>
-                        <Link to="/">
-                            <button className='btn-form'>go back</button>
-                        </Link>
+                        <br></br>
                     </Col>
                 </Row>
             </Container >
