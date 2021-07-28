@@ -22,10 +22,6 @@ class BookDetails extends Component {
         console.log(typeof bool)
         this.booksService
             .bookConfirmed(bool, book_id)
-            .then(res => {
-                console.log(res.data.accepted)
-                return res
-            })
             .catch(err => console.log(err))
     }
 
