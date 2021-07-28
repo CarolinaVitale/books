@@ -13,7 +13,6 @@ class SearchPage extends Component {
         }
     }
 
-
     searchData(e) {
        
         const filteredBooks = this.state.data.filter( book =>{
@@ -23,15 +22,11 @@ class SearchPage extends Component {
         this.setState({ list: filteredBooks })
     }
 
-    componentDidMount () {
-   
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.timeline?.length !== prevProps.timeline?.length) {
+            this.setState({ data: this.props.timeline })
+        }
     }
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (this.props.timeline?.length !== prevProps.timeline?.length) {
-    //         this.setState({ data: this.props.timeline })
-    //     }
-    // }
 
     render() {
 

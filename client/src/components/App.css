@@ -124,9 +124,28 @@ h1 {
 
 .search-results{
     position: absolute;
-    text-decoration: none;
-    width: 500px;
+    width: inherit;
     height: 300px;
+    color: #6B6167;
+  
+}
+
+.dropdown {
+    background-color: #A1CDDA;
+    color: white;
+    padding: 5px 50px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;    
+    position: absolute;  
+    list-style-type: none;
+    opacity: 50%; 
+    
+}
+
+.dropdown:hover, .dropdown:focus {
+    background-color: #5B6CAB;
+     opacity: 50%; 
 }
 
 /* PROFILE PAGE */
@@ -228,9 +247,9 @@ button {
 }
 
 .mint-button:hover {
-  background-color: #A1CDDA; 
-  text-decoration: none;
-  color: white !important;
+    background-color: #A1CDDA; 
+    text-decoration: none;
+    color: white !important;
 }
 
 .search-button {
@@ -243,8 +262,8 @@ button {
 }
 
 .search-button:hover {
-  background-color: #5B6CAB !important;
-  color: white !important;
+    background-color: #5B6CAB !important;
+    color: white !important;
 }
 
 .navbar-button {
@@ -368,7 +387,6 @@ button, input, optgroup, select, textarea {
     width: 20%;
     padding-bottom: 24px;
     padding-left: 2px;
-
 }
 
 .random-card img{

@@ -5,8 +5,8 @@ class SearchResult extends Component {
 
     render() {
         return (
-            <div>
-                <ul>
+            <div className='border-results'>
+                <ul className='search-results'>
                     {this.props.data.map(function (value) {
                         return <Item key={value} val={value.title} />
                     })}
