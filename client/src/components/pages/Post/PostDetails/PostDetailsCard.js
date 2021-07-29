@@ -11,6 +11,7 @@ class PostDetailsCard extends Component {
         super()
         this.state = {
             modal: false,
+            review: false,
         }
     }
 
@@ -76,7 +77,7 @@ class PostDetailsCard extends Component {
                             size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
                             <Modal.Header closeButton></Modal.Header>
                             <Modal.Body>
-                                {!this.props.review ?
+                                {!this.state.review ?
                                     <PostEdit {...this.props} history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
                                     : <ReviewsForm loadPost={loadPost} {...this.props} history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
                             </Modal.Body>

@@ -2,7 +2,7 @@ import { Component } from "react"
 import { Modal, Spinner } from "react-bootstrap"
 import BookDetailsCard from '../../pages/Book/BooksDetails/BookDetailsCard'
 import PostDetailsCard from '../../pages/Post/PostDetails/PostDetailsCard'
-import { bookToConfirm, negateBook, confirmBook } from '../../../utils/tools'
+import { negateBook, confirmBook } from '../../../utils/tools'
 
 class Item extends Component {
 

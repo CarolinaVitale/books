@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import { Container, Form, Row, Col, } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
 import UserService from '../../../../services/users.service'
 import UploadsService from '../../../../services/uploads.service'

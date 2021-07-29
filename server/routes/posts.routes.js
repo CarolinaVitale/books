@@ -12,10 +12,10 @@ router.post('/create', (req, res) => {
         const loggedUser = req.session.currentUser
         const id = loggedUser._id
 
-        const { title, text } = req.body
+        const { title, text, image } = req.body
 
         Post
-            .create({ title, text, owner: id })
+            .create({ title, image, text, owner: id })
             .then(post => res.json(post))
             .catch(err => res.status(500).json({ code: 500, message: 'Could not create post', err }))
   

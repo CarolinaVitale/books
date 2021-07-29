@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import MyProfile from '../pages/User/MyProfile/MyProfile'
 import FriendsProfile from '../pages/FriendsProfile/FriendsProfile'
