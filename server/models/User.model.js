@@ -4,20 +4,20 @@ const userSchema = new Schema({
 
   email: {
     type: String,
-    //require: true,
-    //unique: true
+    require: true,
+    unique: true
   },
   password: {
     type: String,
-    //require: true
+    require: true
   },
   firstName: {
     type: String,
-    //require: true
+    require: true
   },
   lastName: {
     type: String,
-    //require: true
+    require: true
   },
   image: {
     type: String,

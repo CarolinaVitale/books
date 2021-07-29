@@ -86,7 +86,7 @@ router.post('/login', (req, res) => {
             res.json(req.session.currentUser)
         })
 
-        .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
+        .catch(err => res.status(500).json({ code: 500, message: 'Try again', err }))
 })
 
 
