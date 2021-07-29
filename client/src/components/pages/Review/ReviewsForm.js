@@ -41,20 +41,24 @@ class ReviewsForm extends Component {
         e.preventDefault()
 
         this.reviewService
-            .reviewCreate(this.state.review)
-            .then(() => {
-                this.props.history.push('/')
-                this.props.closeModal()
+        .reviewCreate(this.state.review)
+        .then(() => {
+                this.state.review.price ?
+                    this.props.history.push(`/book/details/${this.state.review.file_id}`) :
+                    this.props.history.push(`/post/details/${this.state.review.file_id}`)
+                this.props.loadPost().then(() => this.props.closeModal())
+                
             })
             .catch(err => console.log(err))
     }
 
     componentDidMount() {
-        
-        this.props.price 
-        ? this.setState({ review: { price: true , file_id: this.props.match.params.book_id }}) 
-        : this.setState({ review: { price: false, file_id: this.props.match.params.post_id } })
+        this.props.price
+            ? this.setState({ review: { price: true, file_id: this.props.match.params.book_id } })
+            : this.setState({ review: { price: false, file_id: this.props.match.params.post_id } })
     }
+
+    
 
     render() {
         return (

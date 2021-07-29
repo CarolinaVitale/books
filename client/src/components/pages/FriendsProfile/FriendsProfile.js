@@ -77,34 +77,13 @@ class FriendsProfile extends Component {
                         <Col md={{ span: 4, offset: 4 }}>
                             <Row className="mb-3">
 
-                                <Col>
-                                    {<button className='create-button' onClick={() => this.setState({ modal: true, isPost: false })}>add book</button>}
-                                </Col>
-
-                                <Col>
-                                    {<button className='create-button' onClick={() => this.setState({ modal: true, isPost: true })}>add post</button>}
-                                </Col>
-
-                                <Modal
-                                    backdrop="static"
-                                    keyboard={false}
-                                    size='lg' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
-                                    <Modal.Header closeButton></Modal.Header>
-                                    <Modal.Body>
-                                        {this.state.isPost
-                                            ? <PostsForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
-                                            : <BooksForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
-                                    </Modal.Body>
-                                </Modal>
-
-
                                 {!loggedUser
                                     ? <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                                     :
-                                    <Col>
+                                    <Col md={{ span: 4, offset: 4 }}>
                                         {isFriend(loggedUser.friends, this.state.otherUser._id) ?
-                                            <button className='follow-button' onClick={() => this.follow(this.state.otherUser._id, (loggedUser._id))} loggedUser={loggedUser} >unfollow</button> :
-                                            <button className='follow-button' onClick={() => this.unfollow(this.state.otherUser._id, (loggedUser._id))} loggedUser={loggedUser} >follow</button>}
+                                            <button className='pink-button' onClick={() => this.follow(this.state.otherUser._id, (loggedUser._id))} loggedUser={loggedUser} >unfollow</button> :
+                                            <button className='blue-button' onClick={() => this.unfollow(this.state.otherUser._id, (loggedUser._id))} loggedUser={loggedUser} >follow</button>}
                                     </Col>}
                             </Row>
                         </Col>

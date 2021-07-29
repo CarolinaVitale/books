@@ -10,9 +10,10 @@ class PostDetailsCard extends Component {
     constructor() {
         super()
         this.state = {
-            modal: false
+            modal: false,
         }
     }
+
     printHearts = (valor) => {
         const rate = []
         for (let i = 0; i < valor; i++) {
@@ -20,9 +21,13 @@ class PostDetailsCard extends Component {
         }
         return rate
     }
+
+
     render() {
 
-        const { history, loggedUser, storeUser } = this.props
+        const { history, loggedUser, storeUser, loadPost, review } = this.props
+
+        review.reverse()
 
         return (
             <>
@@ -55,7 +60,7 @@ class PostDetailsCard extends Component {
                         <br></br>
                         <Col md={{ span: 4, offset: 4 }}>
                             <p className='profile-email'>Reviews: </p>
-                            {this.props.review.map(elm =>
+                            {review.map(elm =>
                                 <div>
                                     {this.printHearts(elm.points)}
                                     <h4>{elm.title}</h4>
@@ -72,7 +77,7 @@ class PostDetailsCard extends Component {
                             <Modal.Body>
                                 {!this.props.review ?
                                     <PostEdit {...this.props} history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
-                                    : <ReviewsForm {...this.props} history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
+                                    : <ReviewsForm loadPost={loadPost} {...this.props} history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
                             </Modal.Body>
                         </Modal>
                     </>

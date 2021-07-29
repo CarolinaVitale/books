@@ -20,24 +20,23 @@ class PostDetails extends Component {
 
         const { post_id } = this.props.match.params
 
-        this.postsService
+        return this.postsService
             .postDetails(post_id)
             .then(response => this.setState({ post: response.data }))
             .catch(err => console.log(err))
     }
 
     componentDidMount() {
-
         this.loadPost()
     }
 
     render() {
 
-        const { loggedUser, storeUser, history } = this.props
+        const { loggedUser, storeUser, history, loadPost } = this.props
     
 
         return (
-            <PostDetailsCard {...this.state.post} {...this.props} loggedUser={loggedUser} storeUser={storeUser} history={history}/>
+            <PostDetailsCard loadPost={this.loadPost} {...this.state.post} {...this.props} loggedUser={loggedUser} storeUser={storeUser} history={history}/>
         )
     }
 }

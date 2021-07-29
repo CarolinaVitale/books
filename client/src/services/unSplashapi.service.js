@@ -5,13 +5,13 @@ class UnSplashApiService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/',
+            baseURL: `${process.env.REACT_APP_API_URL}`,
             withCredentials: true
         })
     }
 
 
-    getUnsplash = () => this.app.get('/api/unsplash')
+    getUnsplash = () => this.app.get('/unsplash')
 
 }
 
