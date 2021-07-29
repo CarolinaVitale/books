@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose")
 const postSchema = new Schema({
 
     title: String,
-    text: String, //investigar PÁRRAFOS!
+    text: String, 
     image: {
         type: String,
         default: 'https://res.cloudinary.com/carolinavitale/image/upload/v1626707015/rose_bnaxpj.jpg'

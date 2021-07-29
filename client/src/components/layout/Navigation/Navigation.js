@@ -92,8 +92,7 @@ class Navigation extends Component {
                             <>
                                 <SearchPage books={this.state.books} posts={this.state.posts} timeline={this.state.timeline} loggedUser={loggedUser} />
                                 <Link className="navbar-link" to="/profile"> <button className='navbar-button'>{loggedUser ? loggedUser.firstName : ''}</button></Link>
-                                <button className='navbar-button'><span className="navbar-link" onClick={this.logout}>Logout</span></button>
-                               
+                                <button className='navbar-button'><span className="navbar-link" onClick={this.logout}>Logout</span></button> 
                             </>
                         }
                     </Nav>

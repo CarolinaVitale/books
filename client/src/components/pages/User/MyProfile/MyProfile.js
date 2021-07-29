@@ -52,7 +52,7 @@ class MyProfile extends Component {
 
         return (
             loggedUser === undefined ? <Spinner className='spinner' animation="grow" variant="info" size="lg" />
-                : loggedUser === null ? <Redirect to="/" /> :
+                : !loggedUser ? <Redirect to="/" /> :
                     <>
                         <Col md={{ span: 4, offset: 4 }}>
                             <Image className='cover-img' src={loggedUser.cover} />

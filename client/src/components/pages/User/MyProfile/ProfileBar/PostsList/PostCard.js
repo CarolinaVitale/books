@@ -1,12 +1,15 @@
-import { Col, Image } from "react-bootstrap"
+import { Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 
-const PostCard = ({ image, title,  _id }) => {
+const PostCard = ({ image, title, _id }) => {
 
     return (
-        <Col md={3} className='box'>
-            <Link to={'/post/details/' + _id} ><Image className='card-image' variant="top" src={image} alt={title + 'profile image'} /></Link>
+        <Col md={3} className='home-col'>
+            <Link className="nav-link" to={'/post/details/' + _id} >
+                <img className='card-img' variant="top" src={image} alt={title + 'profile image'} />
+                <button className="profile-title">{title}</button>
+            </Link>
         </Col>
     )
 }

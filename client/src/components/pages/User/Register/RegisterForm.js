@@ -44,7 +44,6 @@ class RegisterForm extends Component {
         this.authService
             .signup(this.state.user)
             .then(() => {
-                this.props.history.push('/profile')
                 this.props.closeModal()
             })
             .catch(err => console.log(err))

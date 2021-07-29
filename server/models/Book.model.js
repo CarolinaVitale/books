@@ -5,25 +5,28 @@ const bookSchema = new Schema({
 
     title: {
         type: String,
-        //require: true,
+        require: true,
     },
     author: {
         type: String,
-        //require: true,
+        require: true,
     },
     publisher: {
         type: String,
-        //require: true,
+        require: true,
     },
     image: {
         type: String,
         default: 'https://res.cloudinary.com/carolinavitale/image/upload/v1626707006/mint_y8b18a.jpg'
     },
     description: String,
-    accepted: Boolean,
+    accepted: {
+        type: Boolean,
+        default: false,
+    },
     price: {
         type: Number,
-        //require: true,
+        require: true,
     },
     currency: {
         type: String,

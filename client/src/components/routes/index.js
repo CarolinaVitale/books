@@ -22,7 +22,7 @@ const Routes = ({ storeUser, loggedUser, fetchUser, showMessage }) => {
             <Route path="/profile/edit/:user_id" exact render={props => <ProfileEdit {...props} loggedUser={loggedUser} showMessage={showMessage} />} />
             <Route path="/book/details/:book_id" render={(props) => <BookDetails loggedUser={loggedUser} {...props} showMessage={showMessage} />} />
             <Route path="/book/:book_id" exact render={(props) => <BookEdit {...props} loggedUser={loggedUser} storeUser={storeUser} showMessage={showMessage} />} />
-            <Route path="/post/details/:post_id" render={(props) => <PostDetails {...props} showMessage={this.showMessage} />} />
+            <Route path="/post/details/:post_id" render={(props) => <PostDetails {...props} showMessage={showMessage} />} />
             <Route path="/post/:post_id" exact render={(props) => <PostEdit {...props} loggedUser={loggedUser} storeUser={storeUser} showMessage={showMessage} />} />
             <Route path="/review/:review_id" exact render={(props) => <ReviewEdit {...props} loggedUser={loggedUser} storeUser={storeUser} showMessage={showMessage} />} />
         </Switch>

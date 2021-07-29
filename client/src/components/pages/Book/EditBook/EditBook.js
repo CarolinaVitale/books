@@ -127,13 +127,6 @@ class BookEdit extends Component {
                                     </Form.Group>
                                 </Row>
 
-                                <Row className="mb-3">
-                                    <Form.Group as={Col} controlId="description">
-                                        <Form.Label>Description</Form.Label>
-                                        <Form.Control type="text" value={this.state.book.description} onChange={this.handleInputChange} name="description" placeholder="Description" required/>
-                                    </Form.Group>
-                                </Row>
-
                                 <Form.Group className="mb-3" controlId="price">
                                     <Form.Label>Price</Form.Label>
                                     <Form.Control type="text" value={this.state.book.price} onChange={this.handleInputChange} name="price" placeholder="Price" required/>

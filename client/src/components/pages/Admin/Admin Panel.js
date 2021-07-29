@@ -1,4 +1,4 @@
-import { Tabs, Tab, Row, Col } from 'react-bootstrap'
+import { Tabs, Tab, Row, Col, Container } from 'react-bootstrap'
 import { useState } from 'react'
 
 import BooksList from "../User/MyProfile/ProfileBar/BooksList/BooksList"
@@ -6,7 +6,6 @@ import BooksList from "../User/MyProfile/ProfileBar/BooksList/BooksList"
 const AdminBar = ({ books }) => {
 
     const [key, setKey] = useState('friends')
-
 
     return (
 
@@ -22,14 +21,10 @@ const AdminBar = ({ books }) => {
                             <BooksList books={books} />
                         </Row>
                     </Tab>
-                    <Tab eventKey="emails" title="Emails" >
-                        <Row>
-
-                        </Row>
-                    </Tab>
                 </Tabs>
             </Col>
         </Row>
+
     )
 }
 

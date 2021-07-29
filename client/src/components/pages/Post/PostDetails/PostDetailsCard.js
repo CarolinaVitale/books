@@ -38,16 +38,16 @@ class PostDetailsCard extends Component {
                     <>
                         <Col md={{ span: 4, offset: 4 }}>
                             <Image className='cover-img' src={this.props.image} alt={this.props.title} />
+                            <br></br>
                             <h3 className='profile-name'>{this.props.title}<Image className='profile-check' src='' /></h3>
                             <p className='profile-bio'>{this.props.text}</p>
                         </Col>
+                        <Col md={{ span: 2, offset: 5 }}>
+                            <Link className="mint-button" to={'/profile/' + this.props.owner[0]._id}>{this.props.owner[0].firstName} {this.props.owner[0].lastName}</Link>
+                        </Col>
 
-                        <Col md={{ span: 6, offset: 3 }}>
+                        <Col md={{ span: 10, offset: 1 }}>
                             <Row className="mb-3">
-
-                                <Col>
-                                    {<button className='mint-button'><Link className="normalize-link" to={'/profile/' + this.props.owner[0]._id}>{this.props.owner[0].firstName} {this.props.owner[0].lastName}</Link></button>}
-                                </Col>
                                 <Col>
                                     {<button className='blue-button' onClick={() => this.setState({ modal: true, review: true })}>add review</button>}
                                 </Col>
@@ -57,15 +57,16 @@ class PostDetailsCard extends Component {
                             </Row>
                         </Col>
 
-                        <br></br>
-                        <Col md={{ span: 4, offset: 4 }}>
-                            <p className='profile-email'>Reviews: </p>
+                        <Col md={{ span: 6, offset: 3 }}>
+                            <br></br>
+                            <h3 >Reviews: </h3>
+                            <hr></hr>
                             {review.map(elm =>
-                                <div>
+                                <>
                                     {this.printHearts(elm.points)}
                                     <h4>{elm.title}</h4>
                                     <p>{elm.text}</p>
-                                </div>
+                                </>
                             )}
                         </Col>
 

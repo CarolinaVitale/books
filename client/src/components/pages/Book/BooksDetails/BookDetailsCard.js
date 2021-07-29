@@ -38,27 +38,28 @@ class BookDetailsCard extends Component {
                     <>
                         <Col md={{ span: 6, offset: 3 }}>
                             <Image className='cover-img' src={this.props.image} alt={this.props.title} />
-                            <br></br>
+                            <br></br><br></br>
                             <h3 className='profile-name'>{this.props.title}<Image className='profile-check' src='' /></h3>
-                            <br></br>
                             <p className='profile-email'>{this.props.description} | {this.props.price} €</p>
-                            <br></br>
-
-                            <Col md={{ span: 8, offset: 2 }}>
-                                <Row className="mb-3">
-                                    <Col>
-                                        {<Link className="normalize-link" to={'/profile/' + this.props.owner[0]._id}><button className='blue-button'>{this.props.owner[0].firstName} {this.props.owner[0].lastName}</button></Link>}
-                                    </Col>
-                                    <Col>
-                                        {<button className='blue-button' onClick={() => this.setState({ modal: true, review: true })}>add review</button>}
-                                    </Col>
-                                    <Col>
-                                        {<button className='pink-button' onClick={() => this.setState({ modal: true })}>Edit Book</button>}
-                                    </Col>
-                                </Row>
-                            </Col>
-                            {/* contact owner */}
                         </Col>
+                        <Col md={{ span: 2, offset: 5 }}>
+                            <Link className='mint-button' to={'/profile/' + this.props.owner[0]._id}>{this.props.owner[0].firstName} {this.props.owner[0].lastName}</Link>
+                        </Col>
+                        <br></br>
+
+                        <Col md={{ span: 10, offset: 1 }}>
+                            <Row className="mb-3">
+                                <Col>
+                                    {<button className='blue-button' onClick={() => this.setState({ modal: true, review: true })}>add review</button>}
+                                </Col>
+                                <Col>
+                                    {<button className='pink-button' onClick={() => this.setState({ modal: true })}>Edit Book</button>}
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        {/* contact owner */}
+
                         {loggedUser && loggedUser.role === "ADMIN" && this.props.negateBook
                             ?
                             <Col md={{ span: 2, offset: 5 }}>
@@ -73,17 +74,19 @@ class BookDetailsCard extends Component {
                                 <Row className="mb-3">
                                     <Link className='mint-button' to={`/details/${this.props._id}`}>details</Link>
                                 </Row>
+                                
                             </Col>}
-
-
-                        <Col md={{ span: 4, offset: 4 }}>
-                            <p className='profile-email'>Reviews: </p>
+                        
+                        <Col md={{ span: 6, offset: 3 }}>
+                            <br></br>
+                            <h3 >Reviews: </h3>
+                            <hr></hr>
                             {review.map(elm =>
-                                <div>
+                                <>
                                     {this.printHearts(elm.points)}
-                                    <h4>{elm.title}</h4>
+                                    <h5>{elm.title}</h5>
                                     <p>{elm.text}</p>
-                                </div>
+                                </>
                             )}
                         </Col>
 

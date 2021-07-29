@@ -30,7 +30,7 @@ class Login extends Component {
             .login(email, password)
             .then(loggedUserfromServer => {
                 this.props.storeUser(loggedUserfromServer.data)
-                this.props.history.push('/profile')
+                this.props.history.push('/')
                 this.props.closeModal()
             })
             .catch(err => this.props.showMessage(`${err.response.data.message}`))

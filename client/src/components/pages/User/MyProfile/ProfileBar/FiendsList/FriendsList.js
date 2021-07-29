@@ -6,7 +6,7 @@ const FriendsList = ({ friends }) => {
 
     return (
         <Container>
-            <Row>
+            <Row className="timeline">
                 {friends ?
                     friends.map(elm => <FriendCard key={elm._id} {...elm} />) : null}
             </Row>

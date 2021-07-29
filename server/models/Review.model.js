@@ -4,11 +4,11 @@ const reviewSchema = new Schema({
 
     title: {
         type: String,
-        //require: true
+        require: true
     },
     text: {
         type: String,
-        //require: true
+        require: true
     },
     points: {
         type: Number,
