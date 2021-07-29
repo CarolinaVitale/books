@@ -3,6 +3,7 @@ import { Container, Form, Row, Col } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 import AuthService from '../../../../services/auth.service'
 
+
 class Login extends Component {
 
     constructor() {
@@ -14,12 +15,10 @@ class Login extends Component {
         this.authService = new AuthService()
     }
 
-
     handleInputChange = e => {
         const { name, value } = e.target
         this.setState({ [name]: value })
     }
-
 
     handleFormSubmit = e => {
 
@@ -34,9 +33,8 @@ class Login extends Component {
                 this.props.history.push('/profile')
                 this.props.closeModal()
             })
-            .catch(err => console.log(err))
+            .catch(err => this.props.showMessage(`${err.response.data.message}`))
     }
-
 
 
     render() {
@@ -63,7 +61,8 @@ class Login extends Component {
                                 </Form.Group>
                             </Row>
 
-                            <button className='btn-form'>Login</button>
+                            <button className='btn-form'>login</button>
+                        
                         </Form>
                         
                     </Col>

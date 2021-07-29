@@ -46,7 +46,10 @@ class ReviewsForm extends Component {
                 this.state.review.price ?
                     this.props.history.push(`/book/details/${this.state.review.file_id}`) :
                     this.props.history.push(`/post/details/${this.state.review.file_id}`)
-                this.props.loadPost().then(() => this.props.closeModal())
+                    
+                this.state.review.price?
+                this.props.loadBook().then(() => this.props.closeModal())
+                :this.props.loadPost().then(() => this.props.closeModal())
                 
             })
             .catch(err => console.log(err))
@@ -96,10 +99,6 @@ class ReviewsForm extends Component {
                             <button className='btn-form' type="submit">Submit</button>
                         </Form>
 
-                        <hr></hr>
-                        <Link to="/">
-                            <button className='btn-form'>go back</button>
-                        </Link>
                     </Col>
                 </Row>
             </Container >

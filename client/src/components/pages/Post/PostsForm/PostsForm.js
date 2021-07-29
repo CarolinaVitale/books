@@ -81,35 +81,31 @@ class PostsForm extends Component {
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="title">
                                     <Form.Label>Title</Form.Label>
-                                    <Form.Control type="text" value={this.state.title} onChange={this.handleInputChange} name="title" placeholder="Title" />
+                                    <Form.Control type="text" value={this.state.title} onChange={this.handleInputChange} name="title" placeholder="Title" required />
                                 </Form.Group>
                             </Row>
 
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="text">
                                     <Form.Label>Text</Form.Label>
-                                    <Form.Control type="text" value={this.state.text} onChange={this.handleInputChange} name="text" placeholder="Text" />
+                                    <Form.Control type="text" value={this.state.text} onChange={this.handleInputChange} name="text" placeholder="Text" required />
                                 </Form.Group>
                             </Row>
 
                             <Form.Group className="mb-3" controlId="image">
                                 <Form.Label>Image</Form.Label>
                                 <Form.Control name="image" type="file" className="custom-file-input" id="customFile" onChange={this.handleFileUpload} />
-                            </Form.Group>                                
-                    
-                                <button className='btn-form' type="submit">Submit</button>
-                        </Form>
+                            </Form.Group>
 
-                            <hr></hr>
-                            <Link to="/">
-                                <button className='btn-form'>go back</button>
-                            </Link>
+                            <button className='btn-form' type="submit">Submit</button>
+                        </Form>
+                        
                     </Col>
                 </Row>
             </Container >
-                )
+        )
     }
 }
 
 
-                export default PostsForm
+export default PostsForm

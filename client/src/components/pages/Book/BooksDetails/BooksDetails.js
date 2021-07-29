@@ -9,7 +9,7 @@ class BookDetails extends Component {
         super()
         this.state = {
             book: undefined,
-
+            modal: false,
         }
         this.booksService = new BookService()
     }
@@ -41,27 +41,22 @@ class BookDetails extends Component {
 
         const { book_id } = this.props.match.params
 
-        this.booksService
+        return this.booksService
             .bookDetails(book_id)
-            .then(res => {
-                console.log(res)
-                return res
-            })
             .then(response => this.setState({ book: response.data }))
             .catch(err => console.log(err))
     }
 
     componentDidMount() {
-
         this.loadBook()
     }
 
     render() {
 
-        const { loggedUser } = this.props
+        const { loggedUser, storeUser, history } = this.props
 
         return (
-            <BookDetailsCard {...this.props} negateBook={this.negateBook} confirmBook={this.confirmBook} {...this.state.book} loggedUser={loggedUser} />
+            <BookDetailsCard loadBook={this.loadBook} {...this.props} negateBook={this.negateBook} confirmBook={this.confirmBook} {...this.state.book} loggedUser={loggedUser} storeUser={storeUser} history={history} />
         )
     }
 }

@@ -27,7 +27,7 @@ class PostDetailsCard extends Component {
 
         const { history, loggedUser, storeUser, loadPost, review } = this.props
 
-        review.reverse()
+        review?.reverse()
 
         return (
             <>

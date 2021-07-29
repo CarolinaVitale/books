@@ -25,7 +25,9 @@ class BookDetailsCard extends Component {
 
     render() {
 
-        const { history, loggedUser, storeUser } = this.props
+        const { history, loggedUser, storeUser, loadBook, review } = this.props
+
+        review?.reverse()
 
         return (
             <Container>
@@ -36,8 +38,11 @@ class BookDetailsCard extends Component {
                     <>
                         <Col md={{ span: 6, offset: 3 }}>
                             <Image className='cover-img' src={this.props.image} alt={this.props.title} />
+                            <br></br>
                             <h3 className='profile-name'>{this.props.title}<Image className='profile-check' src='' /></h3>
+                            <br></br>
                             <p className='profile-email'>{this.props.description} | {this.props.price} €</p>
+                            <br></br>
 
                             <Col md={{ span: 8, offset: 2 }}>
                                 <Row className="mb-3">
@@ -73,7 +78,7 @@ class BookDetailsCard extends Component {
 
                         <Col md={{ span: 4, offset: 4 }}>
                             <p className='profile-email'>Reviews: </p>
-                            {this.props.review.map(elm =>
+                            {review.map(elm =>
                                 <div>
                                     {this.printHearts(elm.points)}
                                     <h4>{elm.title}</h4>

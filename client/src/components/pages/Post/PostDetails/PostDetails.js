@@ -11,7 +11,6 @@ class PostDetails extends Component {
         this.state = {
             post: undefined,
             modal: false,
-
         }
         this.postsService = new PostService()
     }
@@ -32,7 +31,7 @@ class PostDetails extends Component {
 
     render() {
 
-        const { loggedUser, storeUser, history, loadPost } = this.props
+        const { loggedUser, storeUser, history } = this.props
     
 
         return (

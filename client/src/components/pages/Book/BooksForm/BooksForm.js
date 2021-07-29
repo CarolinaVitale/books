@@ -39,7 +39,7 @@ class BooksForm extends Component {
     handleFormSubmit = e => {
 
         e.preventDefault()
-        
+
         this.bookService
             .bookCreate(this.state.book)
             .then(() => {
@@ -66,7 +66,7 @@ class BooksForm extends Component {
                     book: { ...this.state.book, [e.target.name]: response.data.cloudinary_url }
                 })
             })
-            
+
             .catch(err => console.log(err))
     }
 
@@ -86,39 +86,39 @@ class BooksForm extends Component {
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="title">
                                     <Form.Label>Title</Form.Label>
-                                    <Form.Control type="text" value={this.state.title} onChange={this.handleInputChange} name="title" placeholder="Title" />
+                                    <Form.Control type="text" value={this.state.title} onChange={this.handleInputChange} name="title" placeholder="Title" required />
                                 </Form.Group>
                             </Row>
 
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="description">
                                     <Form.Label>Description</Form.Label>
-                                    <Form.Control type="text" value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="Description" />
+                                    <Form.Control type="text" value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="Description" required />
                                 </Form.Group>
                             </Row>
 
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="author">
                                     <Form.Label>Author</Form.Label>
-                                    <Form.Control type="text" value={this.state.author} onChange={this.handleInputChange} name="author" placeholder="Author" />
+                                    <Form.Control type="text" value={this.state.author} onChange={this.handleInputChange} name="author" placeholder="Author" required />
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="publisher">
                                     <Form.Label>Publisher</Form.Label>
-                                    <Form.Control type="text" value={this.state.publisher} onChange={this.handleInputChange} name="publisher" placeholder="Publisher" />
+                                    <Form.Control type="text" value={this.state.publisher} onChange={this.handleInputChange} name="publisher" placeholder="Publisher" required />
                                 </Form.Group>
                             </Row>
 
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="description">
                                     <Form.Label>Description</Form.Label>
-                                    <Form.Control type="text" value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="Description" />
+                                    <Form.Control type="text" value={this.state.description} onChange={this.handleInputChange} name="description" placeholder="Description" required />
                                 </Form.Group>
                             </Row>
 
                             <Form.Group className="mb-3" controlId="price">
                                 <Form.Label>Price</Form.Label>
-                                <Form.Control type="text" value={this.state.price} onChange={this.handleInputChange} name="price" placeholder="Price" />
+                                <Form.Control type="text" value={this.state.price} onChange={this.handleInputChange} name="price" placeholder="Price" required />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="image">
@@ -128,11 +128,7 @@ class BooksForm extends Component {
 
                             <button className='btn-form' type="submit">Submit</button>
                         </Form>
-
-                        <hr></hr>
-                        <Link to="/">
-                            <button className='btn-form'>go back</button>
-                        </Link>
+                        
                     </Col>
                 </Row>
             </Container >

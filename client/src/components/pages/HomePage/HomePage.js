@@ -66,19 +66,19 @@ class HomePage extends Component {
             .catch(err => console.log(err))
     }
 
-    listenScrollEvent() {
-        this.state.modal === false && this.setState({ modal: true })
-    }
+    // listenScrollEvent() {
+    //     this.state.modal === false && this.setState({ modal: true })
+    // }
 
     componentDidMount = () => {
-        window.addEventListener('scroll', this.listenScrollEvent.bind(this));
+        // window.addEventListener('scroll', this.listenScrollEvent.bind(this));
         this.loadUnsplash()
         this.getTimeline()
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.listenScrollEvent)
-    }
+    // componentWillUnmount() {
+    //     window.removeEventListener('scroll', this.listenScrollEvent)
+    // }
 
     render() {
 
@@ -102,10 +102,10 @@ class HomePage extends Component {
                                         ?
                                         <Spinner className='spinner' animation="grow" variant="info" size="lg" />
                                         :
-                                        <>
+                                        <> <Row className="timeline">
                                             {this.state.photos.map(elm => <RandomImgCard key={elm.id} {...elm} />)}
                                             {this.state.photos.reverse().map(elm => <RandomImgCard key={elm.id} {...elm} />)}
-
+                                        </Row>
                                             <Modal backdrop="static" keyboard={false} size='lg' className='login-modal' show={this.state.modal} onHide={() => this.setState({ modal: false })}>
                                                 <Modal.Header closeButton></Modal.Header>
                                                 {!this.state.registerShown

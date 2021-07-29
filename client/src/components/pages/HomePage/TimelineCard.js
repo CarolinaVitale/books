@@ -7,7 +7,7 @@ const TimelineCard = ({ image, _id, title, price }) => {
         <Col md={3} className='home-col'>
             <Link className="nav-link" to={price ? '/book/details/' + _id : '/post/details/' + _id}>
                 <img className='card-img' src={image} alt={title + ' image'} />
-                <button class="title">{title}</button>
+                <button className="title">{title}</button>
             </Link>
         </Col>
     )

@@ -113,10 +113,6 @@ class ReviewEdit extends Component {
                                 <button className='btn-form' type="submit">edit</button>
                             </Form>
 
-                            <hr></hr>
-                            <Link to="/">
-                                <button className='btn-form'>go back</button>
-                            </Link>
                         </Col>
                     </Row>
                 }

@@ -35,6 +35,7 @@ class Navigation extends Component {
         this.authService
             .logout()
             .then(() => {
+                this.props.showMessage('Logout successful')
                 this.props.storeUser(undefined)
                 this.props.history.push('/')
             })
@@ -63,7 +64,7 @@ class Navigation extends Component {
 
     render() {
 
-        const { loggedUser, storeUser, history } = this.props
+        const { loggedUser, storeUser, history, showMessage } = this.props
 
         return (
             <Navbar className='navbar' bg="light" variant="light" expand="md">
@@ -82,8 +83,8 @@ class Navigation extends Component {
                                     <Modal.Header closeButton></Modal.Header>
                                     <Modal.Body>
                                         {this.state.registerShown
-                                            ? <RegisterForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />
-                                            : <Login history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} />}
+                                            ? <RegisterForm history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} showMessage={showMessage} />
+                                            : <Login history={history} closeModal={() => this.setState({ modal: false })} loggedUser={loggedUser} storeUser={storeUser} showMessage={showMessage} />}
                                     </Modal.Body>
                                 </Modal>
                             </>
@@ -92,6 +93,7 @@ class Navigation extends Component {
                                 <SearchPage books={this.state.books} posts={this.state.posts} timeline={this.state.timeline} loggedUser={loggedUser} />
                                 <Link className="navbar-link" to="/profile"> <button className='navbar-button'>{loggedUser ? loggedUser.firstName : ''}</button></Link>
                                 <button className='navbar-button'><span className="navbar-link" onClick={this.logout}>Logout</span></button>
+                               
                             </>
                         }
                     </Nav>

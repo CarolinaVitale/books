@@ -27,25 +27,25 @@ class PostEdit extends Component {
     componentDidMount() {
 
         const { post_id } = this.props.match.params
-        
+
         this.loadFormInfo(post_id)
     }
-    
+
     loadFormInfo = (post_id) => {
         this.postService
-        .postDetails(post_id)
-        .then(response => this.setState({ post: response.data }))
+            .postDetails(post_id)
+            .then(response => this.setState({ post: response.data }))
     }
-    
+
     handleInputChange = e => {
         const { name, value } = e.target
         this.setState({ post: { ...this.state.post, [name]: value } })
     }
-    
+
     handleFormSubmit = e => {
-        
+
         const { post_id } = this.props.match.params
-        
+
         e.preventDefault()
 
         this.postService
@@ -99,14 +99,14 @@ class PostEdit extends Component {
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="title">
                                         <Form.Label>Title</Form.Label>
-                                        <Form.Control type="text" value={this.state.post.title} onChange={this.handleInputChange} name="title" placeholder="Title" />
+                                        <Form.Control type="text" value={this.state.post.title} onChange={this.handleInputChange} name="title" placeholder="Title" required />
                                     </Form.Group>
                                 </Row>
 
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="text">
                                         <Form.Label>Text</Form.Label>
-                                        <Form.Control type="text" value={this.state.post.text} onChange={this.handleInputChange} name="text" placeholder="Text" />
+                                        <Form.Control type="text" value={this.state.post.text} onChange={this.handleInputChange} name="text" placeholder="Text" required />
                                     </Form.Group>
                                 </Row>
 
@@ -119,10 +119,6 @@ class PostEdit extends Component {
                                 <button className='btn-form' type="submit">Edit</button>
                             </Form>
 
-                            <hr></hr>
-                            <Link to="/">
-                                <button className='btn-form'>go back</button>
-                            </Link>
                         </Col>
                     </Row>
                 }
