@@ -1,5 +1,5 @@
 # forWords
-Ironhack final project
+Ironhack final project MVP
 
 
 ## Project setup
